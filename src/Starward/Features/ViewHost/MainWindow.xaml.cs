@@ -53,7 +53,7 @@ public sealed partial class MainWindow : WindowEx
         AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
         AppWindow.Closing += AppWindow_Closing;
         Content.KeyDown += Content_KeyDown;
-        CenterInScreen(1200, 676);
+        CenterInScreen(1296, 729);
         AdaptTitleBarButtonColorToActuallTheme();
         SetDragRectangles(new RectInt32(0, 0, 100000, (int)(48 * UIScale)));
         SetIcon();
@@ -88,7 +88,7 @@ public sealed partial class MainWindow : WindowEx
         double uiScale = UIScale;
         if (Math.Abs(AppWindow.Size.Width - 1200 * uiScale) > 10 || Math.Abs(AppWindow.Size.Height - 676 * uiScale) > 10)
         {
-            CenterInScreen(1200, 676);
+            CenterInScreen(1296, 729);
         }
         base.Show();
     }
@@ -97,7 +97,7 @@ public sealed partial class MainWindow : WindowEx
 
     public void ShowByGamepad()
     {
-        CenterInScreen(1200, 676);
+        CenterInScreen(1296, 729);
         User32.SetCursorPos(AppWindow.Position.X + AppWindow.Size.Width / 2, AppWindow.Position.Y + AppWindow.Size.Height / 2);
         base.Show();
     }
