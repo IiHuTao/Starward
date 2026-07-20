@@ -80,6 +80,9 @@ public sealed partial class StygianOnslaughtPage : PageBase
     {
         try
         {
+            SegmentedItem_MultiPlayer.Visibility = Visibility.Collapsed;
+            SegmentedItem_MultiPlayer.IsEnabled = false;
+
             CurrentInfo = null;
             var list = _gameRecordService.GetStygianOnslaughtInfoList(gameRole);
             if (list.Count != 0)
@@ -88,9 +91,13 @@ public sealed partial class StygianOnslaughtPage : PageBase
                 ListView_StygianOnslaughtPageList.SelectedIndex = 0;
                 CurrentInfo = _gameRecordService.GetStygianOnslaughtInfo(gameRole, SOList[0].ScheduleId);
                 HasData = CurrentInfo?.Schedule?.ScheduleId > 0;
+
+                bool hasMultiPlayer = CurrentInfo?.MultiPlayer?.HasData ?? false;
+                SegmentedItem_MultiPlayer.Visibility = hasMultiPlayer ? Visibility.Visible : Visibility.Collapsed;
+                SegmentedItem_MultiPlayer.IsEnabled = hasMultiPlayer;
+
                 CurrentSelectedBattle = CurrentInfo?.SinglePlayer;
                 Segmented_PlayerMode.SelectedIndex = 0;
-                SegmentedItem_MultiPlayer.IsEnabled = CurrentInfo?.MultiPlayer?.HasData ?? false;
                 Image_Emoji.Visibility = HasData ? Visibility.Collapsed : Visibility.Visible;
             }
             else
@@ -148,10 +155,14 @@ public sealed partial class StygianOnslaughtPage : PageBase
             if (e.AddedItems.FirstOrDefault() is StygianOnslaughtInfo info)
             {
                 CurrentInfo = _gameRecordService.GetStygianOnslaughtInfo(gameRole, info.ScheduleId);
-                CurrentSelectedBattle = CurrentInfo?.SinglePlayer;
                 HasData = CurrentInfo?.Schedule?.ScheduleId > 0;
+
+                bool hasMultiPlayer = CurrentInfo?.MultiPlayer?.HasData ?? false;
+                SegmentedItem_MultiPlayer.Visibility = hasMultiPlayer ? Visibility.Visible : Visibility.Collapsed;
+                SegmentedItem_MultiPlayer.IsEnabled = hasMultiPlayer;
+
+                CurrentSelectedBattle = CurrentInfo?.SinglePlayer;
                 Segmented_PlayerMode.SelectedIndex = 0;
-                SegmentedItem_MultiPlayer.IsEnabled = CurrentInfo?.MultiPlayer?.HasData ?? false;
                 Image_Emoji.Visibility = HasData ? Visibility.Collapsed : Visibility.Visible;
             }
         }
