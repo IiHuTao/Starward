@@ -2769,10 +2769,16 @@
     <value>应用密码</value>
   </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
-    <value>上传成功后删除本地文件</value>
+    <value>上传成功后删除本地 WebDAV 备份压缩文件</value>
   </data>
   <data name="SettingPage_Compressing" xml:space="preserve">
     <value>正在压缩</value>
+  </data>
+  <data name="SettingPage_WebDAVInvalidServerAddress" xml:space="preserve">
+    <value>服务器地址无效，必须以 http:// 或 https:// 开头的完整地址。</value>
+  </data>
+  <data name="SettingPage_WebDAVBackupFailedCleanup" xml:space="preserve">
+    <value>备份上传失败，是否删除本次生成的本地备份压缩文件？</value>
   </data>
   <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
     <value>WebDAV 备份管理</value>
@@ -2802,7 +2808,7 @@
     <value>删除备份文件</value>
   </data>
   <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
-    <value>确定要删除这个备份文件吗？</value>
+    <value>确定要删除选中备份文件吗？</value>
   </data>
   <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
     <value>下载中</value>
@@ -2818,6 +2824,24 @@
   </data>
   <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
     <value>修改时间</value>
+  </data>
+  <data name="WebDAVBackupWindow_Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDate" xml:space="preserve">
+    <value>删除早于指定日期</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateContent" xml:space="preserve">
+    <value>选择一个日期，服务器上早于该日期的备份文件将被删除。</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateTitle" xml:space="preserve">
+    <value>删除备份</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateCount" xml:space="preserve">
+    <value>将删除服务器上 {0} 个备份文件。</value>
+  </data>
+  <data name="WebDAVBackupWindow_SelectedCount" xml:space="preserve">
+    <value>当前选中 {0} 个备份文件</value>
   </data>
   <data name="WebDAVError_ListingFiles" xml:space="preserve">
     <value>列举文件</value>
@@ -2852,13 +2876,16 @@
   <data name="WebDAVError_Timeout" xml:space="preserve">
     <value>请求超时，请检查网络和服务器地址。</value>
   </data>
-  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
-    <value>服务器上不存在备份文件夹，请先备份数据库以创建。</value>
-  </data>
   <data name="WebDAVError_InvalidResponse" xml:space="preserve">
     <value>服务器响应不是有效的 WebDAV 数据，请检查服务器地址，或确认服务器支持 WebDAV。</value>
   </data>
   <data name="WebDAVError_NetworkError" xml:space="preserve">
     <value>无法连接到服务器，请检查网络和服务器地址。</value>
+  </data>
+  <data name="WebDAVError_ParentFolderNotFound" xml:space="preserve">
+    <value>无法创建备份文件夹，服务器地址的子路径可能不存在，或服务器不支持 WebDAV。</value>
+  </data>
+  <data name="WebDAVError_DownloadSizeMismatch" xml:space="preserve">
+    <value>下载的文件大小与服务器上的文件不一致。</value>
   </data>
 </root>

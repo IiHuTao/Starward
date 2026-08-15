@@ -2754,10 +2754,16 @@
     <value>รหัสผ่านแอป</value>
   </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
-    <value>ลบไฟล์ในเครื่องหลังจากการอัปโหลดสำเร็จ</value>
+    <value>ลบไฟล์บีบอัดสำรอง WebDAV ในเครื่องหลังจากการอัปโหลดสำเร็จ</value>
   </data>
   <data name="SettingPage_Compressing" xml:space="preserve">
     <value>กำลังบีบอัด</value>
+  </data>
+  <data name="SettingPage_WebDAVInvalidServerAddress" xml:space="preserve">
+    <value>ที่อยู่เซิร์ฟเวอร์ไม่ถูกต้อง ต้องเป็น URL แบบเต็มที่ขึ้นต้นด้วย http:// หรือ https://</value>
+  </data>
+  <data name="SettingPage_WebDAVBackupFailedCleanup" xml:space="preserve">
+    <value>การอัปโหลดล้มเหลว ต้องการลบไฟล์บีบอัดสำรองที่สร้างในเครื่องนี้หรือไม่</value>
   </data>
   <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
     <value>ตัวจัดการการสำรองข้อมูล WebDAV</value>
@@ -2787,7 +2793,7 @@
     <value>ลบไฟล์สำรองข้อมูล</value>
   </data>
   <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
-    <value>คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์สำรองข้อมูลนี้?</value>
+    <value>คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์สำรองข้อมูลที่เลือก</value>
   </data>
   <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
     <value>กำลังดาวน์โหลด</value>
@@ -2803,6 +2809,24 @@
   </data>
   <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
     <value>แก้ไขล่าสุด</value>
+  </data>
+  <data name="WebDAVBackupWindow_Date" xml:space="preserve">
+    <value>วันที่</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDate" xml:space="preserve">
+    <value>ลบก่อนวันที่</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateContent" xml:space="preserve">
+    <value>เลือกวันที่ ไฟล์สำรองทั้งหมดที่แก้ไขก่อนวันที่นี้จะถูกลบออกจากเซิร์ฟเวอร์</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateTitle" xml:space="preserve">
+    <value>ลบไฟล์สำรอง</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateCount" xml:space="preserve">
+    <value>จะลบไฟล์สำรอง {0} ไฟล์ออกจากเซิร์ฟเวอร์</value>
+  </data>
+  <data name="WebDAVBackupWindow_SelectedCount" xml:space="preserve">
+    <value>เลือกไฟล์สำรอง {0} ไฟล์อยู่</value>
   </data>
   <data name="WebDAVError_ListingFiles" xml:space="preserve">
     <value>แสดงรายการไฟล์</value>
@@ -2837,13 +2861,16 @@
   <data name="WebDAVError_Timeout" xml:space="preserve">
     <value>คำขอหมดเวลา กรุณาตรวจสอบเครือข่ายและที่อยู่เซิร์ฟเวอร์</value>
   </data>
-  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
-    <value>ไม่พบโฟลเดอร์สำรองบนเซิร์ฟเวอร์ กรุณาสำรองข้อมูลฐานข้อมูลก่อนเพื่อสร้าง</value>
-  </data>
   <data name="WebDAVError_InvalidResponse" xml:space="preserve">
     <value>การตอบกลับจากเซิร์ฟเวอร์ไม่ใช่ข้อมูล WebDAV ที่ถูกต้อง กรุณาตรวจสอบที่อยู่เซิร์ฟเวอร์หรือการรองรับ WebDAV</value>
   </data>
   <data name="WebDAVError_NetworkError" xml:space="preserve">
     <value>ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบเครือข่ายและที่อยู่เซิร์ฟเวอร์</value>
+  </data>
+  <data name="WebDAVError_ParentFolderNotFound" xml:space="preserve">
+    <value>ไม่สามารถสร้างโฟลเดอร์สำรองได้ อาจไม่มีเส้นทางย่อยของที่อยู่เซิร์ฟเวอร์ หรือเซิร์ฟเวอร์ไม่รองรับ WebDAV</value>
+  </data>
+  <data name="WebDAVError_DownloadSizeMismatch" xml:space="preserve">
+    <value>ขนาดของไฟล์ที่ดาวน์โหลดไม่ตรงกับไฟล์บนเซิร์ฟเวอร์</value>
   </data>
 </root>

@@ -2760,10 +2760,16 @@ Sei invitato a inviare i dati esportati al seguente repository:</value>
     <value>Password dell'app</value>
   </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
-    <value>Elimina il file locale dopo il caricamento riuscito</value>
+    <value>Elimina l'archivio di backup WebDAV locale dopo il caricamento riuscito</value>
   </data>
   <data name="SettingPage_Compressing" xml:space="preserve">
     <value>Compressione in corso</value>
+  </data>
+  <data name="SettingPage_WebDAVInvalidServerAddress" xml:space="preserve">
+    <value>L'indirizzo del server non è valido. Deve essere un URL assoluto che inizia con http:// o https://.</value>
+  </data>
+  <data name="SettingPage_WebDAVBackupFailedCleanup" xml:space="preserve">
+    <value>Il caricamento non è riuscito. Eliminare l'archivio di backup locale creato questa volta?</value>
   </data>
   <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
     <value>Gestore backup WebDAV</value>
@@ -2793,7 +2799,7 @@ Sei invitato a inviare i dati esportati al seguente repository:</value>
     <value>Elimina file di backup</value>
   </data>
   <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
-    <value>Vuoi davvero eliminare questo file di backup?</value>
+    <value>Vuoi davvero eliminare i file di backup selezionati?</value>
   </data>
   <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
     <value>Download in corso</value>
@@ -2809,6 +2815,24 @@ Sei invitato a inviare i dati esportati al seguente repository:</value>
   </data>
   <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
     <value>Ultima modifica</value>
+  </data>
+  <data name="WebDAVBackupWindow_Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDate" xml:space="preserve">
+    <value>Elimina prima della data</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateContent" xml:space="preserve">
+    <value>Seleziona una data. Tutti i file di backup modificati prima di questa data verranno eliminati dal server.</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateTitle" xml:space="preserve">
+    <value>Elimina i backup</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateCount" xml:space="preserve">
+    <value>Verranno eliminati {0} file di backup dal server.</value>
+  </data>
+  <data name="WebDAVBackupWindow_SelectedCount" xml:space="preserve">
+    <value>Attualmente {0} file di backup selezionati</value>
   </data>
   <data name="WebDAVError_ListingFiles" xml:space="preserve">
     <value>Elenca file</value>
@@ -2843,13 +2867,16 @@ Sei invitato a inviare i dati esportati al seguente repository:</value>
   <data name="WebDAVError_Timeout" xml:space="preserve">
     <value>Richiesta scaduta. Controlla rete e indirizzo del server.</value>
   </data>
-  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
-    <value>La cartella di backup non esiste sul server. Esegui prima un backup del database per crearla.</value>
-  </data>
   <data name="WebDAVError_InvalidResponse" xml:space="preserve">
     <value>La risposta del server non è dati WebDAV validi. Controlla l'indirizzo del server o se supporta WebDAV.</value>
   </data>
   <data name="WebDAVError_NetworkError" xml:space="preserve">
     <value>Impossibile connettersi al server. Controlla rete e indirizzo del server.</value>
+  </data>
+  <data name="WebDAVError_ParentFolderNotFound" xml:space="preserve">
+    <value>Impossibile creare la cartella di backup. Il sottopercorso dell'indirizzo del server potrebbe non esistere oppure il server non supporta WebDAV.</value>
+  </data>
+  <data name="WebDAVError_DownloadSizeMismatch" xml:space="preserve">
+    <value>La dimensione del file scaricato non corrisponde a quella del server.</value>
   </data>
 </root>

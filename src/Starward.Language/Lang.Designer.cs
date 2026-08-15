@@ -7387,7 +7387,7 @@ namespace Starward.Language {
         }
         
         /// <summary>
-        ///   查找类似 Are you sure you want to delete this backup file? 的本地化字符串。
+        ///   查找类似 Are you sure you want to delete the selected backup files? 的本地化字符串。
         /// </summary>
         public static string WebDAVBackupWindow_DeleteConfirmContent {
             get {
@@ -8166,15 +8166,6 @@ namespace Starward.Language {
         }
         
         /// <summary>
-        ///   查找类似 Backup folder does not exist on the server. Create it by backing up the database first. 的本地化字符串。
-        /// </summary>
-        public static string WebDAVError_BackupFolderNotFound {
-            get {
-                return ResourceManager.GetString("WebDAVError_BackupFolderNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 The server response is not valid WebDAV data. Check the server address, or whether the server supports WebDAV. 的本地化字符串。
         /// </summary>
         public static string WebDAVError_InvalidResponse {
@@ -8189,6 +8180,96 @@ namespace Starward.Language {
         public static string WebDAVError_NetworkError {
             get {
                 return ResourceManager.GetString("WebDAVError_NetworkError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The server address is invalid. It must be an absolute URL starting with http:// or https://. 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVInvalidServerAddress {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVInvalidServerAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload failed. Delete the local backup archive created this time? 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVBackupFailedCleanup {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVBackupFailedCleanup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Date 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Date {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete Before Date 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDate {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Select a date. All backup files modified before this date will be deleted from the server. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDateContent {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete Backups 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDateTitle {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 This will delete {0} backup files from the server. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDateCount {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDateCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Currently selected {0} backup file(s) 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_SelectedCount {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_SelectedCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cannot create the backup folder. The sub-path of the server address may not exist, or the server does not support WebDAV. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_ParentFolderNotFound {
+            get {
+                return ResourceManager.GetString("WebDAVError_ParentFolderNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The downloaded file size does not match the server file. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_DownloadSizeMismatch {
+            get {
+                return ResourceManager.GetString("WebDAVError_DownloadSizeMismatch", resourceCulture);
             }
         }
     }

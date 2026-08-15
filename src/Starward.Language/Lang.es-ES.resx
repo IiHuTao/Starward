@@ -2760,10 +2760,16 @@ Puede enviar los datos exportados al siguiente repositorio:</value>
     <value>Contraseña de la aplicación</value>
   </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
-    <value>Eliminar el archivo local después de una carga exitosa</value>
+    <value>Eliminar el archivo de copia de seguridad de WebDAV local después de una carga exitosa</value>
   </data>
   <data name="SettingPage_Compressing" xml:space="preserve">
     <value>Comprimiendo</value>
+  </data>
+  <data name="SettingPage_WebDAVInvalidServerAddress" xml:space="preserve">
+    <value>La dirección del servidor no es válida. Debe ser una URL absoluta que comience con http:// o https://.</value>
+  </data>
+  <data name="SettingPage_WebDAVBackupFailedCleanup" xml:space="preserve">
+    <value>La carga falló. ¿Desea eliminar el archivo de copia de seguridad local creado esta vez?</value>
   </data>
   <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
     <value>Administrador de copias de seguridad WebDAV</value>
@@ -2793,7 +2799,7 @@ Puede enviar los datos exportados al siguiente repositorio:</value>
     <value>Eliminar archivo de copia de seguridad</value>
   </data>
   <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
-    <value>¿Seguro que desea eliminar este archivo de copia de seguridad?</value>
+    <value>¿Seguro que desea eliminar los archivos de copia de seguridad seleccionados?</value>
   </data>
   <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
     <value>Descargando</value>
@@ -2809,6 +2815,24 @@ Puede enviar los datos exportados al siguiente repositorio:</value>
   </data>
   <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
     <value>Última modificación</value>
+  </data>
+  <data name="WebDAVBackupWindow_Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDate" xml:space="preserve">
+    <value>Eliminar antes de la fecha</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateContent" xml:space="preserve">
+    <value>Seleccione una fecha. Todos los archivos de copia de seguridad modificados antes de esta fecha se eliminarán del servidor.</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateTitle" xml:space="preserve">
+    <value>Eliminar copias de seguridad</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateCount" xml:space="preserve">
+    <value>Se eliminarán {0} archivos de copia de seguridad del servidor.</value>
+  </data>
+  <data name="WebDAVBackupWindow_SelectedCount" xml:space="preserve">
+    <value>Actualmente hay {0} archivos de copia de seguridad seleccionados</value>
   </data>
   <data name="WebDAVError_ListingFiles" xml:space="preserve">
     <value>Enumerar archivos</value>
@@ -2843,13 +2867,16 @@ Puede enviar los datos exportados al siguiente repositorio:</value>
   <data name="WebDAVError_Timeout" xml:space="preserve">
     <value>Tiempo de espera agotado. Compruebe la red y la dirección del servidor.</value>
   </data>
-  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
-    <value>La carpeta de copia de seguridad no existe en el servidor. Cree una copia de seguridad de la base de datos primero.</value>
-  </data>
   <data name="WebDAVError_InvalidResponse" xml:space="preserve">
     <value>La respuesta del servidor no son datos WebDAV válidos. Compruebe la dirección del servidor o si admite WebDAV.</value>
   </data>
   <data name="WebDAVError_NetworkError" xml:space="preserve">
     <value>No se puede conectar con el servidor. Compruebe la red y la dirección del servidor.</value>
+  </data>
+  <data name="WebDAVError_ParentFolderNotFound" xml:space="preserve">
+    <value>No se puede crear la carpeta de copia de seguridad. Es posible que la subruta de la dirección del servidor no exista o que el servidor no admita WebDAV.</value>
+  </data>
+  <data name="WebDAVError_DownloadSizeMismatch" xml:space="preserve">
+    <value>El tamaño del archivo descargado no coincide con el del servidor.</value>
   </data>
 </root>

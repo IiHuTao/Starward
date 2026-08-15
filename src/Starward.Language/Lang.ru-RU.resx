@@ -2789,10 +2789,16 @@ ChatGPT может допускать ошибки. Проверьте важн�
     <value>Пароль приложения</value>
   </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
-    <value>Удалять локальный файл после успешной загрузки</value>
+    <value>Удалять локальный архив резервной копии WebDAV после успешной загрузки</value>
   </data>
   <data name="SettingPage_Compressing" xml:space="preserve">
     <value>Сжатие...</value>
+  </data>
+  <data name="SettingPage_WebDAVInvalidServerAddress" xml:space="preserve">
+    <value>Недопустимый адрес сервера. Он должен быть абсолютным URL-адресом, начинающимся с http:// или https://.</value>
+  </data>
+  <data name="SettingPage_WebDAVBackupFailedCleanup" xml:space="preserve">
+    <value>Загрузка не удалась. Удалить созданный локальный архив резервной копии?</value>
   </data>
   <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
     <value>Менеджер резервных копий WebDAV</value>
@@ -2822,7 +2828,7 @@ ChatGPT может допускать ошибки. Проверьте важн�
     <value>Удалить файл резервной копии</value>
   </data>
   <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить этот файл резервной копии?</value>
+    <value>Вы уверены, что хотите удалить выбранные файлы резервных копий?</value>
   </data>
   <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
     <value>Скачивание</value>
@@ -2838,6 +2844,24 @@ ChatGPT может допускать ошибки. Проверьте важн�
   </data>
   <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
     <value>Дата изменения</value>
+  </data>
+  <data name="WebDAVBackupWindow_Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDate" xml:space="preserve">
+    <value>Удалить ранее даты</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateContent" xml:space="preserve">
+    <value>Выберите дату. Все резервные копии, изменённые до этой даты, будут удалены с сервера.</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateTitle" xml:space="preserve">
+    <value>Удалить резервные копии</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateCount" xml:space="preserve">
+    <value>С сервера будет удалено {0} файлов резервных копий.</value>
+  </data>
+  <data name="WebDAVBackupWindow_SelectedCount" xml:space="preserve">
+    <value>Выбрано файлов резервных копий: {0}</value>
   </data>
   <data name="WebDAVError_ListingFiles" xml:space="preserve">
     <value>Получение списка файлов</value>
@@ -2872,13 +2896,16 @@ ChatGPT может допускать ошибки. Проверьте важн�
   <data name="WebDAVError_Timeout" xml:space="preserve">
     <value>Истекло время запроса. Проверьте сеть и адрес сервера.</value>
   </data>
-  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
-    <value>Папка резервного копирования не существует на сервере. Сначала создайте резервную копию базы данных.</value>
-  </data>
   <data name="WebDAVError_InvalidResponse" xml:space="preserve">
     <value>Ответ сервера не является допустимыми данными WebDAV. Проверьте адрес сервера или поддержку WebDAV.</value>
   </data>
   <data name="WebDAVError_NetworkError" xml:space="preserve">
     <value>Не удаётся подключиться к серверу. Проверьте сеть и адрес сервера.</value>
+  </data>
+  <data name="WebDAVError_ParentFolderNotFound" xml:space="preserve">
+    <value>Не удаётся создать папку резервного копирования. Возможно, подкаталог адреса сервера не существует или сервер не поддерживает WebDAV.</value>
+  </data>
+  <data name="WebDAVError_DownloadSizeMismatch" xml:space="preserve">
+    <value>Размер загруженного файла не совпадает с файлом на сервере.</value>
   </data>
 </root>

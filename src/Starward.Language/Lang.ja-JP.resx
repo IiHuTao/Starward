@@ -2759,10 +2759,16 @@
     <value>アプリパスワード</value>
   </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
-    <value>アップロード成功後にローカルファイルを削除</value>
+    <value>アップロード成功後にローカルの WebDAV バックアップ圧縮ファイルを削除</value>
   </data>
   <data name="SettingPage_Compressing" xml:space="preserve">
     <value>圧縮中</value>
+  </data>
+  <data name="SettingPage_WebDAVInvalidServerAddress" xml:space="preserve">
+    <value>サーバーアドレスが無効です。http:// または https:// で始まる完全な URL を指定してください。</value>
+  </data>
+  <data name="SettingPage_WebDAVBackupFailedCleanup" xml:space="preserve">
+    <value>アップロードに失敗しました。今回作成したローカルのバックアップ圧縮ファイルを削除しますか？</value>
   </data>
   <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
     <value>WebDAV バックアップマネージャー</value>
@@ -2792,7 +2798,7 @@
     <value>バックアップファイルの削除</value>
   </data>
   <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
-    <value>このバックアップファイルを削除してもよろしいですか?</value>
+    <value>選択したバックアップファイルを削除してもよろしいですか？</value>
   </data>
   <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
     <value>ダウンロード中</value>
@@ -2808,6 +2814,24 @@
   </data>
   <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
     <value>更新日時</value>
+  </data>
+  <data name="WebDAVBackupWindow_Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDate" xml:space="preserve">
+    <value>指定日より前を削除</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateContent" xml:space="preserve">
+    <value>日付を選択してください。この日付より前に変更されたすべてのバックアップファイルがサーバーから削除されます。</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateTitle" xml:space="preserve">
+    <value>バックアップを削除</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateCount" xml:space="preserve">
+    <value>サーバーから {0} 個のバックアップファイルが削除されます。</value>
+  </data>
+  <data name="WebDAVBackupWindow_SelectedCount" xml:space="preserve">
+    <value>現在 {0} 個のバックアップファイルが選択されています</value>
   </data>
   <data name="WebDAVError_ListingFiles" xml:space="preserve">
     <value>ファイル一覧を取得</value>
@@ -2842,13 +2866,16 @@
   <data name="WebDAVError_Timeout" xml:space="preserve">
     <value>リクエストがタイムアウトしました。ネットワークとサーバーアドレスを確認してください。</value>
   </data>
-  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
-    <value>サーバーにバックアップフォルダーが存在しません。最初にデータベースをバックアップして作成してください。</value>
-  </data>
   <data name="WebDAVError_InvalidResponse" xml:space="preserve">
     <value>サーバーの応答が有効な WebDAV データではありません。サーバーアドレスまたは WebDAV サポートを確認してください。</value>
   </data>
   <data name="WebDAVError_NetworkError" xml:space="preserve">
     <value>サーバーに接続できません。ネットワークとサーバーアドレスを確認してください。</value>
+  </data>
+  <data name="WebDAVError_ParentFolderNotFound" xml:space="preserve">
+    <value>バックアップフォルダーを作成できません。サーバーアドレスのサブパスが存在しないか、サーバーが WebDAV に対応していない可能性があります。</value>
+  </data>
+  <data name="WebDAVError_DownloadSizeMismatch" xml:space="preserve">
+    <value>ダウンロードしたファイルのサイズがサーバー上のファイルと一致しません。</value>
   </data>
 </root>

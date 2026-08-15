@@ -1,4 +1,3 @@
-using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,7 +18,7 @@ namespace Starward.Features.Setting;
 /// <summary>
 /// WebDAV 服务器上的备份文件信息
 /// </summary>
-public class WebDAVFileInfo : ObservableObject
+public class WebDAVFileInfo
 {
 
 
@@ -35,9 +34,6 @@ public class WebDAVFileInfo : ObservableObject
     public DateTime LastModified { get; set; }
 
 
-    public bool IsSelected { get => field; set => SetProperty(ref field, value); }
-
-
     public string SizeText => WebDAVClient.FormatFileSize(Size);
 
 
@@ -48,15 +44,12 @@ public class WebDAVFileInfo : ObservableObject
 
 
 /// <summary>
-/// 使用 HttpClient 实现 WebDAV 协议（MKCOL 创建文件夹 + PUT 上传 + PROPFIND 列举 + GET 下载 + DELETE 删除）
+/// 基于 HttpClient 的 WebDAV 客户端，支持 MKCOL、PUT、PROPFIND、GET、DELETE 方法
 /// </summary>
 public static class WebDAVClient
 {
 
 
-    /// <summary>
-    /// 备份文件在服务器上的保存目录名
-    /// </summary>
     public const string BackupFolderName = "StarwardDatabaseBackup";
 
 
@@ -69,12 +62,10 @@ public static class WebDAVClient
     public static string? Password => AppConfig.GetValue<string>(null, "WebDAVPassword");
 
 
-    public static bool IsConfigured => !string.IsNullOrWhiteSpace(ServerAddress);
+    public static bool IsConfigured => !string.IsNullOrWhiteSpace(ServerAddress)
+        && Uri.TryCreate(ServerAddress, UriKind.Absolute, out var uri) && uri.Scheme is "http" or "https";
 
 
-    /// <summary>
-    /// 服务器上备份文件夹的 URL
-    /// </summary>
     public static string GetBackupFolderUrl(string serverAddress) => serverAddress.TrimEnd('/') + "/" + BackupFolderName;
 
 
@@ -83,11 +74,19 @@ public static class WebDAVClient
     /// </summary>
     public static HttpClient CreateHttpClient(string serverAddress, string? userName, string? password, TimeSpan? timeout = null)
     {
-        var httpClient = new HttpClient
+        var httpClient = new HttpClient(new SocketsHttpHandler
+        {
+            AutomaticDecompression = DecompressionMethods.All,
+        })
         {
             Timeout = timeout ?? TimeSpan.FromSeconds(300),
         };
         httpClient.DefaultRequestHeaders.ExpectContinue = false;
+#if DEBUG
+        httpClient.DefaultRequestHeaders.Add("User-Agent", $"Starward.Debug/{AppConfig.AppVersion}");
+#else
+        httpClient.DefaultRequestHeaders.Add("User-Agent", $"Starward/{AppConfig.AppVersion}");
+#endif
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
             Convert.ToBase64String(Encoding.UTF8.GetBytes($"{userName ?? ""}:{password ?? ""}")));
         return httpClient;
@@ -108,7 +107,9 @@ public static class WebDAVClient
         long lastReportedBytes = 0;
         return uploadedBytes =>
         {
-            if (uploadedBytes - lastReportedBytes < minIntervalBytes)
+            // 最后不足 minIntervalBytes 的尾部数据也强制上报，避免进度停滞在接近 100%
+            bool isFinal = totalBytes > 0 && uploadedBytes >= totalBytes;
+            if (!isFinal && uploadedBytes - lastReportedBytes < minIntervalBytes)
             {
                 return;
             }
@@ -131,7 +132,8 @@ public static class WebDAVClient
         using var response = await SendAsync(httpClient, propfind, cancellationToken);
         if (response.StatusCode == HttpStatusCode.NotFound)
         {
-            throw new HttpRequestException($"{Lang.WebDAVError_BackupFolderNotFound} (HTTP 404)");
+            // 尚未创建备份文件夹时视为空列表
+            return new List<WebDAVFileInfo>();
         }
         if (response.StatusCode != HttpStatusCode.MultiStatus)
         {
@@ -198,7 +200,7 @@ public static class WebDAVClient
 
 
     /// <summary>
-    /// 上传文件到备份文件夹（MKCOL 创建文件夹 + PUT 上传，文件夹已存在则忽略）
+    /// 上传文件到备份文件夹（MKCOL 创建文件夹，文件夹已存在则忽略）
     /// </summary>
     public static async Task UploadFileAsync(string serverAddress, string? userName, string? password, string file, Action<long>? onProgress = null, CancellationToken cancellationToken = default)
     {
@@ -208,8 +210,12 @@ public static class WebDAVClient
         using (var mkcol = new HttpRequestMessage(new HttpMethod("MKCOL"), folderUrl))
         using (var response = await SendAsync(httpClient, mkcol, cancellationToken))
         {
-            // 409 Conflict / 405 Method Not Allowed 表示文件夹已存在
-            if (response.StatusCode is not (HttpStatusCode.Created or HttpStatusCode.OK or HttpStatusCode.NoContent or HttpStatusCode.Conflict or HttpStatusCode.MethodNotAllowed))
+            // 409 Conflict 表示父目录不存在，无法创建备份文件夹；405 Method Not Allowed 表示文件夹已存在
+            if (response.StatusCode == HttpStatusCode.Conflict)
+            {
+                throw new HttpRequestException($"{Lang.WebDAVError_ParentFolderNotFound} (HTTP 409)");
+            }
+            if (response.StatusCode is not (HttpStatusCode.Created or HttpStatusCode.OK or HttpStatusCode.NoContent or HttpStatusCode.MethodNotAllowed))
             {
                 throw CreateHttpException(Lang.WebDAVError_CreatingFolder, response.StatusCode);
             }
@@ -236,7 +242,7 @@ public static class WebDAVClient
     /// <summary>
     /// 下载文件到本地
     /// </summary>
-    public static async Task DownloadFileAsync(string serverAddress, string? userName, string? password, string fileUrl, string localPath, Action<long>? onProgress = null, CancellationToken cancellationToken = default)
+    public static async Task DownloadFileAsync(string serverAddress, string? userName, string? password, string fileUrl, string localPath, Action<long>? onProgress = null, long? expectedLength = null, CancellationToken cancellationToken = default)
     {
         using var httpClient = CreateHttpClient(serverAddress, userName, password);
         try
@@ -258,10 +264,13 @@ public static class WebDAVClient
                 downloadedBytes += read;
                 onProgress?.Invoke(downloadedBytes);
             }
+            if (expectedLength is long length && length > 0 && downloadedBytes != length)
+            {
+                throw new HttpRequestException(Lang.WebDAVError_DownloadSizeMismatch);
+            }
         }
         catch
         {
-            // 下载失败时清理残留的部分文件
             try
             {
                 File.Delete(localPath);
@@ -381,6 +390,17 @@ public static class WebDAVClient
         public override int Read(byte[] buffer, int offset, int count)
         {
             int read = _inner.Read(buffer, offset, count);
+            if (read > 0)
+            {
+                _onProgress(_inner.Position);
+            }
+            return read;
+        }
+
+
+        public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
+        {
+            int read = await _inner.ReadAsync(buffer, cancellationToken);
             if (read > 0)
             {
                 _onProgress(_inner.Position);
