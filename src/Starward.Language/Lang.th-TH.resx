@@ -2738,4 +2738,112 @@
   <data name="DeadlyAssaultPage_AdversityMode" xml:space="preserve">
     <value>โหมดวิกฤต</value>
   </data>
+  <data name="SettingPage_WebDAVBackupDatabase" xml:space="preserve">
+    <value>สำรองฐานข้อมูล WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVConfig" xml:space="preserve">
+    <value>การตั้งค่า WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVServerAddress" xml:space="preserve">
+    <value>ที่อยู่เซิร์ฟเวอร์</value>
+  </data>
+  <data name="SettingPage_WebDAVUserName" xml:space="preserve">
+    <value>ชื่อผู้ใช้</value>
+  </data>
+  <data name="SettingPage_WebDAVPassword" xml:space="preserve">
+    <value>รหัสผ่านแอป</value>
+  </data>
+  <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
+    <value>ลบไฟล์ในเครื่องหลังจากการอัปโหลดสำเร็จ</value>
+  </data>
+  <data name="SettingPage_Compressing" xml:space="preserve">
+    <value>กำลังบีบอัด</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
+    <value>ตัวจัดการการสำรองข้อมูล WebDAV</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManagerDescription" xml:space="preserve">
+    <value>ดูและจัดการไฟล์สำรองข้อมูลบนเซิร์ฟเวอร์ WebDAV</value>
+  </data>
+  <data name="WebDAVBackupWindow_Refresh" xml:space="preserve">
+    <value>รีเฟรซ</value>
+  </data>
+  <data name="WebDAVBackupWindow_Download" xml:space="preserve">
+    <value>ดาวน์โหลด</value>
+  </data>
+  <data name="WebDAVBackupWindow_Delete" xml:space="preserve">
+    <value>ลบ</value>
+  </data>
+  <data name="WebDAVBackupWindow_Loading" xml:space="preserve">
+    <value>กำลังโหลด…</value>
+  </data>
+  <data name="WebDAVBackupWindow_Empty" xml:space="preserve">
+    <value>ไม่พบไฟล์สำรองข้อมูล</value>
+  </data>
+  <data name="WebDAVBackupWindow_NotConfigured" xml:space="preserve">
+    <value>ยังไม่ได้กำหนดค่า WebDAV กรุณากำหนดค่าก่อนใน การตั้งค่า - การจัดการไฟล์</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmTitle" xml:space="preserve">
+    <value>ลบไฟล์สำรองข้อมูล</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์สำรองข้อมูลนี้?</value>
+  </data>
+  <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
+    <value>กำลังดาวน์โหลด</value>
+  </data>
+  <data name="WebDAVBackupWindow_Deleting" xml:space="preserve">
+    <value>กำลังลบ</value>
+  </data>
+  <data name="WebDAVBackupWindow_Name" xml:space="preserve">
+    <value>ชื่อไฟล์</value>
+  </data>
+  <data name="WebDAVBackupWindow_Size" xml:space="preserve">
+    <value>ขนาด</value>
+  </data>
+  <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
+    <value>แก้ไขล่าสุด</value>
+  </data>
+  <data name="WebDAVError_ListingFiles" xml:space="preserve">
+    <value>แสดงรายการไฟล์</value>
+  </data>
+  <data name="WebDAVError_CreatingFolder" xml:space="preserve">
+    <value>สร้างโฟลเดอร์</value>
+  </data>
+  <data name="WebDAVError_UploadingFile" xml:space="preserve">
+    <value>อัปโหลดไฟล์</value>
+  </data>
+  <data name="WebDAVError_DownloadingFile" xml:space="preserve">
+    <value>ดาวน์โหลดไฟล์</value>
+  </data>
+  <data name="WebDAVError_CheckingFile" xml:space="preserve">
+    <value>ตรวจสอบไฟล์</value>
+  </data>
+  <data name="WebDAVError_DeletingFile" xml:space="preserve">
+    <value>ลบไฟล์</value>
+  </data>
+  <data name="WebDAVError_Failed" xml:space="preserve">
+    <value>ล้มเหลว: {0} (HTTP {1})</value>
+  </data>
+  <data name="WebDAVError_Unauthorized" xml:space="preserve">
+    <value>ไม่ได้รับอนุญาต กรุณาตรวจสอบชื่อผู้ใช้และรหัสผ่าน WebDAV</value>
+  </data>
+  <data name="WebDAVError_Forbidden" xml:space="preserve">
+    <value>ถูกปฏิเสธการเข้าถึง กรุณาตรวจสอบสิทธิ์ของบัญชี WebDAV</value>
+  </data>
+  <data name="WebDAVError_MethodNotAllowed" xml:space="preserve">
+    <value>ไม่อนุญาตให้ใช้วิธีนี้ เซิร์ฟเวอร์อาจไม่รองรับ WebDAV</value>
+  </data>
+  <data name="WebDAVError_Timeout" xml:space="preserve">
+    <value>คำขอหมดเวลา กรุณาตรวจสอบเครือข่ายและที่อยู่เซิร์ฟเวอร์</value>
+  </data>
+  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
+    <value>ไม่พบโฟลเดอร์สำรองบนเซิร์ฟเวอร์ กรุณาสำรองข้อมูลฐานข้อมูลก่อนเพื่อสร้าง</value>
+  </data>
+  <data name="WebDAVError_InvalidResponse" xml:space="preserve">
+    <value>การตอบกลับจากเซิร์ฟเวอร์ไม่ใช่ข้อมูล WebDAV ที่ถูกต้อง กรุณาตรวจสอบที่อยู่เซิร์ฟเวอร์หรือการรองรับ WebDAV</value>
+  </data>
+  <data name="WebDAVError_NetworkError" xml:space="preserve">
+    <value>ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบเครือข่ายและที่อยู่เซิร์ฟเวอร์</value>
+  </data>
 </root>

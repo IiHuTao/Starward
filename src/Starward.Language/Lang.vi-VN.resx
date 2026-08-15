@@ -2741,4 +2741,112 @@ Bạn có chấp nhận rủi ro và tiếp tục?</value>
   <data name="DeadlyAssaultPage_AdversityMode" xml:space="preserve">
     <value>Chế độ nghịch cảnh</value>
   </data>
+  <data name="SettingPage_WebDAVBackupDatabase" xml:space="preserve">
+    <value>Sao lưu cơ sở dữ liệu WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVConfig" xml:space="preserve">
+    <value>Cấu hình WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVServerAddress" xml:space="preserve">
+    <value>Địa chỉ máy chủ</value>
+  </data>
+  <data name="SettingPage_WebDAVUserName" xml:space="preserve">
+    <value>Tên người dùng</value>
+  </data>
+  <data name="SettingPage_WebDAVPassword" xml:space="preserve">
+    <value>Mật khẩu ứng dụng</value>
+  </data>
+  <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
+    <value>Xoá tệp cục bộ sau khi tải lên thành công</value>
+  </data>
+  <data name="SettingPage_Compressing" xml:space="preserve">
+    <value>Đang nén</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
+    <value>Trình quản lí bản sao lưu WebDAV</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManagerDescription" xml:space="preserve">
+    <value>Xem và quản lí các tệp sao lưu trên máy chủ WebDAV</value>
+  </data>
+  <data name="WebDAVBackupWindow_Refresh" xml:space="preserve">
+    <value>Làm mới</value>
+  </data>
+  <data name="WebDAVBackupWindow_Download" xml:space="preserve">
+    <value>Tải xuống</value>
+  </data>
+  <data name="WebDAVBackupWindow_Delete" xml:space="preserve">
+    <value>Xoá</value>
+  </data>
+  <data name="WebDAVBackupWindow_Loading" xml:space="preserve">
+    <value>Đang tải…</value>
+  </data>
+  <data name="WebDAVBackupWindow_Empty" xml:space="preserve">
+    <value>Không tìm thấy tệp sao lưu</value>
+  </data>
+  <data name="WebDAVBackupWindow_NotConfigured" xml:space="preserve">
+    <value>WebDAV chưa được cấu hình. Vui lòng cấu hình trước trong Cài đặt - Quản lí tập tin.</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmTitle" xml:space="preserve">
+    <value>Xoá tệp sao lưu</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn xoá tệp sao lưu này không?</value>
+  </data>
+  <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
+    <value>Đang tải xuống</value>
+  </data>
+  <data name="WebDAVBackupWindow_Deleting" xml:space="preserve">
+    <value>Đang xoá</value>
+  </data>
+  <data name="WebDAVBackupWindow_Name" xml:space="preserve">
+    <value>Tên tệp</value>
+  </data>
+  <data name="WebDAVBackupWindow_Size" xml:space="preserve">
+    <value>Kích thước</value>
+  </data>
+  <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
+    <value>Sửa đổi lần cuối</value>
+  </data>
+  <data name="WebDAVError_ListingFiles" xml:space="preserve">
+    <value>Liệt kê tệp</value>
+  </data>
+  <data name="WebDAVError_CreatingFolder" xml:space="preserve">
+    <value>Tạo thư mục</value>
+  </data>
+  <data name="WebDAVError_UploadingFile" xml:space="preserve">
+    <value>Tải tệp lên</value>
+  </data>
+  <data name="WebDAVError_DownloadingFile" xml:space="preserve">
+    <value>Tải tệp xuống</value>
+  </data>
+  <data name="WebDAVError_CheckingFile" xml:space="preserve">
+    <value>Kiểm tra tệp</value>
+  </data>
+  <data name="WebDAVError_DeletingFile" xml:space="preserve">
+    <value>Xóa tệp</value>
+  </data>
+  <data name="WebDAVError_Failed" xml:space="preserve">
+    <value>Thất bại: {0} (HTTP {1})</value>
+  </data>
+  <data name="WebDAVError_Unauthorized" xml:space="preserve">
+    <value>Chưa xác thực. Vui lòng kiểm tra tên người dùng và mật khẩu WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Forbidden" xml:space="preserve">
+    <value>Truy cập bị từ chối. Vui lòng kiểm tra quyền của tài khoản WebDAV.</value>
+  </data>
+  <data name="WebDAVError_MethodNotAllowed" xml:space="preserve">
+    <value>Phương thức không được phép. Máy chủ có thể không hỗ trợ WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Timeout" xml:space="preserve">
+    <value>Yêu cầu đã hết thời gian. Vui lòng kiểm tra mạng và địa chỉ máy chủ.</value>
+  </data>
+  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
+    <value>Không tồn tại thư mục sao lưu trên máy chủ. Vui lòng sao lưu cơ sở dữ liệu trước để tạo.</value>
+  </data>
+  <data name="WebDAVError_InvalidResponse" xml:space="preserve">
+    <value>Phản hồi của máy chủ không phải dữ liệu WebDAV hợp lệ. Vui lòng kiểm tra địa chỉ máy chủ hoặc hỗ trợ WebDAV.</value>
+  </data>
+  <data name="WebDAVError_NetworkError" xml:space="preserve">
+    <value>Không thể kết nối đến máy chủ. Vui lòng kiểm tra mạng và địa chỉ máy chủ.</value>
+  </data>
 </root>

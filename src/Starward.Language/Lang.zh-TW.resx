@@ -2744,4 +2744,112 @@
   <data name="DeadlyAssaultPage_AdversityMode" xml:space="preserve">
     <value>絕境模式</value>
   </data>
+  <data name="SettingPage_WebDAVBackupDatabase" xml:space="preserve">
+    <value>WebDAV備份資料庫</value>
+  </data>
+  <data name="SettingPage_WebDAVConfig" xml:space="preserve">
+    <value>WebDAV設定</value>
+  </data>
+  <data name="SettingPage_WebDAVServerAddress" xml:space="preserve">
+    <value>伺服器位址</value>
+  </data>
+  <data name="SettingPage_WebDAVUserName" xml:space="preserve">
+    <value>帳戶名稱</value>
+  </data>
+  <data name="SettingPage_WebDAVPassword" xml:space="preserve">
+    <value>應用程式密碼</value>
+  </data>
+  <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
+    <value>上傳成功後刪除本機檔案</value>
+  </data>
+  <data name="SettingPage_Compressing" xml:space="preserve">
+    <value>正在壓縮</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
+    <value>WebDAV 備份管理</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManagerDescription" xml:space="preserve">
+    <value>查看和管理 WebDAV 伺服器上的備份檔案</value>
+  </data>
+  <data name="WebDAVBackupWindow_Refresh" xml:space="preserve">
+    <value>重新整理</value>
+  </data>
+  <data name="WebDAVBackupWindow_Download" xml:space="preserve">
+    <value>下載</value>
+  </data>
+  <data name="WebDAVBackupWindow_Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="WebDAVBackupWindow_Loading" xml:space="preserve">
+    <value>載入中…</value>
+  </data>
+  <data name="WebDAVBackupWindow_Empty" xml:space="preserve">
+    <value>暫無備份檔案</value>
+  </data>
+  <data name="WebDAVBackupWindow_NotConfigured" xml:space="preserve">
+    <value>尚未設定 WebDAV，請先在 設定 - 檔案管理 中設定。</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmTitle" xml:space="preserve">
+    <value>刪除備份檔案</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
+    <value>確定要刪除這個備份檔案嗎？</value>
+  </data>
+  <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
+    <value>下載中</value>
+  </data>
+  <data name="WebDAVBackupWindow_Deleting" xml:space="preserve">
+    <value>刪除中</value>
+  </data>
+  <data name="WebDAVBackupWindow_Name" xml:space="preserve">
+    <value>檔案名稱</value>
+  </data>
+  <data name="WebDAVBackupWindow_Size" xml:space="preserve">
+    <value>大小</value>
+  </data>
+  <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
+    <value>修改時間</value>
+  </data>
+  <data name="WebDAVError_ListingFiles" xml:space="preserve">
+    <value>列舉檔案</value>
+  </data>
+  <data name="WebDAVError_CreatingFolder" xml:space="preserve">
+    <value>建立資料夾</value>
+  </data>
+  <data name="WebDAVError_UploadingFile" xml:space="preserve">
+    <value>上傳檔案</value>
+  </data>
+  <data name="WebDAVError_DownloadingFile" xml:space="preserve">
+    <value>下載檔案</value>
+  </data>
+  <data name="WebDAVError_CheckingFile" xml:space="preserve">
+    <value>檢查檔案</value>
+  </data>
+  <data name="WebDAVError_DeletingFile" xml:space="preserve">
+    <value>刪除檔案</value>
+  </data>
+  <data name="WebDAVError_Failed" xml:space="preserve">
+    <value>{0}失敗（HTTP {1}）</value>
+  </data>
+  <data name="WebDAVError_Unauthorized" xml:space="preserve">
+    <value>未授權，請檢查 WebDAV 帳戶名稱和密碼。</value>
+  </data>
+  <data name="WebDAVError_Forbidden" xml:space="preserve">
+    <value>禁止存取，請檢查 WebDAV 帳戶權限。</value>
+  </data>
+  <data name="WebDAVError_MethodNotAllowed" xml:space="preserve">
+    <value>方法不允許，伺服器可能不支援 WebDAV。</value>
+  </data>
+  <data name="WebDAVError_Timeout" xml:space="preserve">
+    <value>請求逾時，請檢查網路和伺服器位址。</value>
+  </data>
+  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
+    <value>伺服器上不存在備份資料夾，請先備份資料庫以建立。</value>
+  </data>
+  <data name="WebDAVError_InvalidResponse" xml:space="preserve">
+    <value>伺服器回應不是有效的 WebDAV 資料，請檢查伺服器位址，或確認伺服器支援 WebDAV。</value>
+  </data>
+  <data name="WebDAVError_NetworkError" xml:space="preserve">
+    <value>無法連線到伺服器，請檢查網路和伺服器位址。</value>
+  </data>
 </root>

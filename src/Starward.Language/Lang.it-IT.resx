@@ -2744,4 +2744,112 @@ Sei invitato a inviare i dati esportati al seguente repository:</value>
   <data name="DeadlyAssaultPage_AdversityMode" xml:space="preserve">
     <value>Modalità avversità</value>
   </data>
+  <data name="SettingPage_WebDAVBackupDatabase" xml:space="preserve">
+    <value>Backup database WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVConfig" xml:space="preserve">
+    <value>Configurazione WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVServerAddress" xml:space="preserve">
+    <value>Indirizzo del server</value>
+  </data>
+  <data name="SettingPage_WebDAVUserName" xml:space="preserve">
+    <value>Nome utente</value>
+  </data>
+  <data name="SettingPage_WebDAVPassword" xml:space="preserve">
+    <value>Password dell'app</value>
+  </data>
+  <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
+    <value>Elimina il file locale dopo il caricamento riuscito</value>
+  </data>
+  <data name="SettingPage_Compressing" xml:space="preserve">
+    <value>Compressione in corso</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
+    <value>Gestore backup WebDAV</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManagerDescription" xml:space="preserve">
+    <value>Visualizza e gestisci i file di backup sul server WebDAV</value>
+  </data>
+  <data name="WebDAVBackupWindow_Refresh" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="WebDAVBackupWindow_Download" xml:space="preserve">
+    <value>Scarica</value>
+  </data>
+  <data name="WebDAVBackupWindow_Delete" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="WebDAVBackupWindow_Loading" xml:space="preserve">
+    <value>Caricamento…</value>
+  </data>
+  <data name="WebDAVBackupWindow_Empty" xml:space="preserve">
+    <value>Nessun file di backup trovato</value>
+  </data>
+  <data name="WebDAVBackupWindow_NotConfigured" xml:space="preserve">
+    <value>WebDAV non è configurato. Configuralo prima in Impostazioni - Gestione file.</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmTitle" xml:space="preserve">
+    <value>Elimina file di backup</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
+    <value>Vuoi davvero eliminare questo file di backup?</value>
+  </data>
+  <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
+    <value>Download in corso</value>
+  </data>
+  <data name="WebDAVBackupWindow_Deleting" xml:space="preserve">
+    <value>Eliminazione in corso</value>
+  </data>
+  <data name="WebDAVBackupWindow_Name" xml:space="preserve">
+    <value>Nome file</value>
+  </data>
+  <data name="WebDAVBackupWindow_Size" xml:space="preserve">
+    <value>Dimensioni</value>
+  </data>
+  <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
+    <value>Ultima modifica</value>
+  </data>
+  <data name="WebDAVError_ListingFiles" xml:space="preserve">
+    <value>Elenca file</value>
+  </data>
+  <data name="WebDAVError_CreatingFolder" xml:space="preserve">
+    <value>Crea cartella</value>
+  </data>
+  <data name="WebDAVError_UploadingFile" xml:space="preserve">
+    <value>Carica file</value>
+  </data>
+  <data name="WebDAVError_DownloadingFile" xml:space="preserve">
+    <value>Scarica file</value>
+  </data>
+  <data name="WebDAVError_CheckingFile" xml:space="preserve">
+    <value>Controlla file</value>
+  </data>
+  <data name="WebDAVError_DeletingFile" xml:space="preserve">
+    <value>Elimina file</value>
+  </data>
+  <data name="WebDAVError_Failed" xml:space="preserve">
+    <value>Errore durante {0} (HTTP {1})</value>
+  </data>
+  <data name="WebDAVError_Unauthorized" xml:space="preserve">
+    <value>Non autorizzato. Controlla nome utente e password WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Forbidden" xml:space="preserve">
+    <value>Accesso negato. Controlla i permessi dell'account WebDAV.</value>
+  </data>
+  <data name="WebDAVError_MethodNotAllowed" xml:space="preserve">
+    <value>Metodo non consentito. Il server potrebbe non supportare WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Timeout" xml:space="preserve">
+    <value>Richiesta scaduta. Controlla rete e indirizzo del server.</value>
+  </data>
+  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
+    <value>La cartella di backup non esiste sul server. Esegui prima un backup del database per crearla.</value>
+  </data>
+  <data name="WebDAVError_InvalidResponse" xml:space="preserve">
+    <value>La risposta del server non è dati WebDAV validi. Controlla l'indirizzo del server o se supporta WebDAV.</value>
+  </data>
+  <data name="WebDAVError_NetworkError" xml:space="preserve">
+    <value>Impossibile connettersi al server. Controlla rete e indirizzo del server.</value>
+  </data>
 </root>

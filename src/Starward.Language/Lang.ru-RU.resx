@@ -2773,4 +2773,112 @@ ChatGPT может допускать ошибки. Проверьте важн�
   <data name="DeadlyAssaultPage_AdversityMode" xml:space="preserve">
     <value>Режим невзгод</value>
   </data>
+  <data name="SettingPage_WebDAVBackupDatabase" xml:space="preserve">
+    <value>Резервная копия базы данных WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVConfig" xml:space="preserve">
+    <value>Настройка WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVServerAddress" xml:space="preserve">
+    <value>Адрес сервера</value>
+  </data>
+  <data name="SettingPage_WebDAVUserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="SettingPage_WebDAVPassword" xml:space="preserve">
+    <value>Пароль приложения</value>
+  </data>
+  <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
+    <value>Удалять локальный файл после успешной загрузки</value>
+  </data>
+  <data name="SettingPage_Compressing" xml:space="preserve">
+    <value>Сжатие...</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
+    <value>Менеджер резервных копий WebDAV</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManagerDescription" xml:space="preserve">
+    <value>Просмотр и управление файлами резервных копий на сервере WebDAV</value>
+  </data>
+  <data name="WebDAVBackupWindow_Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="WebDAVBackupWindow_Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="WebDAVBackupWindow_Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="WebDAVBackupWindow_Loading" xml:space="preserve">
+    <value>Загрузка…</value>
+  </data>
+  <data name="WebDAVBackupWindow_Empty" xml:space="preserve">
+    <value>Файлы резервных копий не найдены</value>
+  </data>
+  <data name="WebDAVBackupWindow_NotConfigured" xml:space="preserve">
+    <value>WebDAV не настроен. Сначала настройте его в разделе «Настройки - Управление файлами».</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmTitle" xml:space="preserve">
+    <value>Удалить файл резервной копии</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить этот файл резервной копии?</value>
+  </data>
+  <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
+    <value>Скачивание</value>
+  </data>
+  <data name="WebDAVBackupWindow_Deleting" xml:space="preserve">
+    <value>Удаление</value>
+  </data>
+  <data name="WebDAVBackupWindow_Name" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="WebDAVBackupWindow_Size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
+    <value>Дата изменения</value>
+  </data>
+  <data name="WebDAVError_ListingFiles" xml:space="preserve">
+    <value>Получение списка файлов</value>
+  </data>
+  <data name="WebDAVError_CreatingFolder" xml:space="preserve">
+    <value>Создание папки</value>
+  </data>
+  <data name="WebDAVError_UploadingFile" xml:space="preserve">
+    <value>Загрузка файла</value>
+  </data>
+  <data name="WebDAVError_DownloadingFile" xml:space="preserve">
+    <value>Скачивание файла</value>
+  </data>
+  <data name="WebDAVError_CheckingFile" xml:space="preserve">
+    <value>Проверка файла</value>
+  </data>
+  <data name="WebDAVError_DeletingFile" xml:space="preserve">
+    <value>Удаление файла</value>
+  </data>
+  <data name="WebDAVError_Failed" xml:space="preserve">
+    <value>Ошибка: {0} (HTTP {1})</value>
+  </data>
+  <data name="WebDAVError_Unauthorized" xml:space="preserve">
+    <value>Не авторизовано. Проверьте имя пользователя и пароль WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Forbidden" xml:space="preserve">
+    <value>Доступ запрещён. Проверьте права учётной записи WebDAV.</value>
+  </data>
+  <data name="WebDAVError_MethodNotAllowed" xml:space="preserve">
+    <value>Метод не разрешён. Возможно, сервер не поддерживает WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Timeout" xml:space="preserve">
+    <value>Истекло время запроса. Проверьте сеть и адрес сервера.</value>
+  </data>
+  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
+    <value>Папка резервного копирования не существует на сервере. Сначала создайте резервную копию базы данных.</value>
+  </data>
+  <data name="WebDAVError_InvalidResponse" xml:space="preserve">
+    <value>Ответ сервера не является допустимыми данными WebDAV. Проверьте адрес сервера или поддержку WebDAV.</value>
+  </data>
+  <data name="WebDAVError_NetworkError" xml:space="preserve">
+    <value>Не удаётся подключиться к серверу. Проверьте сеть и адрес сервера.</value>
+  </data>
 </root>

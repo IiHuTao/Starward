@@ -2743,4 +2743,112 @@
   <data name="DeadlyAssaultPage_AdversityMode" xml:space="preserve">
     <value>逆境モード</value>
   </data>
+  <data name="SettingPage_WebDAVBackupDatabase" xml:space="preserve">
+    <value>WebDAVデータベースのバックアップ</value>
+  </data>
+  <data name="SettingPage_WebDAVConfig" xml:space="preserve">
+    <value>WebDAV設定</value>
+  </data>
+  <data name="SettingPage_WebDAVServerAddress" xml:space="preserve">
+    <value>サーバーアドレス</value>
+  </data>
+  <data name="SettingPage_WebDAVUserName" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="SettingPage_WebDAVPassword" xml:space="preserve">
+    <value>アプリパスワード</value>
+  </data>
+  <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
+    <value>アップロード成功後にローカルファイルを削除</value>
+  </data>
+  <data name="SettingPage_Compressing" xml:space="preserve">
+    <value>圧縮中</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
+    <value>WebDAV バックアップマネージャー</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManagerDescription" xml:space="preserve">
+    <value>WebDAVサーバー上のバックアップファイルを表示・管理します</value>
+  </data>
+  <data name="WebDAVBackupWindow_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="WebDAVBackupWindow_Download" xml:space="preserve">
+    <value>ダウンロード</value>
+  </data>
+  <data name="WebDAVBackupWindow_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="WebDAVBackupWindow_Loading" xml:space="preserve">
+    <value>読み込み中…</value>
+  </data>
+  <data name="WebDAVBackupWindow_Empty" xml:space="preserve">
+    <value>バックアップファイルがありません</value>
+  </data>
+  <data name="WebDAVBackupWindow_NotConfigured" xml:space="preserve">
+    <value>WebDAV が設定されていません。先に 設定 - ファイルの管理 で設定してください。</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmTitle" xml:space="preserve">
+    <value>バックアップファイルの削除</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
+    <value>このバックアップファイルを削除してもよろしいですか?</value>
+  </data>
+  <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
+    <value>ダウンロード中</value>
+  </data>
+  <data name="WebDAVBackupWindow_Deleting" xml:space="preserve">
+    <value>削除中</value>
+  </data>
+  <data name="WebDAVBackupWindow_Name" xml:space="preserve">
+    <value>ファイル名</value>
+  </data>
+  <data name="WebDAVBackupWindow_Size" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
+    <value>更新日時</value>
+  </data>
+  <data name="WebDAVError_ListingFiles" xml:space="preserve">
+    <value>ファイル一覧を取得</value>
+  </data>
+  <data name="WebDAVError_CreatingFolder" xml:space="preserve">
+    <value>フォルダーを作成</value>
+  </data>
+  <data name="WebDAVError_UploadingFile" xml:space="preserve">
+    <value>ファイルをアップロード</value>
+  </data>
+  <data name="WebDAVError_DownloadingFile" xml:space="preserve">
+    <value>ファイルをダウンロード</value>
+  </data>
+  <data name="WebDAVError_CheckingFile" xml:space="preserve">
+    <value>ファイルを確認</value>
+  </data>
+  <data name="WebDAVError_DeletingFile" xml:space="preserve">
+    <value>ファイルを削除</value>
+  </data>
+  <data name="WebDAVError_Failed" xml:space="preserve">
+    <value>{0}に失敗しました（HTTP {1}）</value>
+  </data>
+  <data name="WebDAVError_Unauthorized" xml:space="preserve">
+    <value>認証されていません。WebDAV のユーザー名とパスワードを確認してください。</value>
+  </data>
+  <data name="WebDAVError_Forbidden" xml:space="preserve">
+    <value>アクセスが拒否されました。WebDAV アカウントの権限を確認してください。</value>
+  </data>
+  <data name="WebDAVError_MethodNotAllowed" xml:space="preserve">
+    <value>メソッドが許可されていません。サーバーが WebDAV をサポートしていない可能性があります。</value>
+  </data>
+  <data name="WebDAVError_Timeout" xml:space="preserve">
+    <value>リクエストがタイムアウトしました。ネットワークとサーバーアドレスを確認してください。</value>
+  </data>
+  <data name="WebDAVError_BackupFolderNotFound" xml:space="preserve">
+    <value>サーバーにバックアップフォルダーが存在しません。最初にデータベースをバックアップして作成してください。</value>
+  </data>
+  <data name="WebDAVError_InvalidResponse" xml:space="preserve">
+    <value>サーバーの応答が有効な WebDAV データではありません。サーバーアドレスまたは WebDAV サポートを確認してください。</value>
+  </data>
+  <data name="WebDAVError_NetworkError" xml:space="preserve">
+    <value>サーバーに接続できません。ネットワークとサーバーアドレスを確認してください。</value>
+  </data>
 </root>

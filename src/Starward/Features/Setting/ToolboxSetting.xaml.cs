@@ -42,6 +42,11 @@ public sealed partial class ToolboxSetting : PageBase
                             nameof(ImageViewWindow2),
                             nameof(Lang.ToolboxSetting_ImageViewer),
                             nameof(Lang.ToolboxSetting_ViewOrEditImage)),
+            new ToolboxItem("\xE753",
+                            null,
+                            nameof(WebDAVBackupWindow),
+                            nameof(Lang.ToolboxSetting_WebDAVBackupManager),
+                            nameof(Lang.ToolboxSetting_WebDAVBackupManagerDescription)),
         ];
     }
 
@@ -86,6 +91,10 @@ public sealed partial class ToolboxSetting : PageBase
                 if (item.Tag is nameof(ImageViewWindow2))
                 {
                     new ImageViewWindow2().ShowWindow(XamlRoot.ContentIslandEnvironment.AppWindowId);
+                }
+                if (item.Tag is nameof(WebDAVBackupWindow))
+                {
+                    new WebDAVBackupWindow().Activate();
                 }
             }
         }
