@@ -2758,6 +2758,12 @@
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>アプリパスワード</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>接続テスト</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>接続に成功しました。</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>アップロード成功後にローカルの WebDAV バックアップ圧縮ファイルを削除</value>
   </data>

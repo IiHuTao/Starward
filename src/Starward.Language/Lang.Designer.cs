@@ -8058,6 +8058,24 @@ namespace Starward.Language {
         }
 
         /// <summary>
+        ///   查找类似 Test Connection 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVTestConnection {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVTestConnection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Connection successful. 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVTestSuccess {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVTestSuccess", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   查找类似 Compressing 的本地化字符串。
         /// </summary>
         public static string SettingPage_Compressing {

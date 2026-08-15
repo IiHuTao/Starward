@@ -2756,6 +2756,12 @@ Bạn có chấp nhận rủi ro và tiếp tục?</value>
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>Mật khẩu ứng dụng</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>Kiểm tra kết nối</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>Kết nối thành công.</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>Xoá tệp nén sao lưu WebDAV cục bộ sau khi tải lên thành công</value>
   </data>

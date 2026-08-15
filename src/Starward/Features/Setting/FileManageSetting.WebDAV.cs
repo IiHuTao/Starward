@@ -214,25 +214,101 @@ public sealed partial class FileManageSetting
             Grid.SetColumn(toggleRevealButton, 1);
             passwordRow.Children.Add(passwordBox);
             passwordRow.Children.Add(toggleRevealButton);
-            var checkBoxDeleteLocalFile = new CheckBox
-            {
-                Content = Lang.SettingPage_WebDAVDeleteLocalFileAfterUpload,
-                IsChecked = AppConfig.GetValue<bool>(false, "WebDAVDeleteLocalFileAfterUpload"),
-            };
             var errorText = new TextBlock
             {
                 Foreground = App.Current.Resources["SystemFillColorCriticalBrush"] as Brush,
                 TextWrapping = TextWrapping.Wrap,
                 Visibility = Visibility.Collapsed,
             };
+            var testProgressRing = new ProgressRing
+            {
+                Width = 16,
+                Height = 16,
+                IsIndeterminate = false,
+                Visibility = Visibility.Collapsed,
+            };
+            var testConnectionButton = new Button
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Spacing = 8,
+                    Children =
+                    {
+                        testProgressRing,
+                        new TextBlock { Text = Lang.SettingPage_WebDAVTestConnection },
+                    }
+                },
+            };
+            var testResultText = new TextBlock
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                Foreground = App.Current.Resources["SystemFillColorSuccessBrush"] as Brush,
+                TextWrapping = TextWrapping.Wrap,
+                Visibility = Visibility.Collapsed,
+            };
+            var connectionTestRow = new Grid { ColumnSpacing = 8 };
+            connectionTestRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            connectionTestRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            Grid.SetColumn(testConnectionButton, 0);
+            Grid.SetColumn(testResultText, 1);
+            connectionTestRow.Children.Add(testConnectionButton);
+            connectionTestRow.Children.Add(testResultText);
+            testConnectionButton.Click += async (_, _) =>
+            {
+                testConnectionButton.IsEnabled = false;
+                try
+                {
+                    errorText.Visibility = Visibility.Collapsed;
+                    testResultText.Visibility = Visibility.Collapsed;
+                    string testServerAddress = textBoxServerAddress.Text.Trim();
+                    if (testServerAddress.Length == 0 || !Uri.TryCreate(testServerAddress.TrimEnd('/') + "/", UriKind.Absolute, out var testUri) || testUri.Scheme is not ("http" or "https"))
+                    {
+                        errorText.Text = Lang.SettingPage_WebDAVInvalidServerAddress;
+                        errorText.Visibility = Visibility.Visible;
+                        return;
+                    }
+                    testServerAddress = testServerAddress.TrimEnd('/') + "/";
+                    string testUserName = textBoxUserName.Text.Trim();
+                    string testPassword = passwordBox.Password;
+                    testProgressRing.Visibility = Visibility.Visible;
+                    testProgressRing.IsIndeterminate = true;
+                    await Task.Run(() => WebDAVClient.CheckFileExistsAsync(testServerAddress, testUserName, testPassword, WebDAVClient.GetBackupFolderUrl(testServerAddress)));
+                    testResultText.Foreground = App.Current.Resources["SystemFillColorSuccessBrush"] as Brush;
+                    testResultText.Text = Lang.SettingPage_WebDAVTestSuccess;
+                    testResultText.Visibility = Visibility.Visible;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Test WebDAV connection");
+                    testResultText.Foreground = App.Current.Resources["SystemFillColorCriticalBrush"] as Brush;
+                    testResultText.Text = ex.Message;
+                    testResultText.Visibility = Visibility.Visible;
+                }
+                finally
+                {
+                    testProgressRing.IsIndeterminate = false;
+                    testProgressRing.Visibility = Visibility.Collapsed;
+                    testConnectionButton.IsEnabled = true;
+                }
+            };
+            var checkBoxDeleteLocalFile = new CheckBox
+            {
+                Content = Lang.SettingPage_WebDAVDeleteLocalFileAfterUpload,
+                IsChecked = AppConfig.GetValue<bool>(false, "WebDAVDeleteLocalFileAfterUpload"),
+            };
             var panel = new StackPanel { Spacing = 12 };
             panel.Children.Add(textBoxServerAddress);
             panel.Children.Add(errorText);
             panel.Children.Add(textBoxUserName);
             panel.Children.Add(passwordRow);
+            panel.Children.Add(connectionTestRow);
             panel.Children.Add(checkBoxDeleteLocalFile);
             while (true)
             {
+                testResultText.Visibility = Visibility.Collapsed;
                 var dialog = new ContentDialog
                 {
                     Title = Lang.SettingPage_WebDAVConfig,
@@ -241,6 +317,11 @@ public sealed partial class FileManageSetting
                     SecondaryButtonText = Lang.Common_Cancel,
                     DefaultButton = ContentDialogButton.Primary,
                     XamlRoot = this.XamlRoot,
+                    Resources =
+                    {
+                        ["ContentDialogMaxWidth"] = 370.0,
+                        ["ContentDialogMinWidth"] = 370.0,
+                    },
                 };
                 if (await dialog.ShowAsync() is not ContentDialogResult.Primary)
                 {

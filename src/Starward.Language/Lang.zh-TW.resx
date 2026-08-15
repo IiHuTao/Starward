@@ -2759,6 +2759,12 @@
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>應用程式密碼</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>測試連線</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>連線成功。</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>上傳成功後刪除本機 WebDAV 備份壓縮檔案</value>
   </data>

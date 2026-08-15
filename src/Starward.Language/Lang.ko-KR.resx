@@ -2759,6 +2759,12 @@
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>앱 비밀번호</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>연결 테스트</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>연결에 성공했습니다.</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>업로드 성공 후 로컬 WebDAV 백업 압축 파일 삭제</value>
   </data>

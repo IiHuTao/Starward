@@ -2768,6 +2768,12 @@ You are welcome to submit the exported data to the following repository:</value>
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>App Password</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>Test Connection</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>Connection successful.</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>Delete the local WebDAV backup archive after successful upload</value>
   </data>

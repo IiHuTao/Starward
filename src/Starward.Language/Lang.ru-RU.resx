@@ -2788,6 +2788,12 @@ ChatGPT может допускать ошибки. Проверьте важн�
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>Пароль приложения</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>Проверить подключение</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>Подключение успешно.</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>Удалять локальный архив резервной копии WebDAV после успешной загрузки</value>
   </data>

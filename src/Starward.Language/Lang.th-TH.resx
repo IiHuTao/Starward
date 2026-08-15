@@ -2753,6 +2753,12 @@
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>รหัสผ่านแอป</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>ทดสอบการเชื่อมต่อ</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>การเชื่อมต่อสำเร็จ</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>ลบไฟล์บีบอัดสำรอง WebDAV ในเครื่องหลังจากการอัปโหลดสำเร็จ</value>
   </data>

@@ -2759,6 +2759,12 @@ Puede enviar los datos exportados al siguiente repositorio:</value>
   <data name="SettingPage_WebDAVPassword" xml:space="preserve">
     <value>Contraseña de la aplicación</value>
   </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>Probar conexión</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>Conexión exitosa.</value>
+  </data>
   <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
     <value>Eliminar el archivo de copia de seguridad de WebDAV local después de una carga exitosa</value>
   </data>
