@@ -2795,4 +2795,7 @@ You are welcome to submit the exported data to the following repository:</value>
   <data name="PlayTimeStatsDialog_StatsTip" xml:space="preserve">
     <value>Statistics are based on game runtime, not actual playtime, and are for reference only.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>Show Game Playtime</value>
+  </data>
 </root>
