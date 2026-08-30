@@ -2795,4 +2795,7 @@
   <data name="PlayTimeStatsDialog_StatsTip" xml:space="preserve">
     <value>통계는 실제 플레이 시간이 아닌 게임 실행 시간을 기준으로 하며, 참고용으로만 제공됩니다.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>게임 플레이 시간 표시하기</value>
+  </data>
 </root>

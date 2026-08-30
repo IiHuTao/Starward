@@ -2795,4 +2795,7 @@ Sei invitato a inviare i dati esportati al seguente repository:</value>
   <data name="PlayTimeStatsDialog_StatsTip" xml:space="preserve">
     <value>Le statistiche si basano sul tempo di esecuzione del gioco, non sul tempo di gioco effettivo, e servono solo come riferimento.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>Mostra tempo di gioco</value>
+  </data>
 </root>

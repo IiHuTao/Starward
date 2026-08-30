@@ -126,7 +126,7 @@ internal sealed class PlayTimeStatsService
 
 
     /// <summary>
-    /// 获取总游戏时间（全历史范围）
+    /// 获取总游戏时长（全历史范围）
     /// </summary>
     /// <param name="biz"></param>
     /// <returns></returns>
@@ -144,7 +144,7 @@ internal sealed class PlayTimeStatsService
 
 
     /// <summary>
-    /// 统计 [start, end] 时间范围内的游戏时间，同时查询 PlayTimeStats 与 PlayTimeItem，
+    /// 统计 [start, end] 时间范围内的游戏时长，同时查询 PlayTimeStats 与 PlayTimeItem，
     /// 返回裁剪到窗口内的会话区间列表（按 StartTime 升序）。
     /// </summary>
     /// <param name="biz"></param>

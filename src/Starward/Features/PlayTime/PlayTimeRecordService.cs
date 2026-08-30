@@ -95,7 +95,7 @@ internal class PlayTimeRecordService
         var now = DateTimeOffset.Now;
         if (now - time >= TimeSpan.FromSeconds(60))
         {
-            // 补全从开始游戏到开始记录游戏时间之间的记录
+            // 补全从开始游戏到开始记录游戏时长之间的记录
             List<PlayTimeItem> list = new List<PlayTimeItem>();
             while (true)
             {
@@ -178,7 +178,7 @@ internal class PlayTimeRecordService
 
 
     /// <summary>
-    /// 启动进程记录游戏时间，返回游戏进程
+    /// 启动进程记录游戏时长，返回游戏进程
     /// </summary>
     /// <param name="gameId"></param>
     /// <returns></returns>
@@ -236,7 +236,7 @@ internal class PlayTimeRecordService
 
 
     /// <summary>
-    /// 启动进程记录游戏时间
+    /// 启动进程记录游戏时长
     /// </summary>
     /// <param name="gameId"></param>
     /// <param name="pid"></param>
