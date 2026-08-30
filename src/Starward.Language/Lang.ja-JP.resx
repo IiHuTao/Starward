@@ -2794,4 +2794,7 @@
   <data name="PlayTimeStatsDialog_StatsTip" xml:space="preserve">
     <value>統計はゲームの実行時間に基づいており、実際のプレイ時間とは異なります。あくまで参考としてご覧ください。</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>ゲームのプレイ時間を表示</value>
+  </data>
 </root>

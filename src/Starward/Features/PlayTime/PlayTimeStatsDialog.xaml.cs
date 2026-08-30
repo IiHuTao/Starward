@@ -81,7 +81,7 @@ public sealed partial class PlayTimeStatsDialog : ContentDialog
     public string StartUpCountText { get; set => SetProperty(ref field, value); }
 
     /// <summary>
-    /// 每日平均游戏时间
+    /// 每日平均游戏时长
     /// </summary>
     public string AverageDayTimeText { get; set => SetProperty(ref field, value); }
 

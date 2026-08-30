@@ -543,7 +543,7 @@
     <value>更新遊戲</value>
   </data>
   <data name="LauncherPage_PlayTime" xml:space="preserve">
-    <value>遊戲時間</value>
+    <value>遊戲時長</value>
   </data>
   <data name="Common_Refresh" xml:space="preserve">
     <value>重新整理</value>
@@ -806,7 +806,7 @@
     <value>發布頁面</value>
   </data>
   <data name="LauncherPage_ThirdPartyToolDesc" xml:space="preserve">
-    <value>使用第三方模組代替啟動，啟用後無法記錄遊戲時間。</value>
+    <value>使用第三方模組代替啟動，啟用後無法記錄遊戲時長。</value>
   </data>
   <data name="GachaLogPage_GachaLanguageDesc" xml:space="preserve">
     <value>指定抽卡記錄的語言，比如 zh-tw 。</value>
@@ -2754,16 +2754,16 @@
     <value>絕境模式</value>
   </data>
   <data name="PlayTimeStatsDialog_PlaytimeStatistics" xml:space="preserve">
-    <value>遊戲時間統計</value>
+    <value>遊戲時長統計</value>
   </data>
   <data name="PlayTimeStatsDialog_Total" xml:space="preserve">
     <value>總計</value>
   </data>
   <data name="PlayTimeStatsDialog_TotalPlaytime" xml:space="preserve">
-    <value>總遊戲時間</value>
+    <value>總遊戲時長</value>
   </data>
   <data name="PlayTimeStatsDialog_LongestDailyPlaytime" xml:space="preserve">
-    <value>單日最長遊戲時間</value>
+    <value>單日最長遊戲時長</value>
   </data>
   <data name="PlayTimeStatsDialog_Last15Days" xml:space="preserve">
     <value>最近 15 天</value>
@@ -2778,7 +2778,7 @@
     <value>最長連續天數</value>
   </data>
   <data name="PlayTimeStatsDialog_LongestSession" xml:space="preserve">
-    <value>單次最長遊戲時間</value>
+    <value>單次最長遊戲時長</value>
   </data>
   <data name="PlayTimeStatsDialog_0Days" xml:space="preserve">
     <value>{0} 天</value>
@@ -2790,9 +2790,12 @@
     <value>已遊玩 {0} 天</value>
   </data>
   <data name="PlayTimeStatsDialog_AverageDailyPlaytime" xml:space="preserve">
-    <value>平均每日遊戲時間</value>
+    <value>平均每日遊戲時長</value>
   </data>
   <data name="PlayTimeStatsDialog_StatsTip" xml:space="preserve">
     <value>統計基於遊戲運行時長，而非實際遊玩時長，僅供參考。</value>
+  </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>顯示遊戲時長</value>
   </data>
 </root>
