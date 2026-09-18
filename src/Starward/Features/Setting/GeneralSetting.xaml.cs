@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Starward.Features.ViewHost;
 using Starward.Frameworks;
+using Starward.Helpers;
 using System;
 using System.Globalization;
 using Windows.System;
@@ -28,6 +29,7 @@ public sealed partial class GeneralSetting : PageBase
     {
         InitializeLanguageSelector();
         InitializeCloseWindowOption();
+        InitializeFontFamilySelector();
     }
 
 
@@ -94,6 +96,7 @@ public sealed partial class GeneralSetting : PageBase
                     _logger.LogInformation("Language change to {lang}", lang);
                     AppConfig.SetLanguage(lang);
                     this.Bindings.Update();
+                    InitializeFontFamilySelector();
                     WeakReferenceMessenger.Default.Send(new LanguageChangedMessage());
                     AppConfig.SaveConfiguration();
                 }
@@ -190,6 +193,110 @@ public sealed partial class GeneralSetting : PageBase
             }
         }
     } = AppConfig.EnableGameAccountSwitcher;
+
+
+
+    #endregion
+
+
+
+    #region 自定义字体
+
+
+
+    private bool _fontFamilyInitialized;
+
+
+    /// <summary>
+    /// 初始化自定义字体选择器
+    /// </summary>
+    private void InitializeFontFamilySelector()
+    {
+        try
+        {
+            // 重建列表过程中的 SelectionChanged 不生效，避免字体被瞬时重置
+            _fontFamilyInitialized = false;
+            string? current = AppConfig.CustomFontFamily;
+            ComboBox_FontFamily.Items.Clear();
+            ComboBox_FontFamily.Items.Add(new ComboBoxItem
+            {
+                Content = Lang.SettingPage_DefaultFont,
+            });
+            ComboBox_FontFamily.SelectedIndex = 0;
+            foreach (var font in FontHelper.GetSystemFontFamilies())
+            {
+                var box = new ComboBoxItem
+                {
+                    Content = font.LocalizedName,
+                    // 保存 en-us 规范名称，不受应用界面语言影响
+                    Tag = font.CanonicalName,
+                };
+                ComboBox_FontFamily.Items.Add(box);
+                if (font.CanonicalName == current)
+                {
+                    ComboBox_FontFamily.SelectedItem = box;
+                }
+            }
+            if (ComboBox_FontFamily.SelectedItem is null && !string.IsNullOrWhiteSpace(current))
+            {
+                // 已设置的字体不在列表中（可能已被卸载），附加显示以保持选中状态
+                var box = new ComboBoxItem
+                {
+                    Content = current,
+                    Tag = current,
+                };
+                ComboBox_FontFamily.Items.Add(box);
+                ComboBox_FontFamily.SelectedItem = box;
+            }
+        }
+        finally
+        {
+            _fontFamilyInitialized = true;
+        }
+    }
+
+
+    /// <summary>
+    /// 自定义字体切换
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ComboBox_FontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        try
+        {
+            if (_fontFamilyInitialized && ComboBox_FontFamily.SelectedItem is ComboBoxItem item)
+            {
+                string? font = item.Tag as string;
+                _logger.LogInformation("Custom font family change to {font}", font);
+                AppConfig.CustomFontFamily = font;
+                FontHelper.ApplyCustomFont(font);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Change Custom Font Family");
+        }
+    }
+
+
+
+    /// <summary>
+    /// 重置自定义字体
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Button_ResetFont_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            ComboBox_FontFamily.SelectedIndex = 0;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Reset Custom Font Family");
+        }
+    }
 
 
 

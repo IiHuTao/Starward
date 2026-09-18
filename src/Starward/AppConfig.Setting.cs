@@ -266,6 +266,15 @@ public static partial class AppConfig
     }
 
     /// <summary>
+    /// 自定义界面字体，应用文字但不包括图标
+    /// </summary>
+    public static string? CustomFontFamily
+    {
+        get => GetValue<string>();
+        set => SetValue(value);
+    }
+
+    /// <summary>
     /// 启用硬链接
     /// </summary>
     public static bool EnableHardLink

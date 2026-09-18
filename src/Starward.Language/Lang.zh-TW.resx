@@ -2798,4 +2798,16 @@
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>顯示遊戲時間</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>自訂字型</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>設定應用程式介面文字字型，圖示不受影響。</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>重設</value>
+  </data>
 </root>

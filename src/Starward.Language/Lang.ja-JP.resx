@@ -2797,4 +2797,16 @@
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>ゲームのプレイ時間を表示</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>カスタムフォント</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>アプリのインターフェースに表示されるテキストのフォントを設定します。アイコンには影響しません。</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>リセット</value>
+  </data>
 </root>

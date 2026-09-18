@@ -2792,4 +2792,16 @@
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>แสดงเวลาเล่นเกม</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>ฟอนต์แบบกำหนดเอง</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>ตั้งค่าฟอนต์ของข้อความในอินเทอร์เฟซแอป ซึ่งจะไม่มีผลกับไอคอน</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>ค่าเริ่มต้น</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>รีเซ็ต</value>
+  </data>
 </root>

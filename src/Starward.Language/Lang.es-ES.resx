@@ -2795,4 +2795,16 @@ Puede enviar los datos exportados al siguiente repositorio:</value>
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>Mostrar tiempo de juego</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>Fuente personalizada</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>Establece la fuente del texto de la interfaz de la aplicación; los iconos no se ven afectados.</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>Predeterminado</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>Restablecer</value>
+  </data>
 </root>

@@ -2798,4 +2798,16 @@ You are welcome to submit the exported data to the following repository:</value>
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>Show Game Playtime</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>Custom Font</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>Set the font used for text in the app interface; icons are not affected.</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
 </root>

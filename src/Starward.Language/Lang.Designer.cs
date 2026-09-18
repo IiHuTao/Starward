@@ -8002,5 +8002,41 @@ namespace Starward.Language {
                 return ResourceManager.GetString("LauncherPage_ShowPlayTime", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   查找类似 Reset 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_Reset {
+            get {
+                return ResourceManager.GetString("SettingPage_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Custom Font 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_CustomFont {
+            get {
+                return ResourceManager.GetString("SettingPage_CustomFont", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Set the font of the app interface, icons are not affected. 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_CustomFontDesc {
+            get {
+                return ResourceManager.GetString("SettingPage_CustomFontDesc", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Default 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_DefaultFont {
+            get {
+                return ResourceManager.GetString("SettingPage_DefaultFont", resourceCulture);
+            }
+        }
     }
 }
