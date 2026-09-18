@@ -2796,4 +2796,16 @@ Sie sind herzlich eingeladen, die exportierten Daten an das folgende Repository 
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>Spielzeit anzeigen</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>Benutzerdefinierte Schriftart</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>Legt die Schriftart des Textes in der App-Oberfläche fest, Symbole sind nicht betroffen.</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
 </root>

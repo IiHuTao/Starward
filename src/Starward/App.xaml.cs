@@ -8,6 +8,7 @@ using Starward.Features.GameLauncher;
 using Starward.Features.GamepadControl;
 using Starward.Features.UrlProtocol;
 using Starward.Features.ViewHost;
+using Starward.Helpers;
 using Starward.RPC;
 using System;
 using System.Collections;
@@ -76,6 +77,7 @@ public partial class App : Application
         }
 
         await AppConfig.CheckEnviromentAsync();
+        FontHelper.ApplyCustomFont(AppConfig.CustomFontFamily);
 
         if (args.Length > 0 && await HandleStartupAsync(args))
         {

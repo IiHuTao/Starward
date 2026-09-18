@@ -2818,4 +2818,16 @@ ChatGPT может допускать ошибки. Проверьте важн�
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>Показывать время игры</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>Пользовательский шрифт</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>Задаёт шрифт текста интерфейса приложения, значки не затрагиваются.</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
 </root>

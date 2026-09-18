@@ -68,6 +68,32 @@
                 <Setter Property="FontFamily" Value="ms-appx:///Assets/Font/Segoe Fluent Icons.ttf#Segoe Fluent Icons" />
             </Style>
 
+            <!--  自定义字体：文字跟随 ContentControlThemeFontFamily，图标不受影响  -->
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+            <Style x:Key="BaseTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+            <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+            <Style x:Key="SubheaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource SubheaderTextBlockStyle}">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+            <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+            <Style x:Key="SubtitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+            <Style x:Key="BodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+            <Style x:Key="CaptionTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            </Style>
+
             <!--  Accent Color  -->
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">

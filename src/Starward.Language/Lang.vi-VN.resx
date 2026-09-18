@@ -2795,4 +2795,16 @@ Bạn có chấp nhận rủi ro và tiếp tục?</value>
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>Hiển thị thời gian chơi trò chơi</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>Phông chữ tùy chỉnh</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>Đặt phông chữ của văn bản trong giao diện ứng dụng, không ảnh hưởng đến biểu tượng.</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>Mặc định</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>Đặt lại</value>
+  </data>
 </root>

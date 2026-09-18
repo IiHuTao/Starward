@@ -2798,4 +2798,16 @@
   <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
     <value>게임 플레이 시간 표시하기</value>
   </data>
+  <data name="SettingPage_CustomFont" xml:space="preserve">
+    <value>사용자 지정 글꼴</value>
+  </data>
+  <data name="SettingPage_CustomFontDesc" xml:space="preserve">
+    <value>앱 인터페이스 텍스트의 글꼴을 설정합니다. 아이콘에는 영향을 주지 않습니다.</value>
+  </data>
+  <data name="SettingPage_DefaultFont" xml:space="preserve">
+    <value>기본값</value>
+  </data>
+  <data name="SettingPage_Reset" xml:space="preserve">
+    <value>초기화</value>
+  </data>
 </root>
