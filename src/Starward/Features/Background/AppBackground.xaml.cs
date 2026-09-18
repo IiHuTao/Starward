@@ -361,8 +361,28 @@ public sealed partial class AppBackground : UserControl
 
     private SemaphoreSlim _videoSemaphore = new SemaphoreSlim(1, 1);
 
+    /// <summary>
+    /// 小于等于该大小的视频背景文件加载到内存播放，避免持续读取硬盘
+    /// </summary>
+    private const long VideoBackgroundMemoryPlaybackMaxFileSize = 20L * (1 << 20);
 
-    private void StartMediaPlayer(string file)
+    /// <summary>
+    /// 内存中的视频背景文件字节，播放期间需要一直持有
+    /// </summary>
+    private MemoryStream? _videoFileBuffer;
+
+    /// <summary>
+    /// 当前媒体源是否由内存流创建，内存播放失败时用于回退
+    /// </summary>
+    private bool _videoSourceInMemory;
+
+    /// <summary>
+    /// 当前正在播放的视频背景文件路径，内存播放失败时回退使用
+    /// </summary>
+    private string? _videoFile;
+
+
+    private void StartMediaPlayer(string file, bool allowMemorySource = true)
     {
         if (Path.GetExtension(file).Equals(".webm", StringComparison.OrdinalIgnoreCase))
         {
@@ -389,13 +409,33 @@ public sealed partial class AppBackground : UserControl
             }
         }
         VP9Helper.RegisterVorbisDecoder();
+        _videoFileBuffer?.Dispose();
+        _videoFileBuffer = null;
+        _videoSourceInMemory = false;
+        MediaSource? source = null;
+        if (allowMemorySource && TryLoadVideoFileToMemory(file, out var buffer))
+        {
+            try
+            {
+                source = MediaSource.CreateFromStream(buffer.AsRandomAccessStream(), GetVideoContentType(file));
+                _videoFileBuffer = buffer;
+                _videoSourceInMemory = true;
+            }
+            catch (Exception ex)
+            {
+                buffer.Dispose();
+                _logger.LogError(ex, "Create video background media source from memory failed, play from file instead");
+            }
+        }
+        source ??= MediaSource.CreateFromUri(new Uri(file));
+        _videoFile = file;
         _mediaPlayer = new MediaPlayer
         {
             IsLoopingEnabled = true,
             Volume = videoBgVolume / 100.0,
             IsMuted = false,
             IsVideoFrameServerEnabled = true,
-            Source = MediaSource.CreateFromUri(new Uri(file))
+            Source = source
         };
         _mediaPlayer.CommandManager.IsEnabled = false;
         _mediaPlayer.SystemMediaTransportControls.IsEnabled = false;
@@ -403,6 +443,41 @@ public sealed partial class AppBackground : UserControl
         _mediaPlayer.MediaFailed += MediaPlayer_MediaFailed;
         _mediaPlayer.Play();
     }
+
+
+    /// <summary>
+    /// 将大小不超过 20MB 的视频背景文件读入内存
+    /// </summary>
+    private bool TryLoadVideoFileToMemory(string file, out MemoryStream buffer)
+    {
+        buffer = null!;
+        try
+        {
+            if (new FileInfo(file).Length > VideoBackgroundMemoryPlaybackMaxFileSize)
+            {
+                return false;
+            }
+            byte[] bytes = File.ReadAllBytes(file);
+            buffer = new MemoryStream(bytes, writable: false);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Load video background into memory failed, play from file instead");
+            return false;
+        }
+    }
+
+
+    /// <summary>
+    /// 视频背景文件的 MIME 类型，用于从内存流创建媒体源
+    /// </summary>
+    private static string GetVideoContentType(string file) => Path.GetExtension(file).ToLowerInvariant() switch
+    {
+        ".webm" => "video/webm",
+        ".mkv" => "video/x-matroska",
+        _ => "video/mp4",
+    };
 
 
     private async Task SetVideoBackgroundAsync(GameBackground gameBackground, string filePath, CancellationToken cancellationToken = default)
@@ -457,6 +532,22 @@ public sealed partial class AppBackground : UserControl
     private void MediaPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
     {
         _logger.LogError(args.ExtendedErrorCode, "Media player failed.");
+        if (!ReferenceEquals(_mediaPlayer, sender))
+        {
+            return;
+        }
+        if (_videoSourceInMemory && _videoFile is string file)
+        {
+            // 内存播放失败时回退为直接从文件播放，避免个别文件从内存源解析失败
+            _logger.LogWarning("Video background failed to play from memory, fall back to file: {file}", file);
+            _mediaPlayer?.Dispose();
+            _mediaPlayer = null;
+            _videoFileBuffer?.Dispose();
+            _videoFileBuffer = null;
+            _videoSourceInMemory = false;
+            StartMediaPlayer(file, allowMemorySource: false);
+            return;
+        }
         if (_needToInstallVp9VideoExtension)
         {
             InAppToast.MainWindow?.ShowWithButton(InfoBarSeverity.Warning, null, Lang.AppBackground_VideoDecodingFailedPleaseInstallTheVP9VideoExtensions, Lang.SettingPage_Download, async () => await Launcher.LaunchUriAsync(new("https://apps.microsoft.com/detail/9n4d0msmp0pt")));
@@ -564,6 +655,10 @@ public sealed partial class AppBackground : UserControl
     {
         _mediaPlayer?.Dispose();
         _mediaPlayer = null;
+        _videoFileBuffer?.Dispose();
+        _videoFileBuffer = null;
+        _videoSourceInMemory = false;
+        _videoFile = null;
         _videoSurface?.Dispose();
         _videoSurface = null;
         _videoImageSource = null;
