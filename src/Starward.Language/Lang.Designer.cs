@@ -7432,6 +7432,150 @@ namespace Starward.Language {
         }
         
         /// <summary>
+        ///   查找类似 WebDAV Backup Manager 的本地化字符串。
+        /// </summary>
+        public static string ToolboxSetting_WebDAVBackupManager {
+            get {
+                return ResourceManager.GetString("ToolboxSetting_WebDAVBackupManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 View and manage backup files on the WebDAV server 的本地化字符串。
+        /// </summary>
+        public static string ToolboxSetting_WebDAVBackupManagerDescription {
+            get {
+                return ResourceManager.GetString("ToolboxSetting_WebDAVBackupManagerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Refresh 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Refresh {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Download 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Download {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Delete {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Loading… 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Loading {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No backup files found 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Empty {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 WebDAV is not configured. Configure it in Settings - File Management first. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_NotConfigured {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_NotConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete Backup File 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteConfirmTitle {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteConfirmTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Are you sure you want to delete the selected backup files? 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteConfirmContent {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteConfirmContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Downloading 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Downloading {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Deleting 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Deleting {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Deleting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Name 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Name {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Size 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Size {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Last Modified 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_LastModified {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_LastModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete local file after successful upload 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVDeleteLocalFileAfterUpload {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVDeleteLocalFileAfterUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 ZZZ Gacha Item Images 的本地化字符串。
         /// </summary>
         public static string ToolboxSetting_ZZZGachaItemImages {
@@ -7991,6 +8135,285 @@ namespace Starward.Language {
         public static string ZZZGachaService_ImportSignalSearchRecordsSuccessfully {
             get {
                 return ResourceManager.GetString("ZZZGachaService_ImportSignalSearchRecordsSuccessfully", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 WebDAV Backup Database 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVBackupDatabase {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVBackupDatabase", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 WebDAV Config 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVConfig {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVConfig", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Server Address 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVServerAddress {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVServerAddress", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 User Name 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVUserName {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVUserName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 App Password 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVPassword {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVPassword", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Test Connection 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVTestConnection {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVTestConnection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Connection successful. 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVTestSuccess {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVTestSuccess", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 Compressing 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_Compressing {
+            get {
+                return ResourceManager.GetString("SettingPage_Compressing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 List files 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_ListingFiles {
+            get {
+                return ResourceManager.GetString("WebDAVError_ListingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Create folder 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_CreatingFolder {
+            get {
+                return ResourceManager.GetString("WebDAVError_CreatingFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload file 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_UploadingFile {
+            get {
+                return ResourceManager.GetString("WebDAVError_UploadingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Download file 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_DownloadingFile {
+            get {
+                return ResourceManager.GetString("WebDAVError_DownloadingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check file 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_CheckingFile {
+            get {
+                return ResourceManager.GetString("WebDAVError_CheckingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete file 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_DeletingFile {
+            get {
+                return ResourceManager.GetString("WebDAVError_DeletingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed to {0}. (HTTP {1}) 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_Failed {
+            get {
+                return ResourceManager.GetString("WebDAVError_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Unauthorized. Check the WebDAV user name and password. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_Unauthorized {
+            get {
+                return ResourceManager.GetString("WebDAVError_Unauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Forbidden. Check the WebDAV account permission. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_Forbidden {
+            get {
+                return ResourceManager.GetString("WebDAVError_Forbidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Method not allowed. The server may not support WebDAV. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_MethodNotAllowed {
+            get {
+                return ResourceManager.GetString("WebDAVError_MethodNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Request timed out. Check the network and server address. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_Timeout {
+            get {
+                return ResourceManager.GetString("WebDAVError_Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The server response is not valid WebDAV data. Check the server address, or whether the server supports WebDAV. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_InvalidResponse {
+            get {
+                return ResourceManager.GetString("WebDAVError_InvalidResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cannot connect to the server. Check the network and server address. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_NetworkError {
+            get {
+                return ResourceManager.GetString("WebDAVError_NetworkError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The server address is invalid. It must be an absolute URL starting with http:// or https://. 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVInvalidServerAddress {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVInvalidServerAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload failed. Delete the local backup archive created this time? 的本地化字符串。
+        /// </summary>
+        public static string SettingPage_WebDAVBackupFailedCleanup {
+            get {
+                return ResourceManager.GetString("SettingPage_WebDAVBackupFailedCleanup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Date 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_Date {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete Before Date 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDate {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Select a date. All backup files modified before this date will be deleted from the server. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDateContent {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete Backups 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDateTitle {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 This will delete {0} backup files from the server. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_DeleteBeforeDateCount {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_DeleteBeforeDateCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Currently selected {0} backup file(s) 的本地化字符串。
+        /// </summary>
+        public static string WebDAVBackupWindow_SelectedCount {
+            get {
+                return ResourceManager.GetString("WebDAVBackupWindow_SelectedCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cannot create the backup folder. The sub-path of the server address may not exist, or the server does not support WebDAV. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_ParentFolderNotFound {
+            get {
+                return ResourceManager.GetString("WebDAVError_ParentFolderNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The downloaded file size does not match the server file. 的本地化字符串。
+        /// </summary>
+        public static string WebDAVError_DownloadSizeMismatch {
+            get {
+                return ResourceManager.GetString("WebDAVError_DownloadSizeMismatch", resourceCulture);
             }
         }
     }

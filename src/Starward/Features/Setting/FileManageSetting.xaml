@@ -89,6 +89,10 @@
                               Height="28"
                               IsIndeterminate="{x:Bind BackupDatabaseCommand.IsRunning}"
                               Visibility="{x:Bind BackupDatabaseCommand.IsRunning}" />
+                <TextBlock VerticalAlignment="Center"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Text="{x:Bind DatabaseBackupStatus}"
+                           Visibility="{x:Bind DatabaseBackupStatus, Converter={StaticResource ObjectToVisibilityConverter}}" />
                 <Button Height="40"
                         Padding="20,0,20,1"
                         BorderThickness="0"
@@ -103,6 +107,67 @@
                                   FontSize="16"
                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                   Glyph="&#xE8A7;" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+
+            <!--  WebDAV备份数据库  -->
+            <StackPanel Margin="0,8,0,0"
+                        Orientation="Horizontal"
+                        Spacing="16">
+                <Grid>
+                    <Button x:Name="WebDAVBackupButton"
+                            Height="40"
+                            Padding="16,0,46,0"
+                            BorderThickness="0"
+                            Command="{x:Bind WebDAVBackupDatabaseCommand}"
+                            CornerRadius="8,20,20,8"
+                            Style="{ThemeResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE753;" />
+                            <TextBlock Text="{x:Bind lang:Lang.SettingPage_WebDAVBackupDatabase}" />
+                        </StackPanel>
+                    </Button>
+                    <!--  WebDAV配置  -->
+                    <Button Width="40"
+                            Height="40"
+                            Padding="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Stretch"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{x:Bind OpenWebDAVSettingCommand}"
+                            CornerRadius="20">
+                        <FontIcon FontSize="16"
+                                  Foreground="{x:Bind WebDAVBackupButton.Foreground, Mode=OneWay}"
+                                  Glyph="&#xE713;" />
+                    </Button>
+                </Grid>
+                <ProgressRing Width="28"
+                              Height="28"
+                              VerticalAlignment="Center"
+                              IsIndeterminate="{x:Bind WebDAVBackupDatabaseCommand.IsRunning}"
+                              Visibility="{x:Bind WebDAVBackupDatabaseCommand.IsRunning}" />
+                <TextBlock VerticalAlignment="Center"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Text="{x:Bind WebDAVUploadProgress}"
+                           Visibility="{x:Bind WebDAVUploadProgress, Converter={StaticResource ObjectToVisibilityConverter}}" />
+                <Button Height="40"
+                        Padding="20,0,20,1"
+                        BorderThickness="0"
+                        Command="{x:Bind OpenLastWebDAVBackupDatabaseCommand}"
+                        CornerRadius="20"
+                        Visibility="{x:Bind LastWebDAVBackupTime, Converter={StaticResource ObjectToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   Text="{x:Bind LastWebDAVBackupTime}" />
+                        <FontIcon Margin="8,2,2,0"
+                                  FontSize="16"
+                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                  Glyph="&#xE8A7;"
+                                  Visibility="{x:Bind IsLastWebDAVBackupExists, Converter={StaticResource BoolToVisibilityConverter}}" />
                     </StackPanel>
                 </Button>
             </StackPanel>

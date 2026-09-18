@@ -33,6 +33,7 @@ public sealed partial class FileManageSetting : PageBase
     protected override void OnLoaded()
     {
         GetLastBackupTime();
+        _ = GetLastWebDAVBackupTimeAsync();
         _ = UpdateCacheSizeAsync();
     }
 
@@ -166,6 +167,8 @@ public sealed partial class FileManageSetting : PageBase
 
     public string LastDatabaseBackupTime { get; set => SetProperty(ref field, value); }
 
+    public string? DatabaseBackupStatus { get; set => SetProperty(ref field, value); }
+
 
     private void GetLastBackupTime()
     {
@@ -199,6 +202,7 @@ public sealed partial class FileManageSetting : PageBase
                 var folder = Path.Combine(AppConfig.UserDataFolder, "DatabaseBackup");
                 Directory.CreateDirectory(folder);
                 DateTime time = DateTime.Now;
+                DatabaseBackupStatus = Lang.SettingPage_Compressing;
                 await Task.Run(() =>
                 {
                     string file = Path.Combine(folder, $"StarwardDatabase_{time:yyyyMMdd_HHmmss}.db");
@@ -208,6 +212,7 @@ public sealed partial class FileManageSetting : PageBase
                     DatabaseService.SetValue("LastBackupDatabase", Path.GetFileName(archive), time);
                     File.Delete(file);
                 });
+                DatabaseBackupStatus = null;
                 LastDatabaseBackupTime = $"{Lang.SettingPage_LastBackup}  {time:yyyy-MM-dd HH:mm:ss}";
             }
         }
@@ -215,6 +220,7 @@ public sealed partial class FileManageSetting : PageBase
         {
             _logger.LogError(ex, "Backup database");
             LastDatabaseBackupTime = ex.Message;
+            DatabaseBackupStatus = null;
         }
     }
 
@@ -249,10 +255,6 @@ public sealed partial class FileManageSetting : PageBase
             _logger.LogError(ex, "Open last backup database");
         }
     }
-
-
-
-
 
 
 
