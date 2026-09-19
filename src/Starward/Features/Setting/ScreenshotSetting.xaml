@@ -73,29 +73,6 @@
             </Grid>
 
 
-            <!--  截图快捷键  -->
-            <TextBlock Margin="0,16,0,0"
-                       FontSize="20"
-                       Text="{x:Bind lang:Lang.ScreenshotSetting_ScreenshotShortcut}" />
-
-            <!--  如果注册单键快捷键 (F1-F12)，需要以管理员权限运行 Starward，否则在游戏中快捷键无法生效。  -->
-            <TextBlock Margin="0,8,0,0"
-                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                       Text="{x:Bind lang:Lang.HotkeySetting_SingleKeyShortcutsTips}"
-                       TextWrapping="Wrap" />
-
-            <!--  设置快捷键  -->
-            <local:HotkeyInput x:Name="HotkeyInput_ScreenshotCapture"
-                               MinWidth="200"
-                               Margin="0,12,0,0"
-                               HorizontalAlignment="Left"
-                               HotkeyDeleted="HotkeyInput_HotkeyDeleted"
-                               HotkeyEditFinished="HotkeyInput_HotkeyEditFinished"
-                               HotkeyEditing="HotkeyInput_HotkeyEditing"
-                               HotkeyId="44445"
-                               WindowHandle="{x:Bind WindowHandle}" />
-
-
             <!--  其他选项  -->
             <TextBlock Margin="0,16,0,0"
                        FontSize="20"
