@@ -18,13 +18,6 @@
         <SolidColorBrush x:Key="Rarity3ForegroundBrush">#5EAAED</SolidColorBrush>
         <SolidColorBrush x:Key="Rarity2ForegroundBrush">#3BA272</SolidColorBrush>
 
-        <Style BasedOn="{StaticResource BodyTextBlockStyle}" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="TextWrapping" Value="NoWrap" />
-            <Setter Property="TextTrimming" Value="None" />
-            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
-        </Style>
-
         <local:GenshinBeyondGachaPityProgressBackgroundBrushConverter x:Key="GenshinBeyondGachaPityProgressBackgroundBrushConverter" />
         <local:RarityToGIBgConverter x:Key="RarityToGIBgConverter" />
     </Page.Resources>
@@ -36,14 +29,7 @@
         </Grid.RowDefinitions>
 
 
-        <TextBlock Margin="24,0,0,0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   FontWeight="Bold"
-                   Text="{x:Bind lang:Lang.GenshinBeyondGachaPage_MiliastraWonderlandOde}" />
-
-
+        <!--  嵌套在抽卡记录页中显示，标题由抽卡记录页的切换控件承担  -->
         <StackPanel HorizontalAlignment="Right"
                     Orientation="Horizontal"
                     Spacing="16">
@@ -189,6 +175,14 @@
                 <Grid x:Name="Grid_GachaStats"
                       Margin="20,0,20,16"
                       ColumnSpacing="12">
+                    <Grid.Resources>
+                        <Style BasedOn="{StaticResource BodyTextBlockStyle}" TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="TextWrapping" Value="NoWrap" />
+                            <Setter Property="TextTrimming" Value="None" />
+                            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                        </Style>
+                    </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
