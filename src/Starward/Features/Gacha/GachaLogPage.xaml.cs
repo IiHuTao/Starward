@@ -6,6 +6,7 @@ using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using Starward.Core;
@@ -70,6 +71,9 @@ public sealed partial class GachaLogPage : PageBase
         if (CurrentGameBiz.Game == GameBiz.hk4e)
         {
             EnableGenshinGachaItemStats = true;
+            IsGenshin = true;
+            // 千星奇域颂愿同样由本页面显示，每次都从祈愿记录开始
+            GachaModeIndex = 0;
             _gachaLogService = AppConfig.GetService<GenshinGachaService>();
             Image_Emoji.Source = new BitmapImage(AppConfig.EmojiPaimon);
         }
@@ -105,6 +109,69 @@ public sealed partial class GachaLogPage : PageBase
 
 
     public bool IsZZZGachaStatsCardVisible { get; set => SetProperty(ref field, value); }
+
+
+    [ObservableProperty]
+    public partial bool IsGenshin { get; set; }
+    partial void OnIsGenshinChanged(bool value)
+    {
+        OnPropertyChanged(nameof(IsGenshinBeyondMode));
+    }
+
+
+    /// <summary>
+    /// 0 祈愿记录，1 千星奇域颂愿
+    /// </summary>
+    [ObservableProperty]
+    public partial int GachaModeIndex { get; set; }
+    partial void OnGachaModeIndexChanged(int value)
+    {
+        OnPropertyChanged(nameof(IsGenshinBeyondMode));
+        OnPropertyChanged(nameof(WishModeOpacity));
+        OnPropertyChanged(nameof(BeyondModeOpacity));
+        UpdateGenshinBeyondContent();
+    }
+
+
+    public bool IsGenshinBeyondMode => IsGenshin && GachaModeIndex == 1;
+
+
+    public double WishModeOpacity => GachaModeIndex == 0 ? 1 : 0.5;
+
+    public double BeyondModeOpacity => GachaModeIndex == 1 ? 1 : 0.5;
+
+
+    [RelayCommand]
+    private void SwitchToWishMode()
+    {
+        GachaModeIndex = 0;
+    }
+
+
+    [RelayCommand]
+    private void SwitchToBeyondMode()
+    {
+        GachaModeIndex = 1;
+    }
+
+
+    /// <summary>
+    /// 千星奇域颂愿按需加载，未切换过去时不读取它的记录
+    /// </summary>
+    private void UpdateGenshinBeyondContent()
+    {
+        try
+        {
+            if (IsGenshinBeyondMode && CurrentGameId is not null && Frame_GenshinBeyond.Content is null)
+            {
+                Frame_GenshinBeyond.Navigate(typeof(GenshinBeyondGachaPage), CurrentGameId, new SuppressNavigationTransitionInfo());
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Update genshin beyond gacha view");
+        }
+    }
 
 
     public string GachaTypeText { get; set => SetProperty(ref field, value); }
