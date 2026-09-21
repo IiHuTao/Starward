@@ -145,6 +145,8 @@ public sealed partial class MainView : UserControl
             GameBiz.nap => Lang.GachaLogService_SignalSearchRecords,
             _ => "",
         };
+        ToolTipService.SetToolTip(NavigationViewItem_GachaLog, gachalogText);
+        TextBlock_GachaLog.Text = gachalogText;
 
         if (CurrentGameId?.GameBiz.IsChinaServer() ?? false)
         {
