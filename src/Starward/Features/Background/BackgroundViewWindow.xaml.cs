@@ -68,7 +68,7 @@ public sealed partial class BackgroundViewWindow : WindowEx
         var window = AppWindow.GetFromWindowId(MainWindowId);
         if (window is null)
         {
-            CenterInScreen(1200, 676);
+            CenterInScreen(1200, 675);
         }
         else
         {

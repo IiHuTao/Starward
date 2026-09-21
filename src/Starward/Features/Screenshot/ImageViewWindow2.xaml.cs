@@ -954,7 +954,7 @@ public sealed partial class ImageViewWindow2 : Window
                 ScreenshotCollection.Insert(0, CurrentScreenshot);
             }
             DisplayArea area = DisplayArea.GetFromWindowId(windowId, DisplayAreaFallback.Nearest);
-            CenterInScreen(area, 1200, 676);
+            CenterInScreen(area, 1200, 675);
             User32.ShowWindow(WindowHandle, ShowWindowCommand.SW_SHOWMAXIMIZED);
             await Task.Delay(1);
             await LoadImageAsync(CurrentScreenshot.FilePath);
