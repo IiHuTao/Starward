@@ -16,6 +16,7 @@ using Starward.Core.GameRecord.StarRail.ForgottenHall;
 using Starward.Core.GameRecord.StarRail.PureFiction;
 using Starward.Core.GameRecord.StarRail.SimulatedUniverse;
 using Starward.Core.GameRecord.StarRail.TrailblazeCalendar;
+using Starward.Core.GameRecord.ZZZ.AvatarInfo;
 using Starward.Core.GameRecord.ZZZ.DailyNote;
 using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
 using Starward.Core.GameRecord.ZZZ.GachaRecord;
@@ -1084,6 +1085,88 @@ internal class GameRecordService
             return JsonSerializer.Deserialize<ShiyuDefenseInfoV2>(value);
         }
         return null;
+    }
+
+
+
+    #endregion
+
+
+
+
+    #region ZZZ Avatar Info
+
+
+
+    /// <summary>
+    /// 获取已存储的代理人信息
+    /// </summary>
+    /// <param name="role"></param>
+    /// <returns></returns>
+    public async Task<List<ZZZAvatarInfo>> GetZZZAvatarInfosAsync(GameRecordRole role)
+    {
+        if (role is null)
+        {
+            return new List<ZZZAvatarInfo>();
+        }
+        return await Task.Run(() =>
+        {
+            using var dapper = DatabaseService.CreateConnection();
+            var list = dapper.Query<ZZZAvatarInfo>("""
+                SELECT Uid, Id, Name, Value FROM ZZZAvatarInfo WHERE Uid = @Uid;
+                """, new { role.Uid });
+            foreach (var item in list)
+            {
+                try
+                {
+                    item.Avatar = JsonSerializer.Deserialize<ZZZAvatarDetail>(item.Value, AppConfig.JsonSerializerOptions);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Deserialize ZZZAvatarInfo failed ({uid}, {id}).", role.Uid, item.Id);
+                }
+            }
+            return list.OrderByDescending(x => x.Avatar?.Rarity == "S").ThenByDescending(x => x.Id).ToList();
+        });
+    }
+
+
+
+    /// <summary>
+    /// 刷新我的代理人，获取全部代理人详情
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task RefreshZZZAvatarInfoAsync(GameRecordRole role, CancellationToken cancellationToken = default)
+    {
+        var basicList = await _gameRecordClient.GetZZZAvatarBasicListAsync(role, cancellationToken);
+        var avatars = basicList.AvatarList ?? new List<ZZZAvatarBasic>();
+        if (avatars.Count == 0)
+        {
+            return;
+        }
+
+        var details = new ZZZAvatarDetail?[avatars.Count];
+        await Parallel.ForEachAsync(avatars.Select((avatar, index) => (avatar, index)), new ParallelOptions { MaxDegreeOfParallelism = 4, CancellationToken = cancellationToken }, async (item, ct) =>
+        {
+            await Task.Delay(Random.Shared.Next(200, 300), ct);
+            var info = await _gameRecordClient.GetZZZAvatarInfoAsync(role, item.avatar.Id, ct);
+            details[item.index] = info.AvatarList?.FirstOrDefault(x => x.Id == item.avatar.Id);
+        });
+
+        var upserts = details.Where(x => x is not null).Select(detail => new
+        {
+            role.Uid,
+            detail!.Id,
+            detail.Name,
+            Value = JsonSerializer.Serialize(detail, AppConfig.JsonSerializerOptions),
+        });
+        using var dapper = DatabaseService.CreateConnection();
+        dapper.Execute("""
+            INSERT OR REPLACE INTO ZZZAvatarInfo (Uid, Id, Name, Value)
+            VALUES (@Uid, @Id, @Name, @Value);
+            """, upserts);
     }
 
 

@@ -240,6 +240,7 @@ public sealed partial class GameRecordPage : PageBase
         else if (CurrentGameBiz.Game is GameBiz.nap)
         {
             NavigationViewItem_BattleChronicle.Visibility = Visibility.Visible;
+            NavigationViewItem_ZZZAvatarInfo.Visibility = Visibility.Visible;
             NavigationViewItem_InterKnotMonthlyReport.Visibility = Visibility.Visible;
             NavigationViewItem_ShiyuDefense.Visibility = Visibility.Visible;
             NavigationViewItem_DeadlyAssault.Visibility = Visibility.Visible;
@@ -513,6 +514,7 @@ public sealed partial class GameRecordPage : PageBase
                     nameof(PureFictionPage) => typeof(PureFictionPage),
                     nameof(ApocalypticShadowPage) => typeof(ApocalypticShadowPage),
                     nameof(ChallengePeakPage) => typeof(ChallengePeakPage),
+                    nameof(ZZZAvatarInfoPage) => typeof(ZZZAvatarInfoPage),
                     nameof(InterKnotMonthlyReportPage) => typeof(InterKnotMonthlyReportPage),
                     nameof(ShiyuDefensePage) => typeof(ShiyuDefensePage),
                     nameof(DeadlyAssaultPage) => typeof(DeadlyAssaultPage),

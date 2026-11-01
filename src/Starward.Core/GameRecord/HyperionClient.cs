@@ -11,6 +11,7 @@ using Starward.Core.GameRecord.StarRail.ForgottenHall;
 using Starward.Core.GameRecord.StarRail.PureFiction;
 using Starward.Core.GameRecord.StarRail.SimulatedUniverse;
 using Starward.Core.GameRecord.StarRail.TrailblazeCalendar;
+using Starward.Core.GameRecord.ZZZ.AvatarInfo;
 using Starward.Core.GameRecord.ZZZ.DailyNote;
 using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
 using Starward.Core.GameRecord.ZZZ.GachaRecord;
@@ -1058,6 +1059,51 @@ public class HyperionClient : GameRecordClient
         request.Headers.Add(x_rpc_device_id, DeviceId);
         request.Headers.Add(x_rpc_device_fp, DeviceFp);
         return await CommonSendAsync<ThresholdSimulationDetailInfo>(request, cancellationToken);
+    }
+
+
+    /// <summary>
+    /// 我的代理人列表（概况）
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public override async Task<ZZZAvatarBasicList> GetZZZAvatarBasicListAsync(GameRecordRole role, CancellationToken cancellationToken = default)
+    {
+        var url = $"https://api-takumi-record.mihoyo.com/event/game_record_zzz/api/zzz/avatar/basic?server={role.Region}&role_id={role.Uid}";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add(Cookie, role.Cookie);
+        request.Headers.Add(DS, CreateSecret2(url));
+        request.Headers.Add(Referer, "https://webstatic.mihoyo.com/");
+        request.Headers.Add(x_rpc_app_version, AppVersion);
+        request.Headers.Add(x_rpc_device_id, DeviceId);
+        request.Headers.Add(x_rpc_device_fp, DeviceFp);
+        request.Headers.Add(x_rpc_client_type, "5");
+        request.Headers.Add(X_Request_With, com_mihoyo_hyperion);
+        return await CommonSendAsync<ZZZAvatarBasicList>(request, cancellationToken);
+    }
+
+
+    /// <summary>
+    /// 代理人详情
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="avatarId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public override async Task<ZZZAvatarInfoList> GetZZZAvatarInfoAsync(GameRecordRole role, int avatarId, CancellationToken cancellationToken = default)
+    {
+        var url = $"https://api-takumi-record.mihoyo.com/event/game_record_zzz/api/zzz/avatar/info?id_list[]={avatarId}&need_wiki=true&server={role.Region}&role_id={role.Uid}";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add(Cookie, role.Cookie);
+        request.Headers.Add(DS, CreateSecret2(url));
+        request.Headers.Add(Referer, "https://webstatic.mihoyo.com/");
+        request.Headers.Add(x_rpc_app_version, AppVersion);
+        request.Headers.Add(x_rpc_device_id, DeviceId);
+        request.Headers.Add(x_rpc_device_fp, DeviceFp);
+        request.Headers.Add(x_rpc_client_type, "5");
+        request.Headers.Add(X_Request_With, com_mihoyo_hyperion);
+        return await CommonSendAsync<ZZZAvatarInfoList>(request, cancellationToken);
     }
 
 

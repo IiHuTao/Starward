@@ -2,6 +2,7 @@
 
 namespace Starward.Core.GameRecord;
 
+
 public class GameRecordUser
 {
 

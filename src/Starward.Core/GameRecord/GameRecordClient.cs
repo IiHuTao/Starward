@@ -1,27 +1,28 @@
+using Starward.Core.GameRecord.BH3.DailyNote;
+using Starward.Core.GameRecord.Genshin.DailyNote;
+using Starward.Core.GameRecord.Genshin.ImaginariumTheater;
 using Starward.Core.GameRecord.Genshin.SpiralAbyss;
+using Starward.Core.GameRecord.Genshin.StygianOnslaught;
 using Starward.Core.GameRecord.Genshin.TravelersDiary;
+using Starward.Core.GameRecord.StarRail.ApocalypticShadow;
+using Starward.Core.GameRecord.StarRail.ChallengePeak;
+using Starward.Core.GameRecord.StarRail.DailyNote;
 using Starward.Core.GameRecord.StarRail.ForgottenHall;
 using Starward.Core.GameRecord.StarRail.PureFiction;
-using Starward.Core.GameRecord.StarRail.ApocalypticShadow;
 using Starward.Core.GameRecord.StarRail.SimulatedUniverse;
 using Starward.Core.GameRecord.StarRail.TrailblazeCalendar;
+using Starward.Core.Gacha.ZZZ;
+using Starward.Core.GameRecord.ZZZ.AvatarInfo;
+using Starward.Core.GameRecord.ZZZ.DailyNote;
+using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
+using Starward.Core.GameRecord.ZZZ.GachaRecord;
+using Starward.Core.GameRecord.ZZZ.InterKnotReport;
+using Starward.Core.GameRecord.ZZZ.ShiyuDefense;
+using Starward.Core.GameRecord.ZZZ.ThresholdSimulation;
+using Starward.Core.GameRecord.ZZZ.UpgradeGuide;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using Starward.Core.GameRecord.Genshin.ImaginariumTheater;
-using Starward.Core.GameRecord.ZZZ.ShiyuDefense;
-using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
-using Starward.Core.GameRecord.ZZZ.InterKnotReport;
-using Starward.Core.Gacha.ZZZ;
-using Starward.Core.GameRecord.ZZZ.UpgradeGuide;
-using Starward.Core.GameRecord.Genshin.DailyNote;
-using Starward.Core.GameRecord.StarRail.DailyNote;
-using Starward.Core.GameRecord.ZZZ.DailyNote;
-using Starward.Core.GameRecord.BH3.DailyNote;
-using Starward.Core.GameRecord.Genshin.StygianOnslaught;
-using Starward.Core.GameRecord.ZZZ.ThresholdSimulation;
-using Starward.Core.GameRecord.StarRail.ChallengePeak;
-using Starward.Core.GameRecord.ZZZ.GachaRecord;
 
 
 
@@ -514,6 +515,25 @@ public abstract class GameRecordClient
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public abstract Task<DeadlyAssaultInfo> GetDeadlyAssaultInfoAsync(GameRecordRole role, int schedule, CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// 我的代理人列表（概况）
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public abstract Task<ZZZAvatarBasicList> GetZZZAvatarBasicListAsync(GameRecordRole role, CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// 代理人详情
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="avatarId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public abstract Task<ZZZAvatarInfoList> GetZZZAvatarInfoAsync(GameRecordRole role, int avatarId, CancellationToken cancellationToken = default);
 
 
     /// <summary>

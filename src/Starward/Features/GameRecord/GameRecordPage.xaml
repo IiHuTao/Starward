@@ -449,6 +449,24 @@
                     </NavigationViewItem.Content>
                 </NavigationViewItem>
 
+                <!--  我的代理人  -->
+                <NavigationViewItem Name="NavigationViewItem_ZZZAvatarInfo"
+                                    Tag="ZZZAvatarInfoPage"
+                                    Visibility="Collapsed">
+                    <NavigationViewItem.Content>
+                        <Grid Margin="{x:Bind NavigationViewItemContentMargin}" ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                      Glyph="&#xE77B;" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{x:Bind lang:Lang.HoyolabToolboxPage_AvatarInfo}"
+                                       TextTrimming="CharacterEllipsis" />
+                        </Grid>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
                 <!--  绳网月报  -->
                 <NavigationViewItem Name="NavigationViewItem_InterKnotMonthlyReport"
                                     Tag="InterKnotMonthlyReportPage"

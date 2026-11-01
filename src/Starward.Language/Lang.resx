@@ -2795,4 +2795,79 @@ You are welcome to submit the exported data to the following repository:</value>
   <data name="PlayTimeStatsDialog_StatsTip" xml:space="preserve">
     <value>Statistics are based on game runtime, not actual playtime, and are for reference only.</value>
   </data>
+  <data name="HoyolabToolboxPage_AvatarInfo" xml:space="preserve">
+    <value>My Agents</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType0" xml:space="preserve">
+    <value>Basic Attack</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType1" xml:space="preserve">
+    <value>Special Attack</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType2" xml:space="preserve">
+    <value>Dodge</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType3" xml:space="preserve">
+    <value>Chain Attack</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType5" xml:space="preserve">
+    <value>Core Skill</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType6" xml:space="preserve">
+    <value>Assist</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Properties" xml:space="preserve">
+    <value>Base Stats</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_AdvancedProperties" xml:space="preserve">
+    <value>Advanced Stats</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_AvatarProperties" xml:space="preserve">
+    <value>Avatar Stats</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Skill" xml:space="preserve">
+    <value>Skills</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Weapon" xml:space="preserve">
+    <value>W-Engine</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Equip" xml:space="preserve">
+    <value>Drive Discs</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Rank" xml:space="preserve">
+    <value>Mindscape</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_RankNum" xml:space="preserve">
+    <value>Mindscape {0}</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_ActiveSuitEffect" xml:space="preserve">
+    <value>Active Set Effects</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SuitEffectCount" xml:space="preserve">
+    <value>{0} {1}-Piece Set Effect</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Skin" xml:space="preserve">
+    <value>Outfits</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_PotentialAwaken" xml:space="preserve">
+    <value>Potential Awaken</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Unlocked" xml:space="preserve">
+    <value>Unlocked</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_EquipValidPropertyHits" xml:space="preserve">
+    <value>{0} valid affix hits on drive discs</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_EquipLevel" xml:space="preserve">
+    <value>LV.{0}</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Attribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Specialty" xml:space="preserve">
+    <value>Specialty</value>
+  </data>
 </root>

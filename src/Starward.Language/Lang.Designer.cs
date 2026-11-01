@@ -3711,6 +3711,15 @@ namespace Starward.Language {
         }
         
         /// <summary>
+        ///   查找类似 My Agents 的本地化字符串。
+        /// </summary>
+        public static string HoyolabToolboxPage_AvatarInfo {
+            get {
+                return ResourceManager.GetString("HoyolabToolboxPage_AvatarInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Battle Chronicle 的本地化字符串。
         /// </summary>
         public static string HoyolabToolboxPage_BattleChronicle {
@@ -7934,6 +7943,222 @@ namespace Starward.Language {
         public static string WelcomeView_WelcomeToStarwardDescription {
             get {
                 return ResourceManager.GetString("WelcomeView_WelcomeToStarwardDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Active Set Effects 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_ActiveSuitEffect {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_ActiveSuitEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Advanced Stats 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_AdvancedProperties {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_AdvancedProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Attribute 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Attribute {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Attribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Avatar Stats 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_AvatarProperties {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_AvatarProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Drive Discs 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Equip {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Equip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 LV.{0} 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_EquipLevel {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_EquipLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} valid affix hits on drive discs 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_EquipValidPropertyHits {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_EquipValidPropertyHits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Locked 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Locked {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Potential Awaken 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_PotentialAwaken {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_PotentialAwaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Base Stats 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Properties {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Mindscape 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Rank {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Rank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Mindscape {0} 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_RankNum {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_RankNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Skills 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Skill {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Skill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Basic Attack 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_SkillType0 {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_SkillType0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Special Attack 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_SkillType1 {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_SkillType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Dodge 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_SkillType2 {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_SkillType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Chain Attack 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_SkillType3 {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_SkillType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Core Skill 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_SkillType5 {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_SkillType5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Assist 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_SkillType6 {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_SkillType6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Outfits 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Skin {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Skin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Specialty 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Specialty {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Specialty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} {1}-Piece Set Effect 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_SuitEffectCount {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_SuitEffectCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Unlocked 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Unlocked {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Unlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 W-Engine 的本地化字符串。
+        /// </summary>
+        public static string ZZZAvatarInfoPage_Weapon {
+            get {
+                return ResourceManager.GetString("ZZZAvatarInfoPage_Weapon", resourceCulture);
             }
         }
         

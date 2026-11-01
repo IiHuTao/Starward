@@ -2795,4 +2795,79 @@
   <data name="PlayTimeStatsDialog_StatsTip" xml:space="preserve">
     <value>統計基於遊戲運行時長，而非實際遊玩時長，僅供參考。</value>
   </data>
+  <data name="HoyolabToolboxPage_AvatarInfo" xml:space="preserve">
+    <value>我的代理人</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType0" xml:space="preserve">
+    <value>普通攻擊</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType1" xml:space="preserve">
+    <value>特殊技</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType2" xml:space="preserve">
+    <value>閃避</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType3" xml:space="preserve">
+    <value>連攜技</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType5" xml:space="preserve">
+    <value>核心技</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SkillType6" xml:space="preserve">
+    <value>支援技</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Properties" xml:space="preserve">
+    <value>基礎屬性</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_AdvancedProperties" xml:space="preserve">
+    <value>高級屬性</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_AvatarProperties" xml:space="preserve">
+    <value>代理人屬性</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Skill" xml:space="preserve">
+    <value>技能</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Weapon" xml:space="preserve">
+    <value>音擎</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Equip" xml:space="preserve">
+    <value>驅動盤</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Rank" xml:space="preserve">
+    <value>影畫</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_RankNum" xml:space="preserve">
+    <value>影畫{0}</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_ActiveSuitEffect" xml:space="preserve">
+    <value>套裝激活效果</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_SuitEffectCount" xml:space="preserve">
+    <value>{0}-{1}件套效果</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Skin" xml:space="preserve">
+    <value>時裝</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_PotentialAwaken" xml:space="preserve">
+    <value>潛能激發</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Unlocked" xml:space="preserve">
+    <value>已開啟</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Locked" xml:space="preserve">
+    <value>未開啟</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_EquipValidPropertyHits" xml:space="preserve">
+    <value>驅動盤有效副屬性共命中 {0} 次</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_EquipLevel" xml:space="preserve">
+    <value>LV.{0}</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Attribute" xml:space="preserve">
+    <value>屬性</value>
+  </data>
+  <data name="ZZZAvatarInfoPage_Specialty" xml:space="preserve">
+    <value>特性</value>
+  </data>
 </root>

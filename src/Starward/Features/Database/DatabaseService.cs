@@ -259,6 +259,7 @@ internal static class DatabaseService
         Sql_v19,
         Sql_v20,
         Sql_v21,
+        Sql_v22,
     ];
 
 
@@ -1055,6 +1056,22 @@ internal static class DatabaseService
         CREATE UNIQUE INDEX IF NOT EXISTS IX_PlayTimeStats_GameBiz_StartTime_Pid ON PlayTimeStats (GameBiz, StartTime, Pid);
 
         PRAGMA USER_VERSION = 21;
+        COMMIT TRANSACTION;
+        """;
+
+    private const string Sql_v22 = """
+        BEGIN TRANSACTION;
+
+        CREATE TABLE IF NOT EXISTS ZZZAvatarInfo
+        (
+            Uid   INTEGER NOT NULL,
+            Id    INTEGER NOT NULL,
+            Name  TEXT    NOT NULL,
+            Value TEXT    NOT NULL,
+            PRIMARY KEY (Uid, Id)
+        );
+
+        PRAGMA USER_VERSION = 22;
         COMMIT TRANSACTION;
         """;
 

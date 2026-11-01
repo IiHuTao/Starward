@@ -11,6 +11,7 @@ using Starward.Core.GameRecord.StarRail.ForgottenHall;
 using Starward.Core.GameRecord.StarRail.PureFiction;
 using Starward.Core.GameRecord.StarRail.SimulatedUniverse;
 using Starward.Core.GameRecord.StarRail.TrailblazeCalendar;
+using Starward.Core.GameRecord.ZZZ.AvatarInfo;
 using Starward.Core.GameRecord.ZZZ.DailyNote;
 using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
 using Starward.Core.GameRecord.ZZZ.GachaRecord;
@@ -48,6 +49,8 @@ namespace Starward.Core.GameRecord;
 [JsonSerializable(typeof(miHoYoApiWrapper<StarRailDailyNote>))]
 [JsonSerializable(typeof(miHoYoApiWrapper<ShiyuDefenseWrapper>))]
 [JsonSerializable(typeof(miHoYoApiWrapper<DeadlyAssaultInfo>))]
+[JsonSerializable(typeof(miHoYoApiWrapper<ZZZAvatarBasicList>))]
+[JsonSerializable(typeof(miHoYoApiWrapper<ZZZAvatarInfoList>))]
 [JsonSerializable(typeof(miHoYoApiWrapper<ZZZDailyNote>))]
 [JsonSerializable(typeof(miHoYoApiWrapper<ZZZGachaRecordData>))]
 [JsonSerializable(typeof(miHoYoApiWrapper<BH3DailyNote>))]
