@@ -1,4 +1,5 @@
-﻿using Starward.Core.GameRecord.ZZZ.DailyNote;
+﻿using Starward.Core.GameRecord.ZZZ.AvatarInfo;
+using Starward.Core.GameRecord.ZZZ.DailyNote;
 using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
 using Starward.Core.GameRecord.ZZZ.GachaRecord;
 using Starward.Core.GameRecord.ZZZ.InterKnotReport;
@@ -103,5 +104,24 @@ public interface IGameRecordZZZClient : IGameRecordClient
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public abstract Task<ThresholdSimulationDetailInfo> GetZZZThresholdSimulationDetailInfoAsync(GameRecordRole role, int void_front_id, CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// 我的代理人列表（概况）
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public abstract Task<ZZZAvatarBasicList> GetZZZAvatarBasicListAsync(GameRecordRole role, CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// 代理人详情
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="avatarId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public abstract Task<ZZZAvatarDetailList> GetZZZAvatarDetailListAsync(GameRecordRole role, int avatarId, CancellationToken cancellationToken = default);
 
 }

@@ -280,6 +280,7 @@ internal static class DatabaseService
         Sql_v22,
         Sql_v23,
         Sql_v24,
+        Sql_v25,
     ];
 
 
@@ -1216,6 +1217,21 @@ internal static class DatabaseService
         ALTER TABLE GameRecordRole ADD COLUMN Aid INTEGER NOT NULL DEFAULT 0;
 
         PRAGMA USER_VERSION = 24;
+        COMMIT TRANSACTION;
+        """;
+    private const string Sql_v25 = """
+        BEGIN TRANSACTION;
+
+        CREATE TABLE IF NOT EXISTS ZZZAvatarInfo
+        (
+            Uid   INTEGER NOT NULL,
+            Id    INTEGER NOT NULL,
+            Name  TEXT    NOT NULL,
+            Value TEXT    NOT NULL,
+            PRIMARY KEY (Uid, Id)
+        );
+
+        PRAGMA USER_VERSION = 25;
         COMMIT TRANSACTION;
         """;
 

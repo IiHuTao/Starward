@@ -414,6 +414,24 @@
                     </NavigationViewItem.Content>
                 </NavigationViewItem>
 
+                <!--  我的代理人  -->
+                <NavigationViewItem Name="NavigationViewItem_ZZZAvatarInfo"
+                                    Tag="ZZZAvatarInfoPage"
+                                    Visibility="Collapsed">
+                    <NavigationViewItem.Content>
+                        <Grid Margin="{x:Bind NavigationViewItemContentMargin}" ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <!--  暂时使用当前游戏账号对应的头像，待替换  -->
+                            <sc:CachedImage Width="20" Source="{x:Bind AvatarUrl}" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{x:Bind lang:Lang.HoyolabToolboxPage_AvatarInfo}"
+                                       TextTrimming="CharacterEllipsis" />
+                        </Grid>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
                 <!--  绳网月报  -->
                 <NavigationViewItem Name="NavigationViewItem_InterKnotMonthlyReport"
                                     Tag="InterKnotMonthlyReportPage"

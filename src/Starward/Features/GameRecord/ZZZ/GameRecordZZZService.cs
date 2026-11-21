@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Starward.Core;
 using Starward.Core.GameRecord;
 using Starward.Core.GameRecord.ZZZ;
+using Starward.Core.GameRecord.ZZZ.AvatarInfo;
 using Starward.Core.GameRecord.ZZZ.DailyNote;
 using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
 using Starward.Core.GameRecord.ZZZ.GachaRecord;
@@ -15,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -207,6 +209,138 @@ internal class GameRecordZZZService : GameRecordServiceBase
         return await client.GetZZZGachaRecordAsync(role, gachaType, endId, language, cancellationToken);
     }
 
+
+
+
+    #endregion
+
+
+
+
+    #region 我的代理人
+
+
+
+    /// <summary>
+    /// 刷新我的代理人，获取全部代理人详情；风控或网络中断时中止刷新，已获取的部分结果照常保存
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="progress">刷新进度（已完成数/总数）</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>成功数，总数，导致中止的风控/网络异常（正常完成时为 null）</returns>
+    public async Task<(int Succeeded, int Total, Exception? FatalException)> RefreshZZZAvatarInfoAsync(GameRecordRole role, IProgress<(int Finished, int Total)>? progress = null, CancellationToken cancellationToken = default)
+    {
+        // 带超时执行请求，超时视为网络异常
+        static async Task<T> SendWithTimeoutAsync<T>(Func<CancellationToken, Task<T>> request, CancellationToken cancellationToken)
+        {
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cts.CancelAfter(TimeSpan.FromSeconds(10));
+            try
+            {
+                return await request(cts.Token);
+            }
+            catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
+            {
+                throw new HttpRequestException("Request timed out after 10 seconds.");
+            }
+        }
+
+        var client = await GetClientAsync(role.GameBiz, cancellationToken);
+        var basicList = await SendWithTimeoutAsync(ct => client.GetZZZAvatarBasicListAsync(role, ct), cancellationToken);
+        var avatars = basicList.AvatarList ?? new List<ZZZAvatarBasic>();
+        if (avatars.Count == 0)
+        {
+            return (0, 0, null);
+        }
+
+        progress?.Report((0, avatars.Count));
+        var details = new ZZZAvatarDetail?[avatars.Count];
+        int finished = 0;
+        Exception? fatalException = null;
+        await Parallel.ForEachAsync(avatars.Select((avatar, index) => (avatar, index)), new ParallelOptions { MaxDegreeOfParallelism = 8, CancellationToken = cancellationToken }, async (item, ct) =>
+        {
+            // 风控或网络中断后，跳过剩余请求
+            if (fatalException is not null)
+            {
+                return;
+            }
+            try
+            {
+                await Task.Delay(Random.Shared.Next(200, 300), ct);
+                var info = await SendWithTimeoutAsync(token => client.GetZZZAvatarDetailListAsync(role, item.avatar.Id, token), ct);
+                details[item.index] = info.AvatarList?.FirstOrDefault(x => x.Id == item.avatar.Id);
+            }
+            catch (Exception ex) when (ex is miHoYoApiException or HttpRequestException)
+            {
+                fatalException ??= ex;
+                _logger.LogWarning(ex, "Get ZZZ avatar detail failed, abort the refresh ({uid}, {id}).", role.Uid, item.avatar.Id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Get ZZZ avatar detail failed ({uid}, {id}).", role.Uid, item.avatar.Id);
+            }
+            finally
+            {
+                if (fatalException is null)
+                {
+                    progress?.Report((Interlocked.Increment(ref finished), avatars.Count));
+                }
+            }
+        });
+
+        await Task.Run(() =>
+        {
+            var upserts = details.Where(x => x is not null).Select(detail => new
+            {
+                role.Uid,
+                detail!.Id,
+                detail.Name,
+                Value = JsonSerializer.Serialize(detail, AppConfig.JsonSerializerOptions),
+            }).ToList();
+            using var dapper = DatabaseService.CreateConnection();
+            using var t = dapper.BeginTransaction();
+            dapper.Execute("""
+                INSERT OR REPLACE INTO ZZZAvatarInfo (Uid, Id, Name, Value)
+                VALUES (@Uid, @Id, @Name, @Value);
+                """, upserts, t);
+            t.Commit();
+        });
+        return (details.Count(x => x is not null), avatars.Count, fatalException);
+    }
+
+
+
+    /// <summary>
+    /// 获取已存储的代理人信息
+    /// </summary>
+    /// <param name="role"></param>
+    /// <returns></returns>
+    public async Task<List<ZZZAvatarInfo>> GetZZZAvatarInfosAsync(GameRecordRole role)
+    {
+        if (role is null)
+        {
+            return new List<ZZZAvatarInfo>();
+        }
+        return await Task.Run(() =>
+        {
+            using var dapper = DatabaseService.CreateConnection();
+            var list = dapper.Query<ZZZAvatarInfo>("""
+                SELECT Uid, Id, Name, Value FROM ZZZAvatarInfo WHERE Uid = @Uid;
+                """, new { role.Uid });
+            foreach (var item in list)
+            {
+                try
+                {
+                    item.Avatar = JsonSerializer.Deserialize<ZZZAvatarDetail>(item.Value, AppConfig.JsonSerializerOptions);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Deserialize ZZZAvatarInfo failed ({uid}, {id}).", role.Uid, item.Id);
+                }
+            }
+            return list.OrderByDescending(x => x.Avatar?.Rarity == "S").ThenByDescending(x => x.Id).ToList();
+        });
+    }
 
 
 

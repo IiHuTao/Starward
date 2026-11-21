@@ -1,9 +1,11 @@
-﻿using Starward.Core.GameRecord.ZZZ.DailyNote;
+﻿using Starward.Core.GameRecord.ZZZ.AvatarInfo;
+using Starward.Core.GameRecord.ZZZ.DailyNote;
 using Starward.Core.GameRecord.ZZZ.DeadlyAssault;
 using Starward.Core.GameRecord.ZZZ.GachaRecord;
 using Starward.Core.GameRecord.ZZZ.InterKnotReport;
 using Starward.Core.GameRecord.ZZZ.ShiyuDefense;
 using Starward.Core.GameRecord.ZZZ.ThresholdSimulation;
+using static Starward.Core.Passport.DynamicSecret;
 
 namespace Starward.Core.GameRecord.ZZZ;
 
@@ -258,6 +260,47 @@ public class HoyolabZZZClient : GameRecordClientBase, IGameRecordClient, IGameRe
         request.Headers.Add(x_rpc_app_version, AppVersion);
         var data = await CommonSendAsync<ThresholdSimulationPeriodDetail>(request, cancellationToken).ConfigureAwait(false);
         return data.Detail;
+    }
+
+
+    /// <summary>
+    /// 我的代理人列表
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<ZZZAvatarBasicList> GetZZZAvatarBasicListAsync(GameRecordRole role, CancellationToken cancellationToken = default)
+    {
+        var url = $"https://sg-act-public-api.hoyolab.com/event/game_record_zzz/api/zzz/avatar/basic?server={role.Region}&role_id={role.Uid}";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add(Cookie, role.Cookie);
+        request.Headers.Add(DS, CreateWebDS2(ServerRegion, url));
+        request.Headers.Add(Referer, "https://act.hoyolab.com");
+        request.Headers.Add(x_rpc_app_version, AppVersion);
+        request.Headers.Add(x_rpc_client_type, "5");
+        request.Headers.Add(X_Request_With, com_mihoyo_hoyolab);
+        return await CommonSendAsync<ZZZAvatarBasicList>(request, cancellationToken).ConfigureAwait(false);
+    }
+
+
+    /// <summary>
+    /// 代理人详情
+    /// </summary>
+    /// <param name="role"></param>
+    /// <param name="avatarId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<ZZZAvatarDetailList> GetZZZAvatarDetailListAsync(GameRecordRole role, int avatarId, CancellationToken cancellationToken = default)
+    {
+        var url = $"https://sg-act-public-api.hoyolab.com/event/game_record_zzz/api/zzz/avatar/info?id_list[]={avatarId}&need_wiki=false&server={role.Region}&role_id={role.Uid}";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add(Cookie, role.Cookie);
+        request.Headers.Add(DS, CreateWebDS2(ServerRegion, url));
+        request.Headers.Add(Referer, "https://act.hoyolab.com");
+        request.Headers.Add(x_rpc_app_version, AppVersion);
+        request.Headers.Add(x_rpc_client_type, "5");
+        request.Headers.Add(X_Request_With, com_mihoyo_hoyolab);
+        return await CommonSendAsync<ZZZAvatarDetailList>(request, cancellationToken).ConfigureAwait(false);
     }
 
 }
