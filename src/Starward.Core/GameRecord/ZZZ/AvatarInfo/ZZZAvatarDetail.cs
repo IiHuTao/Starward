@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Starward.Core.GameRecord.ZZZ.AvatarInfo;
@@ -23,14 +22,14 @@ public class ZZZAvatarDetail : ZZZAvatarBasic
     /// 驱动盘
     /// </summary>
     [JsonPropertyName("equip")]
-    public List<ZZZEquip> Equip { get; set; }
+    public List<ZZZEquip>? Equip { get; set; }
 
 
     /// <summary>
     /// 音擎
     /// </summary>
     [JsonPropertyName("weapon")]
-    public ZZZWeapon Weapon { get; set; }
+    public ZZZWeapon? Weapon { get; set; }
 
 
     /// <summary>
@@ -61,6 +60,9 @@ public class ZZZAvatarDetail : ZZZAvatarBasic
     public string RoleVerticalPaintingUrl { get; set; }
 
 
+    /// <summary>
+    /// 英文全名
+    /// </summary>
     [JsonPropertyName("us_full_name")]
     public string UsFullName { get; set; }
 
@@ -72,19 +74,25 @@ public class ZZZAvatarDetail : ZZZAvatarBasic
     public string VerticalPaintingColor { get; set; }
 
 
+    /// <summary>
+    /// 时装
+    /// </summary>
     [JsonPropertyName("skin_list")]
     public List<ZZZSkin> SkinList { get; set; }
 
 
+    /// <summary>
+    /// 潜能激发
+    /// </summary>
     [JsonPropertyName("skill_awaken")]
     public ZZZSkillAwaken SkillAwaken { get; set; }
 
 
     /// <summary>
-    /// 养成方案信息（评分）
+    /// 养成方案
     /// </summary>
     [JsonPropertyName("equip_plan_info")]
-    public ZZZEquipPlanInfo EquipPlanInfo { get; set; }
+    public ZZZEquipPlanInfo? EquipPlanInfo { get; set; }
 
 }
 
@@ -181,9 +189,6 @@ public class ZZZEquip
     public string Icon { get; set; }
 
 
-    /// <summary>
-    /// 稀有度 S A
-    /// </summary>
     [JsonPropertyName("rarity")]
     public string Rarity { get; set; }
 
@@ -265,9 +270,6 @@ public class ZZZWeapon
     public string Name { get; set; }
 
 
-    /// <summary>
-    /// 影画层数
-    /// </summary>
     [JsonPropertyName("star")]
     public int Star { get; set; }
 
@@ -276,9 +278,6 @@ public class ZZZWeapon
     public string Icon { get; set; }
 
 
-    /// <summary>
-    /// 稀有度 S A
-    /// </summary>
     [JsonPropertyName("rarity")]
     public string Rarity { get; set; }
 
@@ -415,9 +414,6 @@ public class ZZZSkin
     public bool Unlocked { get; set; }
 
 
-    /// <summary>
-    /// 稀有度 S A
-    /// </summary>
     [JsonPropertyName("rarity")]
     public string Rarity { get; set; }
 
@@ -430,7 +426,7 @@ public class ZZZSkin
 
 
 /// <summary>
-/// 技能觉醒信息
+/// 潜能激发
 /// </summary>
 public class ZZZSkillAwaken
 {
@@ -455,7 +451,7 @@ public class ZZZSkillAwaken
 
 
 /// <summary>
-/// 养成方案信息（含驱动盘评分）
+/// 养成方案
 /// </summary>
 public class ZZZEquipPlanInfo
 {

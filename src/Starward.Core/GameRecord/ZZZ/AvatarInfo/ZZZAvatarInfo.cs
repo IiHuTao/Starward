@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace Starward.Core.GameRecord.ZZZ.AvatarInfo;
 
 /// <summary>
-/// 数据库中存储的代理人信息（ZZZAvatarInfo 表）
+/// 我的代理人
 /// </summary>
 public class ZZZAvatarInfo
 {
@@ -18,14 +18,11 @@ public class ZZZAvatarInfo
 
 
     /// <summary>
-    /// 代理人详情 JSON
+    /// 代理人详情
     /// </summary>
     public string Value { get; set; }
 
 
-    /// <summary>
-    /// 反序列化后的代理人详情
-    /// </summary>
     [JsonIgnore]
     public ZZZAvatarDetail? Avatar { get; set; }
 

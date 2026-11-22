@@ -52,21 +52,23 @@
                             VerticalAlignment="Center"
                             Orientation="Horizontal"
                             Spacing="8">
-                    <StackPanel VerticalAlignment="Center">
+                    <StackPanel>
                         <TextBlock HorizontalAlignment="Right"
                                    FontSize="10"
+                                   FontWeight="SemiBold"
                                    Foreground="#FFFFFF"
                                    IsTextScaleFactorEnabled="False"
                                    Text="{x:Bind local:ZZZAvatarInfoPage.PropertyBase(Base)}" />
                         <TextBlock HorizontalAlignment="Right"
                                    FontSize="10"
+                                   FontWeight="SemiBold"
                                    Foreground="#B5FF00"
                                    IsTextScaleFactorEnabled="False"
                                    Text="{x:Bind local:ZZZAvatarInfoPage.PropertyAdd(Add)}" />
                     </StackPanel>
                     <TextBlock VerticalAlignment="Center"
                                FontSize="14"
-                               FontWeight="SemiBold"
+                               FontWeight="Bold"
                                Foreground="#FFFFFF"
                                IsTextScaleFactorEnabled="False"
                                Text="{x:Bind Final}" />
@@ -104,8 +106,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <StackPanel HorizontalAlignment="Left"
-                        Orientation="Horizontal"
+            <StackPanel Orientation="Horizontal"
                         Spacing="8">
                 <Button Height="36"
                         BorderThickness="0"
@@ -187,7 +188,8 @@
             <ScrollViewer Grid.Row="1"
                           Margin="0,12,0,0"
                           VerticalScrollBarVisibility="Auto">
-                <GridView Margin="0,0,-8,0"
+                <GridView x:Name="GridView_AvatarList"
+                          Margin="0,0,-8,0"
                           ItemsSource="{x:Bind AvatarList}"
                           SelectionChanged="GridView_AvatarList_SelectionChanged"
                           SelectionMode="Single">
@@ -199,12 +201,11 @@
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="scgz:ZZZAvatarInfo">
-                            <StackPanel Width="76" Spacing="2">
-                                <!--  头像卡  -->
-                                <Grid Width="76"
-                                      Height="94">
+                            <StackPanel Width="76">
+                                <Grid Width="76" Height="94">
                                     <Border Width="76"
                                             Height="94"
+                                            VerticalAlignment="Top"
                                             Background="#0A0A0A"
                                             CornerRadius="8" />
                                     <!--  背景  -->
@@ -216,7 +217,7 @@
                                     <!--  图片  -->
                                     <sc:CachedImage Width="72"
                                                     Height="72"
-                                                    Margin="0,2,0,0"
+                                                    Margin="2,2,2,2"
                                                     VerticalAlignment="Top"
                                                     CornerRadius="8,8,0,0"
                                                     Source="{x:Bind Avatar.RoleSquareUrl}"
@@ -230,7 +231,7 @@
                                                IsTextScaleFactorEnabled="False">
                                         <Run Text="Lv." /><Run Text="{x:Bind Avatar.Level}" />
                                     </TextBlock>
-                                    <!--  星级  -->
+                                    <!--  稀有度  -->
                                     <Border Width="22"
                                             Height="22"
                                             HorizontalAlignment="Left"
@@ -246,7 +247,7 @@
                                     <!--  属性  -->
                                     <Border Width="16"
                                             Height="16"
-                                            Margin="4,25,0,0"
+                                            Margin="4,24,0,0"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             Background="#0A0A0A"
@@ -260,7 +261,7 @@
                                     <!--  特性  -->
                                     <Border Width="16"
                                             Height="16"
-                                            Margin="4,43,0,0"
+                                            Margin="4,42,0,0"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             Background="#0A0A0A"
@@ -287,15 +288,15 @@
                                 <!--  名称  -->
                                 <TextBlock HorizontalAlignment="Center"
                                            FontSize="12"
-                                           Text="{x:Bind Name}"
-                                           TextTrimming="CharacterEllipsis"
-                                           TextWrapping="NoWrap" />
+                                           Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                           IsTextScaleFactorEnabled="False"
+                                           Text="{x:Bind Avatar.Name}" />
                             </StackPanel>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
-                            <Setter Property="Margin" Value="0,0,8,8" />
+                            <Setter Property="Margin" Value="4,0,4,4" />
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="GridViewItem">
@@ -430,7 +431,7 @@
                                            Source="{x:Bind CurrentAvatar.Rarity, Converter={StaticResource ZZZRarityToIconConverter}}" />
                                     <TextBlock VerticalAlignment="Center"
                                                FontSize="22"
-                                               FontWeight="SemiBold"
+                                               FontWeight="Bold"
                                                Foreground="#E6FFFFFF"
                                                IsTextScaleFactorEnabled="False"
                                                Text="{x:Bind CurrentAvatar.FullName}" />
@@ -452,6 +453,7 @@
                                         <TextBlock Margin="0,0,8,0"
                                                    VerticalAlignment="Center"
                                                    FontSize="12"
+                                                   FontWeight="Bold"
                                                    Foreground="#E6FFFFFF"
                                                    IsTextScaleFactorEnabled="False">
                                             <Run Text="LV." /><Run Text="{x:Bind CurrentAvatar.Level}" />
@@ -525,8 +527,7 @@
                     </StackPanel>
 
                     <!--  音擎  -->
-                    <StackPanel
-                          Visibility="{x:Bind local:ZZZAvatarInfoPage.WeaponVisibility(CurrentAvatar)}">
+                    <StackPanel Visibility="{x:Bind local:ZZZAvatarInfoPage.WeaponVisibility(CurrentAvatar)}">
                         <Grid Style="{StaticResource SectionHeaderStyle}">
                             <TextBlock Style="{StaticResource SectionTitleStyle}"
                                        Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Weapon}" />
@@ -548,16 +549,14 @@
                                                            Foreground="#FFFFFF"
                                                            IsTextScaleFactorEnabled="False"
                                                            Text="{x:Bind CurrentAvatar.Weapon.TalentTitle}" />
-                                                <local:ZZZRichTextBlock FontSize="12"
-                                                                      Foreground="#73FFFFFF"
-                                                                      Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(CurrentAvatar.Weapon.TalentContent)}"
-                                                                      TextWrapping="Wrap" />
+                                                <sc:ColorfulTextBlock FontSize="12"
+                                                                        Foreground="#73FFFFFF"
+                                                                        Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(CurrentAvatar.Weapon.TalentContent)}"
+                                                                        TextWrapping="Wrap" />
                                             </StackPanel>
                                         </ToolTip>
                                     </ToolTipService.ToolTip>
-                                    <Border Width="90"
-                                            Height="90"
-                                            Background="#0A0A0A"
+                                    <Border Background="#0A0A0A"
                                             BorderBrush="#333534"
                                             BorderThickness="1.5"
                                             CornerRadius="8" />
@@ -597,7 +596,6 @@
                                 </Grid>
                                 <!--  音擎信息  -->
                                 <StackPanel Height="90"
-                                            VerticalAlignment="Top"
                                             Spacing="6">
                                     <!--  名称/等级  -->
                                     <StackPanel Orientation="Horizontal" Spacing="6">
@@ -615,7 +613,7 @@
                                                 Background="#9D9D9D"
                                                 CornerRadius="3">
                                             <TextBlock FontSize="10"
-                                                       FontWeight="SemiBold"
+                                                       FontWeight="Bold"
                                                        Foreground="#000000"
                                                        IsTextScaleFactorEnabled="False">
                                                 <Run Text="LV." /><Run Text="{x:Bind CurrentAvatar.Weapon.Level}" />
@@ -626,7 +624,6 @@
                                     <Border Height="28"
                                             MinWidth="210"
                                             Padding="8,0"
-                                            HorizontalAlignment="Stretch"
                                             Background="#161616"
                                             CornerRadius="12">
                                         <Grid>
@@ -636,8 +633,8 @@
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Grid.Column="0"
                                                        VerticalAlignment="Center"
-                                                       FontSize="11"
-                                                       FontWeight="Bold"
+                                                       FontSize="10"
+                                                       FontWeight="SemiBold"
                                                        Foreground="#59FFFFFF"
                                                        IsTextScaleFactorEnabled="False"
                                                        Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Properties}" />
@@ -656,7 +653,6 @@
                                     <Border Height="28"
                                             MinWidth="210"
                                             Padding="8,0"
-                                            HorizontalAlignment="Stretch"
                                             Background="#161616"
                                             CornerRadius="12">
                                         <Grid>
@@ -666,8 +662,8 @@
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Grid.Column="0"
                                                        VerticalAlignment="Center"
-                                                       FontSize="11"
-                                                       FontWeight="Bold"
+                                                       FontSize="10"
+                                                       FontWeight="SemiBold"
                                                        Foreground="#59FFFFFF"
                                                        IsTextScaleFactorEnabled="False"
                                                        Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_AdvancedProperties}" />
@@ -690,35 +686,33 @@
                     <!--  技能  -->
                     <StackPanel>
                         <Grid Style="{StaticResource SectionHeaderStyle}">
-                            <Grid>
-                                <TextBlock Style="{StaticResource SectionTitleStyle}"
-                                           Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Skill}" />
-                                <!--  潜能激发  -->
-                                <StackPanel Margin="0,0,8,0"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal"
-                                            Spacing="6"
-                                            Visibility="{x:Bind local:ZZZAvatarInfoPage.AwakenVisibility(CurrentAvatar)}">
-                                    <TextBlock VerticalAlignment="Center"
-                                               FontSize="12"
-                                               Foreground="#73FFFFFF"
-                                               IsTextScaleFactorEnabled="False"
-                                               Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_PotentialAwaken}" />
-                                    <TextBlock VerticalAlignment="Center"
-                                               FontSize="12"
-                                               Foreground="#F1AD3D"
-                                               IsTextScaleFactorEnabled="False"
-                                               Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Unlocked}"
-                                               Visibility="{x:Bind AwakenActivated, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock VerticalAlignment="Center"
-                                               FontSize="12"
-                                               Foreground="#73FFFFFF"
-                                               IsTextScaleFactorEnabled="False"
-                                               Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Locked}"
-                                               Visibility="{x:Bind AwakenActivated, Converter={StaticResource BoolToVisibilityReversedConverter}}" />
-                                </StackPanel>
-                            </Grid>
+                            <TextBlock Style="{StaticResource SectionTitleStyle}"
+                                       Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Skill}" />
+                            <!--  潜能激发  -->
+                            <StackPanel Margin="0,0,8,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="6"
+                                        Visibility="{x:Bind local:ZZZAvatarInfoPage.AwakenVisibility(CurrentAvatar)}">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="12"
+                                           Foreground="#73FFFFFF"
+                                           IsTextScaleFactorEnabled="False"
+                                           Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_PotentialAwaken}" />
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="12"
+                                           Foreground="#F1AD3D"
+                                           IsTextScaleFactorEnabled="False"
+                                           Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Unlocked}"
+                                           Visibility="{x:Bind AwakenActivated, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="12"
+                                           Foreground="#73FFFFFF"
+                                           IsTextScaleFactorEnabled="False"
+                                           Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Locked}"
+                                           Visibility="{x:Bind AwakenActivated, Converter={StaticResource BoolToVisibilityReversedConverter}}" />
+                            </StackPanel>
                         </Grid>
                         <Grid Padding="12"
                               Background="#2A2A2A"
@@ -748,6 +742,7 @@
                                                         Background="Black"
                                                         CornerRadius="8">
                                                     <TextBlock FontSize="10"
+                                                               FontWeight="Bold"
                                                                Foreground="#A6FFFFFF"
                                                                IsTextScaleFactorEnabled="False"
                                                                Text="{x:Bind local:ZZZAvatarInfoPage.SkillLevelText(Skill.Level)}" />
@@ -758,16 +753,17 @@
                                                     <ScrollViewer MaxHeight="420" MaxWidth="420">
                                                         <StackPanel Margin="4" Spacing="12" MaxWidth="400">
                                                             <StackPanel Orientation="Horizontal" Spacing="8">
-                                                                <Image Width="28"
-                                                                       Height="28"
+                                                                <Image Width="36"
+                                                                       Height="36"
                                                                        Source="{x:Bind local:ZZZAvatarInfoPage.SkillIconUrl(Skill.SkillType, Profession)}" />
                                                                 <StackPanel VerticalAlignment="Center" Spacing="2">
                                                                     <TextBlock FontSize="14"
-                                                                               FontWeight="Medium"
+                                                                               FontWeight="SemiBold"
                                                                                Foreground="#FFFFFF"
                                                                                IsTextScaleFactorEnabled="False"
                                                                                Text="{x:Bind local:ZZZAvatarInfoPage.SkillTypeName(Skill.SkillType)}" />
                                                                     <TextBlock FontSize="10"
+                                                                               FontWeight="SemiBold"
                                                                                Foreground="#73FFFFFF"
                                                                                IsTextScaleFactorEnabled="False">
                                                                         <Run Text="Lv." /><Run Text="{x:Bind local:ZZZAvatarInfoPage.SkillLevelText(Skill.Level)}" />
@@ -779,13 +775,14 @@
                                                                     <DataTemplate x:DataType="scgz:ZZZSkillItem">
                                                                         <StackPanel Margin="0,0,0,8">
                                                                             <TextBlock FontSize="12"
-                                                                                       FontWeight="Medium"
+                                                                                       FontWeight="SemiBold"
                                                                                        Foreground="#E6FFFFFF"
                                                                                        IsTextScaleFactorEnabled="False"
                                                                                        Text="{x:Bind Title}"
                                                                                        TextWrapping="Wrap" />
-                                                                            <local:ZZZRichTextBlock Margin="0,4,0,0"
+                                                                            <sc:ColorfulTextBlock Margin="0,4,0,0"
                                                                                                   FontSize="12"
+                                                                                                  FontWeight="SemiBold"
                                                                                                   Foreground="#73FFFFFF"
                                                                                                   Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(Text)}"
                                                                                                   TextWrapping="Wrap" />
@@ -805,8 +802,7 @@
                     </StackPanel>
 
                     <!--  驱动盘  -->
-                    <StackPanel
-                          Visibility="{x:Bind local:ZZZAvatarInfoPage.EquipVisibility(CurrentAvatar)}">
+                    <StackPanel Visibility="{x:Bind local:ZZZAvatarInfoPage.EquipVisibility(CurrentAvatar)}">
                         <Grid Style="{StaticResource SectionHeaderStyle}">
                             <TextBlock Style="{StaticResource SectionTitleStyle}"
                                        Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Equip}" />
@@ -822,67 +818,67 @@
                                       BorderThickness="1"
                                       CornerRadius="9"
                                       Visibility="{x:Bind local:ZZZAvatarInfoPage.RatingVisibility(CurrentAvatar.EquipPlanInfo)}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="4">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock FontSize="14"
-                                                           Foreground="#A6FFFFFF"
-                                                           IsTextScaleFactorEnabled="False"
-                                                           Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_EquipValidPropertyHitsPrefix}" />
-                                                <TextBlock Margin="4,0"
-                                                           FontSize="14"
-                                                           FontWeight="SemiBold"
-                                                           Foreground="#F1AD3D"
-                                                           IsTextScaleFactorEnabled="False"
-                                                           Text="{x:Bind local:ZZZAvatarInfoPage.HitCount(CurrentAvatar.EquipPlanInfo)}" />
-                                                <TextBlock FontSize="14"
-                                                           Foreground="#A6FFFFFF"
-                                                           IsTextScaleFactorEnabled="False"
-                                                           Text="{x:Bind lang:Lang.SpiralAbyssPage_Times}" />
-                                            </StackPanel>
-                                            <ItemsControl ItemsSource="{x:Bind local:ZZZAvatarInfoPage.PlanPropertyHits(CurrentAvatar)}">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <StackPanel Orientation="Horizontal" Spacing="4" />
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate x:DataType="local:ZZZPlanPropertyHit">
-                                                        <Border Padding="4,2"
-                                                                HorizontalAlignment="Left"
-                                                                Background="#2A2C2B"
-                                                                CornerRadius="4">
-                                                            <StackPanel Orientation="Horizontal" Spacing="2">
-                                                                <Image Width="12"
-                                                                       Height="12"
-                                                                       Margin="0,1,0,0"
-                                                                       VerticalAlignment="Center"
-                                                                       Loaded="PropertyIconImage_Loaded" />
-                                                                <TextBlock FontSize="10"
-                                                                           FontWeight="SemiBold"
-                                                                           Foreground="#E6FFFFFF"
-                                                                           IsTextScaleFactorEnabled="False"
-                                                                           Text="{x:Bind FullName}" />
-                                                                <TextBlock FontSize="10"
-                                                                           FontWeight="SemiBold"
-                                                                           Foreground="#F1AD3D"
-                                                                           IsTextScaleFactorEnabled="False"
-                                                                           Text="{x:Bind HitCountDisplay}" />
-                                                            </StackPanel>
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontSize="14"
+                                                       FontWeight="Bold"
+                                                       Foreground="#A6FFFFFF"
+                                                       IsTextScaleFactorEnabled="False"
+                                                       Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_EquipValidPropertyHitsPrefix}" />
+                                            <TextBlock Margin="4,0"
+                                                       FontSize="14"
+                                                       FontWeight="Bold"
+                                                       Foreground="#F1AD3D"
+                                                       IsTextScaleFactorEnabled="False"
+                                                       Text="{x:Bind local:ZZZAvatarInfoPage.HitCount(CurrentAvatar.EquipPlanInfo)}" />
+                                            <TextBlock FontSize="14"
+                                                       FontWeight="Bold"
+                                                       Foreground="#A6FFFFFF"
+                                                       IsTextScaleFactorEnabled="False"
+                                                       Text="{x:Bind lang:Lang.SpiralAbyssPage_Times}" />
                                         </StackPanel>
-                                        <Image Grid.Column="1"
-                                               Height="40"
-                                               VerticalAlignment="Center"
-                                               Source="{x:Bind local:ZZZAvatarInfoPage.RatingBadgeUrl(CurrentAvatar.EquipPlanInfo)}" />
-                                    </Grid>
+                                        <ItemsControl ItemsSource="{x:Bind local:ZZZAvatarInfoPage.PlanPropertyHits(CurrentAvatar)}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal" Spacing="4" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate x:DataType="local:ZZZPlanPropertyHit">
+                                                    <Border Padding="4,2"
+                                                            HorizontalAlignment="Left"
+                                                            Background="#2A2C2B"
+                                                            CornerRadius="4">
+                                                        <StackPanel Orientation="Horizontal" Spacing="2">
+                                                            <Image Width="12"
+                                                                   Height="12"
+                                                                   Margin="0,1,0,0"
+                                                                   VerticalAlignment="Center"
+                                                                   Loaded="PropertyIconImage_Loaded" />
+                                                            <TextBlock FontSize="10"
+                                                                       FontWeight="SemiBold"
+                                                                       Foreground="#E6FFFFFF"
+                                                                       IsTextScaleFactorEnabled="False"
+                                                                       Text="{x:Bind FullName}" />
+                                                            <TextBlock FontSize="10"
+                                                                       FontWeight="SemiBold"
+                                                                       Foreground="#F1AD3D"
+                                                                       IsTextScaleFactorEnabled="False"
+                                                                       Text="{x:Bind HitCountDisplay}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                    <Image Grid.Column="1"
+                                           Height="40"
+                                           VerticalAlignment="Center"
+                                           Source="{x:Bind local:ZZZAvatarInfoPage.RatingBadgeUrl(CurrentAvatar.EquipPlanInfo)}" />
                                 </Grid>
                                 <!--  驱动盘 6 件  -->
                                 <ItemsRepeater ItemsSource="{x:Bind CurrentAvatar.Equip}">
@@ -904,7 +900,7 @@
                                                 </Grid.RowDefinitions>
                                                 <!--  头部  -->
                                                 <Grid Background="#2A2A2A">
-                                                    <Grid Padding="10,0,58,0">
+                                                    <Grid Padding="10,0,52,0">
                                                         <TextBlock VerticalAlignment="Top"
                                                                    Margin="0,5,0,0"
                                                                    FontSize="14"
@@ -941,13 +937,12 @@
                                                             HorizontalAlignment="Right"
                                                             VerticalAlignment="Top"
                                                             Background="#2A2A2A"
-                                                            BorderBrush="#2A2A2A"
                                                             CornerRadius="30">
-                                                        <Border CornerRadius="24">
-                                                            <sc:CachedImage Height="45"
-                                                                            Width="45"
-                                                                            Source="{x:Bind Icon}" />
-                                                        </Border>
+                                                        <sc:CachedImage Width="45"
+                                                                        Height="45"
+                                                                        HorizontalAlignment="Center"
+                                                                        VerticalAlignment="Center"
+                                                                        Source="{x:Bind Icon}" />
                                                     </Border>
                                                 </Grid>
                                                 <!--  词条  -->
@@ -966,7 +961,8 @@
                                                                    TextTrimming="CharacterEllipsis" />
                                                         <TextBlock Grid.Column="1"
                                                                    VerticalAlignment="Center"
-                                                                   FontSize="12"
+                                                                   FontSize="14"
+                                                                   FontWeight="SemiBold"
                                                                    Foreground="{x:Bind local:ZZZAvatarInfoPage.PropertyBrush(MainProperties[0].Valid, x:False)}"
                                                                    IsTextScaleFactorEnabled="False"
                                                                    Text="{x:Bind MainProperties[0].Base}" />
@@ -977,7 +973,6 @@
                                                                 <Grid Height="26" Padding="8,0">
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="*" />
-                                                                        <ColumnDefinition Width="Auto" />
                                                                         <ColumnDefinition Width="52" />
                                                                     </Grid.ColumnDefinitions>
                                                                     <StackPanel Grid.Column="0" Orientation="Horizontal">
@@ -998,17 +993,17 @@
                                                                                 Background="{x:Bind local:ZZZAvatarInfoPage.PropertyBrush(Valid, x:True)}"
                                                                                 CornerRadius="3"
                                                                                 Visibility="{x:Bind local:ZZZAvatarInfoPage.EquipAddVisibility(Add)}">
-                                                                            <TextBlock FontSize="8"
-                                                                                       FontWeight="SemiBold"
+                                                                            <TextBlock FontSize="9"
                                                                                        Foreground="#161616"
                                                                                        IsTextScaleFactorEnabled="False"
                                                                                        Text="{x:Bind local:ZZZAvatarInfoPage.EquipAddText(Add)}" />
                                                                         </Border>
                                                                     </StackPanel>
-                                                                    <TextBlock Grid.Column="2"
+                                                                    <TextBlock Grid.Column="1"
                                                                                HorizontalAlignment="Right"
                                                                                VerticalAlignment="Center"
-                                                                               FontSize="10"
+                                                                               FontSize="12"
+                                                                               FontWeight="SemiBold"
                                                                                Foreground="{x:Bind local:ZZZAvatarInfoPage.PropertyBrush(Valid, x:True)}"
                                                                                IsTextScaleFactorEnabled="False"
                                                                                Text="{x:Bind Base}" />
@@ -1030,6 +1025,7 @@
                                       Visibility="{x:Bind ActiveSuitEffects, Converter={StaticResource ObjectToVisibilityConverter}}">
                                     <StackPanel Spacing="8">
                                         <TextBlock FontSize="14"
+                                                   FontWeight="Bold"
                                                    Foreground="#E6FFFFFF"
                                                    IsTextScaleFactorEnabled="False"
                                                    Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_ActiveSuitEffect}" />
@@ -1039,67 +1035,69 @@
                                                     <StackPanel Orientation="Horizontal" Spacing="8" />
                                                 </ItemsPanelTemplate>
                                             </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate x:DataType="local:ZZZSuitEffectItem">
-                                                <Button>
-                                                    <Button.Template>
-                                                        <ControlTemplate TargetType="Button">
-                                                            <ContentPresenter />
-                                                        </ControlTemplate>
-                                                    </Button.Template>
-                                                    <Border Padding="8,6"
-                                                            Background="#2A2A2A"
-                                                            CornerRadius="5">
-                                                        <StackPanel Orientation="Horizontal" Spacing="5">
-                                                            <Image Width="20"
-                                                                   Height="20"
-                                                                   VerticalAlignment="Center"
-                                                                   Source="{x:Bind Icon}" />
-                                                            <TextBlock VerticalAlignment="Center"
-                                                                       FontSize="12"
-                                                                       Foreground="#E6FFFFFF"
-                                                                       IsTextScaleFactorEnabled="False"
-                                                                       Text="{x:Bind local:ZZZAvatarInfoPage.SuitOwnText(Suit.Name, Suit.Own)}" />
-                                                            <FontIcon VerticalAlignment="Center"
-                                                                      FontSize="8"
-                                                                      Glyph="&#xE76C;" />
-                                                        </StackPanel>
-                                                    </Border>
-                                                    <Button.Flyout>
-                                                        <Flyout>
-                                                            <StackPanel Margin="4" MaxWidth="380" Spacing="8">
-                                                                <!--  2 件套效果  -->
-                                                                <StackPanel Spacing="4"
-                                                                            Visibility="{x:Bind local:ZZZAvatarInfoPage.SuitEffectVisibility(Suit.Own, 2, Suit.Desc1)}">
-                                                                    <TextBlock FontSize="12"
-                                                                               FontWeight="Medium"
-                                                                               Foreground="#E6FFFFFF"
-                                                                               IsTextScaleFactorEnabled="False"
-                                                                               Text="{x:Bind local:ZZZAvatarInfoPage.SuitEffectTitle(Suit.Name, 2)}" />
-                                                                    <local:ZZZRichTextBlock FontSize="12"
-                                                                                          Foreground="#73FFFFFF"
-                                                                                          Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(Suit.Desc1)}"
-                                                                                          TextWrapping="Wrap" />
-                                                                </StackPanel>
-                                                                <!--  4 件套效果  -->
-                                                                <StackPanel Spacing="4"
-                                                                            Visibility="{x:Bind local:ZZZAvatarInfoPage.SuitEffectVisibility(Suit.Own, 4, Suit.Desc2)}">
-                                                                    <TextBlock FontSize="12"
-                                                                               FontWeight="Medium"
-                                                                               Foreground="#E6FFFFFF"
-                                                                               IsTextScaleFactorEnabled="False"
-                                                                               Text="{x:Bind local:ZZZAvatarInfoPage.SuitEffectTitle(Suit.Name, 4)}" />
-                                                                    <local:ZZZRichTextBlock FontSize="12"
-                                                                                          Foreground="#73FFFFFF"
-                                                                                          Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(Suit.Desc2)}"
-                                                                                          TextWrapping="Wrap" />
-                                                                </StackPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate x:DataType="local:ZZZSuitEffectItem">
+                                                    <Button>
+                                                        <Button.Template>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <ContentPresenter />
+                                                            </ControlTemplate>
+                                                        </Button.Template>
+                                                        <Border Padding="8,6"
+                                                                Background="#2A2A2A"
+                                                                CornerRadius="5">
+                                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                                <Image Width="20"
+                                                                       Height="20"
+                                                                       VerticalAlignment="Center"
+                                                                       Source="{x:Bind Icon}" />
+                                                                <TextBlock VerticalAlignment="Center"
+                                                                           FontSize="12"
+                                                                           Foreground="#E6FFFFFF"
+                                                                           IsTextScaleFactorEnabled="False"
+                                                                           Text="{x:Bind local:ZZZAvatarInfoPage.SuitOwnText(Suit.Name, Suit.Own)}" />
+                                                                <FontIcon VerticalAlignment="Center"
+                                                                          FontSize="8"
+                                                                          Glyph="&#xE76C;" />
                                                             </StackPanel>
-                                                        </Flyout>
-                                                    </Button.Flyout>
-                                                </Button>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
+                                                        </Border>
+                                                        <Button.Flyout>
+                                                            <Flyout>
+                                                                <StackPanel Margin="4" MaxWidth="380" Spacing="8">
+                                                                    <!--  2 件套效果  -->
+                                                                    <StackPanel Spacing="4"
+                                                                                Visibility="{x:Bind local:ZZZAvatarInfoPage.SuitEffectVisibility(Suit.Own, 2, Suit.Desc1)}">
+                                                                        <TextBlock FontSize="14"
+                                                                                   FontWeight="Bold"
+                                                                                   Foreground="#E6FFFFFF"
+                                                                                   IsTextScaleFactorEnabled="False"
+                                                                                   Text="{x:Bind local:ZZZAvatarInfoPage.SuitEffectTitle(Suit.Name, 2)}" />
+                                                                        <sc:ColorfulTextBlock FontSize="12"
+                                                                                                FontWeight="SemiBold"
+                                                                                                Foreground="#73FFFFFF"
+                                                                                                Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(Suit.Desc1)}"
+                                                                                                TextWrapping="Wrap" />
+                                                                    </StackPanel>
+                                                                    <!--  4 件套效果  -->
+                                                                    <StackPanel Spacing="4"
+                                                                                Visibility="{x:Bind local:ZZZAvatarInfoPage.SuitEffectVisibility(Suit.Own, 4, Suit.Desc2)}">
+                                                                        <TextBlock FontSize="14"
+                                                                                   FontWeight="Bold"
+                                                                                   Foreground="#E6FFFFFF"
+                                                                                   IsTextScaleFactorEnabled="False"
+                                                                                   Text="{x:Bind local:ZZZAvatarInfoPage.SuitEffectTitle(Suit.Name, 4)}" />
+                                                                        <sc:ColorfulTextBlock FontSize="12"
+                                                                                                FontWeight="SemiBold"
+                                                                                                Foreground="#73FFFFFF"
+                                                                                                Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(Suit.Desc2)}"
+                                                                                                TextWrapping="Wrap" />
+                                                                    </StackPanel>
+                                                                </StackPanel>
+                                                            </Flyout>
+                                                        </Button.Flyout>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </StackPanel>
                                 </Grid>
@@ -1132,7 +1130,7 @@
                                                        Loaded="RankListItemIcon_Loaded" />
                                                 <StackPanel VerticalAlignment="Center" Spacing="2">
                                                     <TextBlock FontSize="14"
-                                                               FontWeight="Medium"
+                                                               FontWeight="SemiBold"
                                                                Foreground="#FFFFFF"
                                                                IsTextScaleFactorEnabled="False"
                                                                Text="{x:Bind Name}" />
@@ -1142,11 +1140,12 @@
                                                                Text="{x:Bind local:ZZZAvatarInfoPage.RankNumText(Pos)}" />
                                                 </StackPanel>
                                             </StackPanel>
-                                            <local:ZZZRichTextBlock Margin="36,4,0,0"
-                                                                  FontSize="12"
-                                                                  Foreground="#73FFFFFF"
-                                                                  Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(Desc)}"
-                                                                  TextWrapping="Wrap" />
+                                            <sc:ColorfulTextBlock Margin="36,4,0,0"
+                                                                    FontSize="12"
+                                                                    FontWeight="SemiBold"
+                                                                    Foreground="#73FFFFFF"
+                                                                    Text="{x:Bind local:ZZZAvatarInfoPage.NormalizeRichText(Desc)}"
+                                                                    TextWrapping="Wrap" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -1155,8 +1154,7 @@
                     </StackPanel>
 
                     <!--  时装  -->
-                    <StackPanel
-                          Visibility="{x:Bind local:ZZZAvatarInfoPage.MultipleSkinsVisibility(CurrentAvatar)}">
+                    <StackPanel Visibility="{x:Bind local:ZZZAvatarInfoPage.MultipleSkinsVisibility(CurrentAvatar)}">
                         <Grid Style="{StaticResource SectionHeaderStyle}">
                             <TextBlock Style="{StaticResource SectionTitleStyle}"
                                        Text="{x:Bind lang:Lang.ZZZAvatarInfoPage_Skin}" />
@@ -1181,6 +1179,7 @@
                                             <TextBlock Margin="0,4,0,0"
                                                        HorizontalAlignment="Center"
                                                        FontSize="14"
+                                                       FontWeight="Bold"
                                                        Foreground="#E6FFFFFF"
                                                        IsTextScaleFactorEnabled="False"
                                                        Text="{x:Bind SkinName}"

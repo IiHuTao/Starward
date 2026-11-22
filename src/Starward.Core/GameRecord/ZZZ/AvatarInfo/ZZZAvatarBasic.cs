@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Starward.Core.GameRecord.ZZZ.AvatarInfo;
@@ -30,28 +29,43 @@ public class ZZZAvatarBasic
     public int Level { get; set; }
 
 
+    /// <summary>
+    /// 名称
+    /// </summary>
     [JsonPropertyName("name_mi18n")]
     public string Name { get; set; }
 
 
+    /// <summary>
+    /// 全名
+    /// </summary>
     [JsonPropertyName("full_name_mi18n")]
     public string FullName { get; set; }
 
 
+    /// <summary>
+    /// 属性
+    /// </summary>
     [JsonPropertyName("element_type")]
     public int ElementType { get; set; }
 
 
+    /// <summary>
+    /// 阵营
+    /// </summary>
     [JsonPropertyName("camp_name_mi18n")]
     public string CampName { get; set; }
 
 
+    /// <summary>
+    /// 特性
+    /// </summary>
     [JsonPropertyName("avatar_profession")]
     public int Profession { get; set; }
 
 
     /// <summary>
-    /// 稀有度 S A
+    /// 稀有度
     /// </summary>
     [JsonPropertyName("rarity")]
     public string Rarity { get; set; }
@@ -65,7 +79,7 @@ public class ZZZAvatarBasic
 
 
     /// <summary>
-    /// 属性图标
+    /// 头像
     /// </summary>
     [JsonPropertyName("hollow_icon_path")]
     public string HollowIconPath { get; set; }
@@ -79,20 +93,22 @@ public class ZZZAvatarBasic
 
 
     /// <summary>
-    /// 是否为当前使用的代理人
+    /// 方头像
     /// </summary>
-    [JsonPropertyName("is_chosen")]
-    public bool IsChosen { get; set; }
-
-
     [JsonPropertyName("role_square_url")]
     public string RoleSquareUrl { get; set; }
 
 
+    /// <summary>
+    /// 变种属性（烈霜、玄墨、凛刃、燎源）
+    /// </summary>
     [JsonPropertyName("sub_element_type")]
     public int SubElementType { get; set; }
 
 
+    /// <summary>
+    /// 激发潜能
+    /// </summary>
     [JsonPropertyName("awaken_state")]
     public string AwakenState { get; set; }
 

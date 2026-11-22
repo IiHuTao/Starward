@@ -8,14 +8,16 @@
              x:DefaultBindMode="OneWay"
              mc:Ignorable="d">
 
-    <TextBlock x:Name="ThisTextBlock"
-               HorizontalAlignment="{x:Bind HorizontalAlignment}"
-               VerticalAlignment="{x:Bind VerticalAlignment}"
-               FontFamily="{x:Bind FontFamily}"
-               FontSize="{x:Bind FontSize}"
-               FontWeight="{x:Bind FontWeight}"
-               Foreground="{x:Bind Foreground}"
-               IsTextSelectionEnabled="{x:Bind IsTextScaleFactorEnabled}"
-               TextWrapping="{x:Bind TextWrapping}" />
+    <!--  WinUI 3 的 TextBlock 不支持 InlineUIContainer，需使用 RichTextBlock 渲染内联图标  -->
+    <RichTextBlock x:Name="ThisRichTextBlock"
+                   HorizontalAlignment="{x:Bind HorizontalAlignment}"
+                   VerticalAlignment="{x:Bind VerticalAlignment}"
+                   FontFamily="{x:Bind FontFamily}"
+                   FontSize="{x:Bind FontSize}"
+                   FontWeight="{x:Bind FontWeight}"
+                   Foreground="{x:Bind Foreground}"
+                   IsTextScaleFactorEnabled="False"
+                   IsTextSelectionEnabled="True"
+                   TextWrapping="{x:Bind TextWrapping}" />
 
 </UserControl>

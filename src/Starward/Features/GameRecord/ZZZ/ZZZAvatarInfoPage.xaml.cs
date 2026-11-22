@@ -14,14 +14,11 @@ using Starward.Core.GameRecord;
 using Starward.Core.GameRecord.ZZZ.AvatarInfo;
 using Starward.Helpers;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Windows.Storage.Streams;
 using Windows.UI;
 using Colors = Microsoft.UI.Colors;
 
@@ -82,14 +79,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 是否正在刷新
-    /// </summary>
-    [ObservableProperty]
-    private bool isRefreshing;
-
-
-    /// <summary>
-    /// 刷新进度文本（刷新时显示,显示为 [已完成数/总数]）
+    /// 刷新进度文本（刷新时显示，格式为 [已完成数/总数]）
     /// </summary>
     [ObservableProperty]
     private string? refreshProgressText;
@@ -117,7 +107,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 当前代理人的套装效果（无激活套装时为 null，用于隐藏区域）
+    /// 当前代理人的套装效果
     /// </summary>
     [ObservableProperty]
     private List<ZZZSuitEffectItem>? activeSuitEffects;
@@ -129,7 +119,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
         var effects = SuitEffects(value);
         ActiveSuitEffects = effects.Count > 0 ? effects : null;
         AwakenActivated = value?.Skills?.Any(x => x.AwakenState == "AwakenStateActivated") ?? false;
-        _ = UpdateRankIconsAsync(value);
+        UpdateRankIcons(value);
     }
 
 
@@ -138,25 +128,22 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
     [RelayCommand]
     private async Task RefreshAvatarInfoAsync()
     {
-        if (IsRefreshing || gameRole is null)
+        if (gameRole is null)
         {
             return;
         }
         try
         {
-            IsRefreshing = true;
             RefreshProgressText = null;
             var progress = new Progress<(int Finished, int Total)>(p => RefreshProgressText = $"{p.Finished}/{p.Total}");
             var (succeeded, total, fatalException) = await _gameRecordService.RefreshZZZAvatarInfoAsync(gameRole, progress);
             if (fatalException is miHoYoApiException ex)
             {
-                // 风控导致刷新中止
                 _logger.LogWarning(ex, "Refresh ZZZ avatar info aborted ({gameBiz}, {uid}).", gameRole?.GameBiz, gameRole?.Uid);
                 InAppToast.MainWindow?.Warning(Lang.Common_AccountError, ex.Message);
             }
             else if (fatalException is not null)
             {
-                // 网络中断导致刷新中止
                 _logger.LogWarning(fatalException, "Refresh ZZZ avatar info aborted ({gameBiz}, {uid}).", gameRole?.GameBiz, gameRole?.Uid);
                 InAppToast.MainWindow?.Warning(Lang.Common_NetworkError, fatalException.Message);
             }
@@ -183,7 +170,6 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
         }
         finally
         {
-            IsRefreshing = false;
             RefreshProgressText = null;
             ResetFilter();
         }
@@ -192,7 +178,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 重置筛选状态（刷新完成后调用，清空筛选条件与面板选中项）
+    /// 重置筛选状态
     /// </summary>
     private void ResetFilter()
     {
@@ -206,57 +192,51 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 全部代理人信息（未筛选）
+    /// 全部代理人信息
     /// </summary>
     private List<ZZZAvatarInfo> _allAvatarInfos = new();
 
 
     /// <summary>
-    /// 属性筛选（element_type）
+    /// 属性筛选
     /// </summary>
     private int? _filterElement;
 
 
     /// <summary>
-    /// 特性筛选（avatar_profession）
+    /// 特性筛选
     /// </summary>
     private int? _filterProfession;
 
 
     /// <summary>
-    /// 属性图标文件（按属性 Id 顺序排列）
+    /// 属性图标映射表
     /// </summary>
-    private static readonly (int Id, string File)[] ElementIcons =
+    private static readonly (int Id, string Uri)[] ElementIcons =
     {
-        (200, "attribute-physical-icon.a657c07a.png"),
-        (201, "attribute-fire-icon.aeddecee.png"),
-        (202, "attribute-ice-icon.5c85742d.png"),
-        (203, "attribute-electric-icon.ad4c441f.png"),
-        (204, "attribute-wind-icon.c5358f7e.png"),
-        (205, "attribute-ether-icon.9a1e42a1.png"),
-        (300, "attribute-light-icon.3434f5b5.png"),
+        (200, "ms-appx:///Assets/Image/attribute-physical-icon.a657c07a.png"), // 物理
+        (201, "ms-appx:///Assets/Image/attribute-fire-icon.aeddecee.png"),     // 火
+        (202, "ms-appx:///Assets/Image/attribute-ice-icon.5c85742d.png"),      // 冰
+        (203, "ms-appx:///Assets/Image/attribute-electric-icon.ad4c441f.png"), // 电
+        (204, "ms-appx:///Assets/Image/attribute-wind-icon.c5358f7e.png"),     // 风
+        (205, "ms-appx:///Assets/Image/attribute-ether-icon.9a1e42a1.png"),    // 以太
+        (300, "ms-appx:///Assets/Image/attribute-light-icon.3434f5b5.png"),    // 流明
     };
 
 
     /// <summary>
-    /// 特性图标文件（按特性 Id 顺序排列）
+    /// 特性图标映射表
     /// </summary>
-    private static readonly (int Id, string File)[] ProfessionIcons =
+    private static readonly (int Id, string Uri)[] ProfessionIcons =
     {
-        (1, "profession-attack-icon.3c2a053f.png"),
-        (2, "profession-breakthrough-icon.84a7f20a.png"),
-        (3, "profession-anomaly-icon.cd1b1573.png"),
-        (4, "profession-support-icon.9cf39df7.png"),
-        (5, "profession-defensive-icon.9bd60af4.png"),
-        (6, "profession-rupture-icon.4668f112.png"),
-        (7, "profession-fengyu-icon.00032c58.png"),
+        (1, "ms-appx:///Assets/Image/profession-attack-icon.3c2a053f.png"),       // 强攻
+        (2, "ms-appx:///Assets/Image/profession-breakthrough-icon.84a7f20a.png"), // 击破
+        (3, "ms-appx:///Assets/Image/profession-anomaly-icon.cd1b1573.png"),      // 异常
+        (4, "ms-appx:///Assets/Image/profession-support-icon.9cf39df7.png"),      // 支援
+        (5, "ms-appx:///Assets/Image/profession-defensive-icon.9bd60af4.png"),    // 防护
+        (6, "ms-appx:///Assets/Image/profession-rupture-icon.4668f112.png"),      // 命破
+        (7, "ms-appx:///Assets/Image/profession-fengyu-icon.00032c58.png"),       // 锋御
     };
-
-
-    /// <summary>
-    /// 静态素材地址
-    /// </summary>
-    private const string ImageUrlBase = "https://act.mihoyo.com/app/mihoyo-zzz-game-record/images";
 
 
     /// <summary>
@@ -297,6 +277,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
             var current = CurrentAvatar;
             AvatarList = filtered;
             CurrentAvatar = filtered.FirstOrDefault(x => x.Avatar == current)?.Avatar ?? filtered.FirstOrDefault(x => x.Avatar is not null)?.Avatar;
+            GridView_AvatarList.SelectedItem = CurrentAvatar is null ? null : filtered.FirstOrDefault(x => x.Avatar == CurrentAvatar);
             Image_Emoji.Visibility = filtered.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
             UpdateFilterButton();
         }
@@ -314,13 +295,15 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
     private void BuildFilterPanels()
     {
         ElementFilterPanel.Items.Clear();
-        foreach (var (id, file) in ElementIcons)
+        // 属性筛选按钮
+        foreach (var (id, uri) in ElementIcons)
         {
-            AddFilterToggle(ElementFilterPanel, id, FilterImage($"{ImageUrlBase}/{file}"), ElementFilter_Click);
+            AddFilterToggle(ElementFilterPanel, id, FilterImage(uri), ElementFilter_Click);
         }
         SetFilterChecked(ElementFilterPanel, _filterElement);
 
         ProfessionFilterPanel.Items.Clear();
+        // 特性筛选按钮
         foreach (var (id, _) in ProfessionIcons)
         {
             AddFilterToggle(ProfessionFilterPanel, id, FilterImage(ProfessionIconUrl(id)), ProfessionFilter_Click);
@@ -330,6 +313,9 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
 
+    /// <summary>
+    /// 筛选按钮图标
+    /// </summary>
     private static CachedImage FilterImage(object? source)
     {
         return new CachedImage { Width = 26, Height = 26, Source = source };
@@ -430,7 +416,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
     private void UpdateFilterButton()
     {
-        // 没有任何代理人数据时隐藏筛选按钮；筛选后无结果时保留筛选按钮
+        // 无代理人数据时隐藏筛选按钮；筛选后无结果时保留筛选按钮
         FilterButton.Visibility = _allAvatarInfos.Any(x => x.Avatar is not null)
             ? Visibility.Visible
             : Visibility.Collapsed;
@@ -466,34 +452,35 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 属性图标
+    /// 获取属性图标
     /// </summary>
     public static ImageSource? ElementIconUrl(int elementType, int subElementType)
     {
-        // 特殊子属性有独立图标，其余按属性查找
-        string? image = (elementType, subElementType) switch
+        // 变种属性有独立图标（烈霜、玄墨、凛刃、燎源），其余按属性查找
+        string? uri = (elementType, subElementType) switch
         {
-            (202, 1) => "attribute-frost-icon.8de86b8f.png",
-            (205, 2) => "attribute-auricink-icon.bb80b050.png",
-            (200, 4) => "attribute-honededge-icon.5c0ed0be.png",
-            _ => ElementIcons.FirstOrDefault(x => x.Id == elementType).File,
+            (202, 1) => "ms-appx:///Assets/Image/attribute-frost-icon.8de86b8f.png",
+            (205, 2) => "ms-appx:///Assets/Image/attribute-auricink-icon.bb80b050.png",
+            (200, 4) => "ms-appx:///Assets/Image/attribute-honededge-icon.5c0ed0be.png",
+            (201, 5) => "ms-appx:///Assets/Image/attribute-flare-icon.f000b2fe.png",
+            _ => ElementIcons.FirstOrDefault(x => x.Id == elementType).Uri,
         };
-        return image is null ? null : new BitmapImage(new Uri($"{ImageUrlBase}/{image}"));
+        return uri is null ? null : new BitmapImage(new Uri(uri));
     }
 
 
     /// <summary>
-    /// 特性图标
+    /// 获取特性图标
     /// </summary>
     public static ImageSource? ProfessionIconUrl(int profession)
     {
-        string? image = ProfessionIcons.FirstOrDefault(x => x.Id == profession).File;
-        return image is null ? null : new BitmapImage(new Uri($"{ImageUrlBase}/{image}"));
+        string? uri = ProfessionIcons.FirstOrDefault(x => x.Id == profession).Uri;
+        return uri is null ? null : new BitmapImage(new Uri(uri));
     }
 
 
     /// <summary>
-    /// 影画角标显示（rank 为 0 时隐藏）
+    /// 影画角标
     /// </summary>
     public static Visibility RankToVisibility(int rank)
     {
@@ -511,7 +498,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 立绘背景字滚动动画（从左到右）
+    /// 启动立绘背景字滚动动画（从左到右）
     /// </summary>
     private void StartMarqueeAnimation()
     {
@@ -590,7 +577,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
     /// </summary>
     public static Brush MarqueeBrush(ZZZAvatarDetail? avatar)
     {
-        Color color = ZZZColorHelper.ParseColor(avatar?.VerticalPaintingColor, Colors.White);
+        Color color = HexColorHelper.ParseColor(avatar?.VerticalPaintingColor, Colors.White);
         color.R = (byte)Math.Min(255, color.R + 16);
         color.G = (byte)Math.Min(255, color.G + 16);
         color.B = (byte)Math.Min(255, color.B + 16);
@@ -604,7 +591,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
     /// </summary>
     public static Brush PaintingBackgroundBrush(ZZZAvatarDetail? avatar)
     {
-        Color color = ZZZColorHelper.ParseColor(avatar?.VerticalPaintingColor, Color.FromArgb(0xFF, 0x2E, 0x2E, 0x2E));
+        Color color = HexColorHelper.ParseColor(avatar?.VerticalPaintingColor, Color.FromArgb(0xFF, 0x2E, 0x2E, 0x2E));
         return new SolidColorBrush(color);
     }
 
@@ -614,40 +601,24 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 影画图标文件名（GT-UI 素材，按影画位置 1-6 排列）
+    /// 影画图标（按影画 1-6 排列，激活后缀 _on，未激活后缀 _off）
     /// </summary>
-    private static readonly string[] RankIconFiles =
+    private static readonly string[] RankIconUris =
     {
-        "401332efd0b741a3",
-        "3eaedfe01c3dbaca",
-        "44d5d7cbc4a42194",
-        "c38e275d1752227c",
-        "e38ac6870459d7ff",
-        "55832216257906d4",
+        "ms-appx:///Assets/Image/401332efd0b741a3",
+        "ms-appx:///Assets/Image/3eaedfe01c3dbaca",
+        "ms-appx:///Assets/Image/44d5d7cbc4a42194",
+        "ms-appx:///Assets/Image/c38e275d1752227c",
+        "ms-appx:///Assets/Image/e38ac6870459d7ff",
+        "ms-appx:///Assets/Image/55832216257906d4",
     };
-
-    /// <summary>
-    /// GT-UI 图标资源根地址
-    /// </summary>
-    private const string GtUiIconBase = "https://act.mihoyo.com/act/gt-ui/assets/icons";
-
-    private static readonly HttpClient GtUiHttpClient = new(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.All })
-    {
-        DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrHigher,
-        Timeout = TimeSpan.FromSeconds(10),
-    };
-
-    /// <summary>
-    /// GT-UI 图标缓存（键为 文件:颜色:透明度）
-    /// </summary>
-    private static readonly ConcurrentDictionary<string, ImageSource> GtUiIconCache = new();
 
 
 
     /// <summary>
     /// 更新影画图标
     /// </summary>
-    private async Task UpdateRankIconsAsync(ZZZAvatarDetail? avatar)
+    private void UpdateRankIcons(ZZZAvatarDetail? avatar)
     {
         var images = new[] { RankIcon1, RankIcon2, RankIcon3, RankIcon4, RankIcon5, RankIcon6 };
         if (avatar is null)
@@ -659,74 +630,21 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
             return;
         }
         int rank = avatar.Rank;
-        try
+        for (int pos = 1; pos <= 6; pos++)
         {
-            var sources = await Task.WhenAll(Enumerable.Range(1, 6).Select(pos => GetRankIconAsync(pos, rank >= pos)));
-            // 快速连续切换时丢弃过期结果，避免旧角色的激活状态覆盖当前显示
-            if (!ReferenceEquals(CurrentAvatar, avatar))
-            {
-                return;
-            }
-            for (int pos = 1; pos <= 6; pos++)
-            {
-                images[pos - 1].Source = sources[pos - 1];
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.LogWarning(ex, "Load ZZZ rank icons failed.");
+            images[pos - 1].Source = GetRankIcon(pos, rank >= pos);
         }
     }
 
 
 
     /// <summary>
-    /// 影画图标加载（GT-UI 素材；激活为黄色，未激活为半透明白），带缓存
+    /// 影画图标（激活为黄色，未激活为半透明白，由 _on/_off 两态 PNG 表达）
     /// </summary>
-    private static Task<ImageSource?> GetRankIconAsync(int pos, bool unlocked)
+    private static ImageSource GetRankIcon(int pos, bool unlocked)
     {
-        // WinUI SvgImageSource 不支持 8 位带透明度的十六进制颜色，未激活用 fill-opacity 表达半透明
-        return GetGtUiIconAsync(RankIconFiles[pos - 1], unlocked ? "#FFF000" : "#FFFFFF", unlocked ? "1" : "0.6");
-    }
-
-
-
-    /// <summary>
-    /// GT-UI 图标加载（下载 SVG 并展开 <symbol>，替换填充色），带缓存
-    /// </summary>
-    private static async Task<ImageSource?> GetGtUiIconAsync(string file, string color = "#FFFFFF", string opacity = "1")
-    {
-        string key = $"{file}:{color}:{opacity}";
-        if (GtUiIconCache.TryGetValue(key, out var cached))
-        {
-            return cached;
-        }
-        string svg = await GtUiHttpClient.GetStringAsync($"{GtUiIconBase}/{file}.svg");
-        // WinUI SvgImageSource 不支持 <symbol>/<use>，将 symbol 内容展开为根元素直接子节点
-        var symbol = Regex.Match(svg, "<symbol[^>]*viewBox=\"([^\"]+)\"[^>]*>(.*)</symbol>", RegexOptions.Singleline);
-        if (symbol.Success)
-        {
-            svg = $"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"{symbol.Groups[1].Value}\">{symbol.Groups[2].Value}</svg>";
-        }
-        svg = svg.Replace("var(--gti-color, #fff)", color);
-        if (opacity != "1")
-        {
-            svg = svg.Replace("<svg ", $"<svg fill-opacity=\"{opacity}\" ");
-        }
-        var stream = new InMemoryRandomAccessStream();
-        using var writer = new DataWriter(stream);
-        writer.UnicodeEncoding = UnicodeEncoding.Utf8;
-        writer.WriteString(svg);
-        await writer.StoreAsync();
-        await writer.FlushAsync();
-        writer.DetachStream();
-        stream.Seek(0);
-        var svgSource = new SvgImageSource();
-        svgSource.RasterizePixelWidth = 96;
-        svgSource.RasterizePixelHeight = 96;
-        await svgSource.SetSourceAsync(stream);
-        GtUiIconCache[key] = svgSource;
-        return svgSource;
+        string uri = $"{RankIconUris[pos - 1]}_{(unlocked ? "on" : "off")}.png";
+        return new BitmapImage(new Uri(uri));
     }
 
 
@@ -805,26 +723,46 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 规范化富文本描述（HTML 风格 span 颜色转为 color 标记，去除残留的 Term 闭合标签）
+    /// 匹配 span 元素（嵌套时由外向内逐层替换）
+    /// </summary>
+    private static readonly Regex SpanRegex = new(@"<span([^>]*)>(.*?)</span>", RegexOptions.Compiled | RegexOptions.Singleline);
+
+
+    /// <summary>
+    /// 匹配 style 属性中的行内颜色（#RRGGBB、#RRGGBBAA 或 #RGB，alpha 在末尾）
+    /// </summary>
+    private static readonly Regex SpanColorRegex = new(@"(?<![a-zA-Z-])color\s*:\s*#((?:[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?)|[0-9A-Fa-f]{3})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+
+    /// <summary>
+    /// 规范化富文本描述（span 行内颜色转为 color 标记，无颜色的 span 去除标记以继承前景色，去除残留的 Term 闭合标签）
     /// </summary>
     public static string NormalizeRichText(string? text)
     {
+        // 富文本描述可能含技能按键图标标记，确保图标已注册
+        ZZZAvatarSkillIconMap.EnsureRegistered();
         if (string.IsNullOrWhiteSpace(text))
         {
             return "";
         }
-        text = Regex.Replace(text, @"(<color=#\w+>)<span[^>]*>(.*?)</span></Term>(?=</color>)", "$1$2");
-        return Regex.Replace(text, "<span[^>]*>", "<color=#FFFFFF>")
-                    .Replace("</span></Term>", "</color>")
-                    .Replace("</span>", "</color>")
-                    .Replace("</Term>", "")
-                    .Trim();
+        string previous;
+        do
+        {
+            previous = text;
+            text = SpanRegex.Replace(text, static match =>
+            {
+                string inner = match.Groups[2].Value;
+                var color = SpanColorRegex.Match(match.Groups[1].Value);
+                return color.Success ? $"<color=#{color.Groups[1].Value}>{inner}</color>" : inner;
+            });
+        } while (text != previous);
+        return text.Replace("</Term>", "").Trim();
     }
 
 
 
     /// <summary>
-    /// 音擎星级填充颜色（静态缓存）
+    /// 音擎进阶等级填充颜色（静态缓存）
     /// </summary>
     private static readonly Brush WeaponStarBrushFilled = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xDE, 0x00));
 
@@ -833,7 +771,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 音擎星级填充颜色
+    /// 音擎进阶等级填充颜色
     /// </summary>
     public static Brush WeaponStarBrush(ZZZWeapon? weapon, int star)
     {
@@ -875,13 +813,6 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 技能图标地址
-    /// </summary>
-    private const string SkillIconUrlBase = "https://act.mihoyo.com/act/gt-ui/assets/icons";
-
-
-
-    /// <summary>
     /// 技能类型名称
     /// </summary>
     public static string SkillTypeName(int skillType)
@@ -901,28 +832,28 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 技能图标（命破特性代理人的特殊技使用独立图标）
+    /// 技能图标
     /// </summary>
     public static ImageSource? SkillIconUrl(int skillType, int profession)
     {
-        string image = (skillType, profession) switch
+        string uri = (skillType, profession) switch
         {
-            (1, 6) => "b66e5b835b99c575.png",
-            (0, _) => "1f66bafcc1f069c2.png",
-            (1, _) => "11ee8bd83f94a1eb.png",
-            (2, _) => "b15382e2428392f2.png",
-            (3, _) => "25a4b80fcfd80526.png",
-            (5, _) => "40791617886f6731.png",
-            (6, _) => "38b9cdcdee285da4.png",
-            _ => "1f66bafcc1f069c2.png",
+            (1, 6) => "ms-appx:///Assets/Image/b66e5b835b99c575.png", // 特殊技（命破，独立图标）
+            (0, _) => "ms-appx:///Assets/Image/1f66bafcc1f069c2.png", // 普通攻击
+            (1, _) => "ms-appx:///Assets/Image/11ee8bd83f94a1eb.png", // 特殊技
+            (2, _) => "ms-appx:///Assets/Image/b15382e2428392f2.png", // 闪避
+            (3, _) => "ms-appx:///Assets/Image/25a4b80fcfd80526.png", // 连携技
+            (5, _) => "ms-appx:///Assets/Image/40791617886f6731.png", // 核心技
+            (6, _) => "ms-appx:///Assets/Image/38b9cdcdee285da4.png", // 支援技
+            _ => "ms-appx:///Assets/Image/1f66bafcc1f069c2.png",      // 未知类型回退普通攻击
         };
-        return new BitmapImage(new Uri($"{SkillIconUrlBase}/{image}"));
+        return new BitmapImage(new Uri(uri));
     }
 
 
 
     /// <summary>
-    /// 技能显示顺序 [普通攻击, 闪避, 支援技, 特殊技, 连携技, 核心技]
+    /// 技能显示顺序 [普通攻击、闪避、支援技、特殊技、连携技、核心技]
     /// </summary>
     public static List<ZZZSkillView> OrderedSkills(ZZZAvatarDetail? avatar)
     {
@@ -955,7 +886,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 是否显示潜能激发（has_awaken_system 表示代理人是否存在潜能激发系统，不存在时隐藏）
+    /// 是否显示潜能激发（不存在潜能激发系统时隐藏）
     /// </summary>
     public static Visibility AwakenVisibility(ZZZAvatarDetail? avatar)
     {
@@ -1025,7 +956,7 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 驱动盘评分
+    /// 驱动盘评分图标
     /// </summary>
     public static ImageSource? RatingBadgeUrl(ZZZEquipPlanInfo? planInfo)
     {
@@ -1034,11 +965,11 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
             return null;
         }
         string name = planInfo.EquipRating.Replace("ER_", "").ToLowerInvariant();
-        if (!RatingBadgeFiles.TryGetValue(name, out string? file))
+        if (!RatingBadgeFiles.TryGetValue(name, out string? uri))
         {
             return null;
         }
-        return new BitmapImage(new Uri($"{ImageUrlBase}/{file}"));
+        return new BitmapImage(new Uri(uri));
     }
 
 
@@ -1048,15 +979,15 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
     /// </summary>
     private static readonly Dictionary<string, string> RatingBadgeFiles = new()
     {
-        ["b"] = "b.6428930f.png",
-        ["a"] = "a.94d50077.png",
-        ["s"] = "s.1b99e936.png",
-        ["s_plus"] = "s_plus.8426d3ac.png",
-        ["ss"] = "ss.9aefb415.png",
-        ["ss_plus"] = "ss_plus.6a01e298.png",
-        ["sss"] = "sss.c792a8a7.png",
-        ["sss_plus"] = "sss_plus.6a303d10.png",
-        ["sss_plus_crown"] = "sss_plus_crown.e0a88067.png",
+        ["b"] = "ms-appx:///Assets/Image/b.6428930f.png",
+        ["a"] = "ms-appx:///Assets/Image/a.94d50077.png",
+        ["s"] = "ms-appx:///Assets/Image/s.1b99e936.png",
+        ["s_plus"] = "ms-appx:///Assets/Image/s_plus.8426d3ac.png",
+        ["ss"] = "ms-appx:///Assets/Image/ss.9aefb415.png",
+        ["ss_plus"] = "ms-appx:///Assets/Image/ss_plus.6a01e298.png",
+        ["sss"] = "ms-appx:///Assets/Image/sss.c792a8a7.png",
+        ["sss_plus"] = "ms-appx:///Assets/Image/sss_plus.6a303d10.png",
+        ["sss_plus_crown"] = "ms-appx:///Assets/Image/sss_plus_crown.e0a88067.png",
     };
 
 
@@ -1115,51 +1046,30 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
     /// <summary>
     /// 代理人/驱动盘属性条目图标加载
     /// </summary>
-    private async void PropertyIconImage_Loaded(object sender, RoutedEventArgs e)
+    private void PropertyIconImage_Loaded(object sender, RoutedEventArgs e)
     {
         if (sender is Image image && image.DataContext is not null)
         {
             object context = image.DataContext;
             int? propertyId = null;
-            string color = "#FFFFFF";
-            string opacity = "1";
+            string variant = "";
             if (context is ZZZAvatarProperty property)
             {
                 propertyId = property.PropertyId;
             }
             else if (context is ZZZEquipProperty equipProperty)
             {
-                // 图标颜色与词条文字一致：有效词条为橙色，无效词条为半透明白
+                // 图标颜色与词条文字一致：有效词条为橙色（_valid），无效词条为半透明白（_invalid）
                 propertyId = equipProperty.PropertyId;
-                if (equipProperty.Valid)
-                {
-                    color = PropertyIconValidColor;
-                }
-                else
-                {
-                    // WinUI SvgImageSource 不支持 8 位带透明度的十六进制颜色，用 fill-opacity 表达 #A6FFFFFF
-                    opacity = "0.65";
-                }
+                variant = equipProperty.Valid ? "_valid" : "_invalid";
             }
             else if (context is ZZZPlanPropertyHit planHit)
             {
-                // 养成方案词条 chip 图标使用默认白色
                 propertyId = planHit.PropertyId;
             }
             if (propertyId is int id)
             {
-                try
-                {
-                    var source = await GetPropertyIconAsync(id, color, opacity);
-                    if (ReferenceEquals(image.DataContext, context))
-                    {
-                        image.Source = source;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogWarning(ex, "Load ZZZ property icon failed.");
-                }
+                image.Source = GetPropertyIcon(id, variant);
             }
         }
     }
@@ -1167,75 +1077,69 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
 
 
     /// <summary>
-    /// 有效词条图标颜色
-    /// </summary>
-    private const string PropertyIconValidColor = "#F1AD3D";
-
-
-    /// <summary>
-    /// 代理人属性图标（GT-UI 属性面板图标，按属性 Id 查找）
+    /// 代理人属性图标（按属性 Id 查找）
     /// </summary>
     private static readonly Dictionary<int, string> PropertyIconFiles = new()
     {
-        [1] = "317ce2a47d66fd3e",   // 生命值
-        [2] = "4883b409fd524b6d",   // 攻击力
-        [3] = "f2a930b4deba8528",   // 防御力
-        [4] = "ae8b5440f710fad8",   // 冲击力
-        [5] = "09bfc76f660dd0d1",   // 暴击率
-        [6] = "80d52f918714bed4",   // 暴击伤害
-        [7] = "2d4c15cee5a66ebe",   // 异常掌控
-        [8] = "c44eb009da6c398b",   // 异常精通
-        [9] = "1b15470e75018348",   // 穿透率
-        [11] = "f26955cea8f29f4f",  // 能量自动回复
-        [19] = "b765786bd239a9a8",  // 贯穿力
-        [20] = "2079bc3eeededc26",  // 闪能自动累积
-        [232] = "b5cae085c3f59de9", // 穿透值
-        [315] = "82c00663aae7ab6a", // 物理伤害加成
-        [316] = "0a25f03245faae72", // 火属性伤害加成
-        [317] = "9b670b3ef874cdf9", // 冰属性伤害加成
-        [318] = "fe8a6af1c6dcde66", // 电属性伤害加成
-        [319] = "17b9af04debf66f8", // 以太伤害加成
-        [323] = "9c599b19c4fa54fe", // 风属性伤害加成
+        [1] = "ms-appx:///Assets/Image/317ce2a47d66fd3e",   // 生命值
+        [2] = "ms-appx:///Assets/Image/4883b409fd524b6d",   // 攻击力
+        [3] = "ms-appx:///Assets/Image/f2a930b4deba8528",   // 防御力
+        [4] = "ms-appx:///Assets/Image/ae8b5440f710fad8",   // 冲击力
+        [5] = "ms-appx:///Assets/Image/09bfc76f660dd0d1",   // 暴击率
+        [6] = "ms-appx:///Assets/Image/80d52f918714bed4",   // 暴击伤害
+        [7] = "ms-appx:///Assets/Image/2d4c15cee5a66ebe",   // 异常掌控
+        [8] = "ms-appx:///Assets/Image/c44eb009da6c398b",   // 异常精通
+        [9] = "ms-appx:///Assets/Image/1b15470e75018348",   // 穿透率
+        [11] = "ms-appx:///Assets/Image/f26955cea8f29f4f",  // 能量自动回复
+        [19] = "ms-appx:///Assets/Image/b765786bd239a9a8",  // 贯穿力
+        [20] = "ms-appx:///Assets/Image/2079bc3eeededc26",  // 闪能自动累积
+        [232] = "ms-appx:///Assets/Image/b5cae085c3f59de9", // 穿透值
+        [315] = "ms-appx:///Assets/Image/82c00663aae7ab6a", // 物理伤害加成
+        [316] = "ms-appx:///Assets/Image/0a25f03245faae72", // 火属性伤害加成
+        [317] = "ms-appx:///Assets/Image/9b670b3ef874cdf9", // 冰属性伤害加成
+        [318] = "ms-appx:///Assets/Image/fe8a6af1c6dcde66", // 电属性伤害加成
+        [319] = "ms-appx:///Assets/Image/17b9af04debf66f8", // 以太伤害加成
+        [323] = "ms-appx:///Assets/Image/9c599b19c4fa54fe", // 风属性伤害加成
     };
 
 
     /// <summary>
-    /// 驱动盘词条图标（旧版属性 Id 体系，含平值与百分比词条）
+    /// 驱动盘词条图标（按旧版属性 Id 查找）
     /// </summary>
     private static readonly Dictionary<int, string> EquipPropertyIconFiles = new()
     {
-        [11102] = "317ce2a47d66fd3e", // 生命值
-        [11103] = "317ce2a47d66fd3e", // 生命值百分比
-        [12102] = "4883b409fd524b6d", // 攻击力
-        [12103] = "4883b409fd524b6d", // 攻击力百分比
-        [13102] = "f2a930b4deba8528", // 防御力
-        [13103] = "f2a930b4deba8528", // 防御力百分比
-        [12202] = "ae8b5440f710fad8", // 冲击力
-        [20103] = "09bfc76f660dd0d1", // 暴击率
-        [21103] = "80d52f918714bed4", // 暴击伤害
-        [23203] = "b5cae085c3f59de9", // 穿透值
-        [30502] = "f26955cea8f29f4f", // 能量自动回复
-        [31203] = "c44eb009da6c398b", // 异常精通
-        [31402] = "2d4c15cee5a66ebe", // 异常掌控
-        [31503] = "82c00663aae7ab6a", // 物理伤害加成
-        [31603] = "0a25f03245faae72", // 火属性伤害加成
-        [31703] = "9b670b3ef874cdf9", // 冰属性伤害加成
-        [31803] = "fe8a6af1c6dcde66", // 电属性伤害加成
-        [31903] = "17b9af04debf66f8", // 以太伤害加成
-        [32303] = "9c599b19c4fa54fe", // 风属性伤害加成
+        [11102] = "ms-appx:///Assets/Image/317ce2a47d66fd3e", // 生命值
+        [11103] = "ms-appx:///Assets/Image/317ce2a47d66fd3e", // 生命值百分比
+        [12102] = "ms-appx:///Assets/Image/4883b409fd524b6d", // 攻击力
+        [12103] = "ms-appx:///Assets/Image/4883b409fd524b6d", // 攻击力百分比
+        [13102] = "ms-appx:///Assets/Image/f2a930b4deba8528", // 防御力
+        [13103] = "ms-appx:///Assets/Image/f2a930b4deba8528", // 防御力百分比
+        [12202] = "ms-appx:///Assets/Image/ae8b5440f710fad8", // 冲击力
+        [20103] = "ms-appx:///Assets/Image/09bfc76f660dd0d1", // 暴击率
+        [21103] = "ms-appx:///Assets/Image/80d52f918714bed4", // 暴击伤害
+        [23203] = "ms-appx:///Assets/Image/b5cae085c3f59de9", // 穿透值
+        [30502] = "ms-appx:///Assets/Image/f26955cea8f29f4f", // 能量自动回复
+        [31203] = "ms-appx:///Assets/Image/c44eb009da6c398b", // 异常精通
+        [31402] = "ms-appx:///Assets/Image/2d4c15cee5a66ebe", // 异常掌控
+        [31503] = "ms-appx:///Assets/Image/82c00663aae7ab6a", // 物理伤害加成
+        [31603] = "ms-appx:///Assets/Image/0a25f03245faae72", // 火属性伤害加成
+        [31703] = "ms-appx:///Assets/Image/9b670b3ef874cdf9", // 冰属性伤害加成
+        [31803] = "ms-appx:///Assets/Image/fe8a6af1c6dcde66", // 电属性伤害加成
+        [31903] = "ms-appx:///Assets/Image/17b9af04debf66f8", // 以太伤害加成
+        [32303] = "ms-appx:///Assets/Image/9c599b19c4fa54fe", // 风属性伤害加成
     };
 
 
     /// <summary>
-    /// 属性图标加载（代理人面板与驱动盘词条共用，按属性 Id 查找）
+    /// 属性图标（代理人面板与驱动盘词条共用，按属性 Id 查找；默认白色，_valid 橙色，_invalid 半透明白）
     /// </summary>
-    private static Task<ImageSource?> GetPropertyIconAsync(int propertyId, string color = "#FFFFFF", string opacity = "1")
+    private static ImageSource? GetPropertyIcon(int propertyId, string variant = "")
     {
-        if (PropertyIconFiles.TryGetValue(propertyId, out string? file) || EquipPropertyIconFiles.TryGetValue(propertyId, out file))
+        if (PropertyIconFiles.TryGetValue(propertyId, out string? uri) || EquipPropertyIconFiles.TryGetValue(propertyId, out uri))
         {
-            return GetGtUiIconAsync(file, color, opacity);
+            return new BitmapImage(new Uri($"{uri}{variant}.png"));
         }
-        return Task.FromResult<ImageSource?>(null);
+        return null;
     }
 
 
@@ -1290,22 +1194,11 @@ public sealed partial class ZZZAvatarInfoPage : PageBase
     /// <summary>
     /// 影画列表项图标加载
     /// </summary>
-    private async void RankListItemIcon_Loaded(object sender, RoutedEventArgs e)
+    private void RankListItemIcon_Loaded(object sender, RoutedEventArgs e)
     {
         if (sender is Image image && image.DataContext is ZZZAvatarRank rank)
         {
-            try
-            {
-                var source = await GetRankIconAsync(rank.Pos, rank.IsUnlocked);
-                if (ReferenceEquals(image.DataContext, rank))
-                {
-                    image.Source = source;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogWarning(ex, "Load ZZZ rank list icon failed.");
-            }
+            image.Source = GetRankIcon(rank.Pos, rank.IsUnlocked);
         }
     }
 
