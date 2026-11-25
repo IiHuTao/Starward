@@ -222,6 +222,17 @@ public sealed partial class MainView : UserControl
         NavigationViewItem_SelfQuery.Visibility = CurrentGameFeatureConfig.SupportedPages.Contains(nameof(SelfQueryPage)).ToVisibility();
         NavigationViewItem_GenshinBeyondGacha.Visibility = CurrentGameFeatureConfig.SupportedPages.Contains(nameof(GenshinBeyondGachaPage)).ToVisibility();
 
+        // 抽卡记录名称
+        string gachalogText = CurrentGameId?.GameBiz.Game switch
+        {
+            GameBiz.hk4e => Lang.GachaLogService_WishRecords,
+            GameBiz.hkrpg => Lang.GachaLogService_WarpRecords,
+            GameBiz.nap => Lang.GachaLogService_SignalSearchRecords,
+            _ => "",
+        };
+        ToolTipService.SetToolTip(NavigationViewItem_GachaLog, gachalogText);
+        TextBlock_GachaLog.Text = gachalogText;
+
         if (CurrentGameId?.GameBiz.IsChinaServer() ?? false)
         {
             ToolTipService.SetToolTip(NavigationViewItem_HoyolabToolbox, Lang.HyperionToolbox);
