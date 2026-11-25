@@ -2948,4 +2948,145 @@ Kamu dipersilakan mengirimkan data hasil ekspor ke repositori berikut:</value>
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>Aplikasi tidak resmi. Harap perhatikan keamanan akunmu.</value>
   </data>
+  <data name="SettingPage_WebDAVBackupDatabase" xml:space="preserve">
+    <value>Cadangkan Basis Data ke WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVConfig" xml:space="preserve">
+    <value>Konfigurasi WebDAV</value>
+  </data>
+  <data name="SettingPage_WebDAVServerAddress" xml:space="preserve">
+    <value>Alamat Server</value>
+  </data>
+  <data name="SettingPage_WebDAVUserName" xml:space="preserve">
+    <value>Nama Pengguna</value>
+  </data>
+  <data name="SettingPage_WebDAVPassword" xml:space="preserve">
+    <value>Kata Sandi Aplikasi</value>
+  </data>
+  <data name="SettingPage_WebDAVTestConnection" xml:space="preserve">
+    <value>Uji Koneksi</value>
+  </data>
+  <data name="SettingPage_WebDAVTestSuccess" xml:space="preserve">
+    <value>Koneksi berhasil.</value>
+  </data>
+  <data name="SettingPage_WebDAVDeleteLocalFileAfterUpload" xml:space="preserve">
+    <value>Hapus arsip cadangan WebDAV lokal setelah berhasil diunggah</value>
+  </data>
+  <data name="SettingPage_Compressing" xml:space="preserve">
+    <value>Mengompresi</value>
+  </data>
+  <data name="SettingPage_WebDAVInvalidServerAddress" xml:space="preserve">
+    <value>Alamat server tidak valid. Alamat harus berupa URL absolut yang diawali dengan http:// atau https://.</value>
+  </data>
+  <data name="SettingPage_WebDAVBackupFailedCleanup" xml:space="preserve">
+    <value>Unggahan gagal. Hapus arsip cadangan lokal yang dibuat kali ini?</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManager" xml:space="preserve">
+    <value>Pengelola Cadangan WebDAV</value>
+  </data>
+  <data name="ToolboxSetting_WebDAVBackupManagerDescription" xml:space="preserve">
+    <value>Lihat dan kelola file cadangan di server WebDAV</value>
+  </data>
+  <data name="WebDAVBackupWindow_Refresh" xml:space="preserve">
+    <value>Segarkan</value>
+  </data>
+  <data name="WebDAVBackupWindow_Download" xml:space="preserve">
+    <value>Unduh</value>
+  </data>
+  <data name="WebDAVBackupWindow_Delete" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="WebDAVBackupWindow_Loading" xml:space="preserve">
+    <value>Memuat…</value>
+  </data>
+  <data name="WebDAVBackupWindow_Empty" xml:space="preserve">
+    <value>Tidak ada file cadangan yang ditemukan</value>
+  </data>
+  <data name="WebDAVBackupWindow_NotConfigured" xml:space="preserve">
+    <value>WebDAV belum dikonfigurasi. Konfigurasikan terlebih dahulu di Pengaturan - Pengelolaan File.</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmTitle" xml:space="preserve">
+    <value>Hapus File Cadangan</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteConfirmContent" xml:space="preserve">
+    <value>Apakah kamu yakin ingin menghapus file cadangan yang dipilih?</value>
+  </data>
+  <data name="WebDAVBackupWindow_Downloading" xml:space="preserve">
+    <value>Mengunduh</value>
+  </data>
+  <data name="WebDAVBackupWindow_Deleting" xml:space="preserve">
+    <value>Menghapus</value>
+  </data>
+  <data name="WebDAVBackupWindow_Name" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="WebDAVBackupWindow_Size" xml:space="preserve">
+    <value>Ukuran</value>
+  </data>
+  <data name="WebDAVBackupWindow_LastModified" xml:space="preserve">
+    <value>Terakhir Diubah</value>
+  </data>
+  <data name="WebDAVBackupWindow_Date" xml:space="preserve">
+    <value>Tanggal</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDate" xml:space="preserve">
+    <value>Hapus Sebelum Tanggal</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateContent" xml:space="preserve">
+    <value>Pilih tanggal. Semua file cadangan yang diubah sebelum tanggal ini akan dihapus dari server.</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateTitle" xml:space="preserve">
+    <value>Hapus Cadangan</value>
+  </data>
+  <data name="WebDAVBackupWindow_DeleteBeforeDateCount" xml:space="preserve">
+    <value>Ini akan menghapus {0} file cadangan dari server.</value>
+  </data>
+  <data name="WebDAVBackupWindow_SelectedCount" xml:space="preserve">
+    <value>Saat ini {0} file cadangan dipilih</value>
+  </data>
+  <data name="WebDAVError_ListingFiles" xml:space="preserve">
+    <value>mendaftar file</value>
+  </data>
+  <data name="WebDAVError_CreatingFolder" xml:space="preserve">
+    <value>membuat folder</value>
+  </data>
+  <data name="WebDAVError_UploadingFile" xml:space="preserve">
+    <value>mengunggah file</value>
+  </data>
+  <data name="WebDAVError_DownloadingFile" xml:space="preserve">
+    <value>mengunduh file</value>
+  </data>
+  <data name="WebDAVError_CheckingFile" xml:space="preserve">
+    <value>memeriksa file</value>
+  </data>
+  <data name="WebDAVError_DeletingFile" xml:space="preserve">
+    <value>menghapus file</value>
+  </data>
+  <data name="WebDAVError_Failed" xml:space="preserve">
+    <value>Gagal {0}. (HTTP {1})</value>
+  </data>
+  <data name="WebDAVError_Unauthorized" xml:space="preserve">
+    <value>Tidak diizinkan. Periksa nama pengguna dan kata sandi WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Forbidden" xml:space="preserve">
+    <value>Akses ditolak. Periksa izin akun WebDAV.</value>
+  </data>
+  <data name="WebDAVError_MethodNotAllowed" xml:space="preserve">
+    <value>Metode tidak diizinkan. Server mungkin tidak mendukung WebDAV.</value>
+  </data>
+  <data name="WebDAVError_Timeout" xml:space="preserve">
+    <value>Permintaan habis waktu. Periksa jaringan dan alamat server.</value>
+  </data>
+  <data name="WebDAVError_InvalidResponse" xml:space="preserve">
+    <value>Respons server bukan data WebDAV yang valid. Periksa alamat server atau apakah server mendukung WebDAV.</value>
+  </data>
+  <data name="WebDAVError_NetworkError" xml:space="preserve">
+    <value>Tidak dapat terhubung ke server. Periksa jaringan dan alamat server.</value>
+  </data>
+  <data name="WebDAVError_ParentFolderNotFound" xml:space="preserve">
+    <value>Tidak dapat membuat folder cadangan. Subjalur alamat server mungkin tidak ada, atau server tidak mendukung WebDAV.</value>
+  </data>
+  <data name="WebDAVError_DownloadSizeMismatch" xml:space="preserve">
+    <value>Ukuran file yang diunduh tidak cocok dengan file di server.</value>
+  </data>
 </root>
