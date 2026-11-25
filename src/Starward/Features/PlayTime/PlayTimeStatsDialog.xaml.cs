@@ -178,6 +178,7 @@ public sealed partial class PlayTimeStatsDialog : ContentDialog
     private void LoadPlayTimeStats()
     {
         var biz = CurrentGameBiz;
+        biz = biz.IsBilibili() ? $"{biz.Game}_cn" : biz;
         try
         {
             var sessions = _playTimeStatsService.GetPlayTimeInRange(biz, default, DateTimeOffset.Now);
