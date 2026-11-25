@@ -2947,4 +2947,7 @@
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>非公式アプリです。アカウントの安全にご注意ください。</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>ゲームのプレイ時間を表示</value>
+  </data>
 </root>

@@ -2948,4 +2948,7 @@
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>비공식 앱입니다. 계정 보안에 주의하세요.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>게임 플레이 시간 표시하기</value>
+  </data>
 </root>

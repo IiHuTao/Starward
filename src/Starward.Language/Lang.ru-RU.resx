@@ -2952,4 +2952,7 @@
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>Неофициальное приложение. Пожалуйста, позаботьтесь о безопасности своего аккаунта.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>Показывать время игры</value>
+  </data>
 </root>

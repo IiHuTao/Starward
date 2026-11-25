@@ -2942,4 +2942,7 @@
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>แอพที่ไม่เป็นทางการ โปรดระวังความปลอดภัยของบัญชีของคุณ</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>แสดงเวลาเล่นเกม</value>
+  </data>
 </root>

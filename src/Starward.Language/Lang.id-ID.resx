@@ -2948,4 +2948,7 @@ Kamu dipersilakan mengirimkan data hasil ekspor ke repositori berikut:</value>
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>Aplikasi tidak resmi. Harap perhatikan keamanan akunmu.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>Tampilkan Waktu Bermain</value>
+  </data>
 </root>

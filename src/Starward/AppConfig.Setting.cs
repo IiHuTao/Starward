@@ -94,6 +94,15 @@ public static partial class AppConfig
         set => SetValue(value);
     }
 
+    /// <summary>
+    /// 是否显示游戏时长
+    /// </summary>
+    public static bool ShowPlayTime
+    {
+        get => GetValue(true);
+        set => SetValue(value);
+    }
+
     public static string? GachaLanguage
     {
         get => GetValue<string>();

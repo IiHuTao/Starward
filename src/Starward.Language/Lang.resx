@@ -2948,4 +2948,7 @@ You are welcome to submit the exported data to the following repository:</value>
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>Unofficial APP. Please be mindful of your account security.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>Show Game Playtime</value>
+  </data>
 </root>

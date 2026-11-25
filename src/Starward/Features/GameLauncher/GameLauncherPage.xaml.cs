@@ -65,6 +65,7 @@ public sealed partial class GameLauncherPage : PageBase
         WeakReferenceMessenger.Default.Register<MainWindowStateChangedMessage>(this, OnMainWindowStateChanged);
         WeakReferenceMessenger.Default.Register<RemovableStorageDeviceChangedMessage>(this, OnRemovableStorageDeviceChanged);
         WeakReferenceMessenger.Default.Register<GameInstallTaskStartedMessage>(this, OnGameInstallTaskStarted);
+        WeakReferenceMessenger.Default.Register<PlayTimeSettingChangedMessage>(this, OnPlayTimeSettingChanged);
     }
 
 
@@ -221,6 +222,22 @@ public sealed partial class GameLauncherPage : PageBase
     /// </summary>
     public bool IsPredownloadFinished { get; set => SetProperty(ref field, value); }
 
+    /// <summary>
+    /// 是否显示游戏时长
+    /// </summary>
+    public bool ShowPlayTime
+    {
+        get => field && GameState is not GameState.Reservation;
+        private set => SetProperty(ref field, value);
+    } = AppConfig.ShowPlayTime;
+
+
+    partial void OnGameStateChanged(GameState value)
+    {
+        OnPropertyChanged(nameof(ShowPlayTime));
+    }
+
+
     private Version? localGameVersion;
 
     private Version? latestGameVersion;
@@ -275,7 +292,6 @@ public sealed partial class GameLauncherPage : PageBase
             {
                 if (await CheckGameReservationAsync(cancellation))
                 {
-                    Button_PlayTime.Visibility = Visibility.Collapsed;
                     GameState = GameState.Reservation;
                 }
                 else
@@ -856,6 +872,12 @@ public sealed partial class GameLauncherPage : PageBase
             _gameInstallTask = message.InstallTask;
             _dispatchTimer.Start();
         }
+    }
+
+
+    private void OnPlayTimeSettingChanged(object _, PlayTimeSettingChangedMessage message)
+    {
+        ShowPlayTime = AppConfig.ShowPlayTime;
     }
 
 

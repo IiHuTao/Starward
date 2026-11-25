@@ -2948,4 +2948,7 @@ Puede enviar los datos exportados al siguiente repositorio:</value>
   <data name="HypLoginWindow_UnofficialAPPPleaseBeMindfulOfYourAccountSecurity" xml:space="preserve">
     <value>Aplicación no oficial. Ten cuidado con la seguridad de tu cuenta.</value>
   </data>
+  <data name="LauncherPage_ShowPlayTime" xml:space="preserve">
+    <value>Mostrar tiempo de juego</value>
+  </data>
 </root>
